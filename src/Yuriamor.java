@@ -15,36 +15,36 @@ public class Yuriamor {
     // Methods
     public static void startScreen() {
         
-        //temp storage
+        // temp storage / local variables
         String input;
         String output;
         
-        // create IO class
-        IO doThis = new IO();
+        // create IO object
+        IO io = new IO();
         
         // Intro
         output = "**********************************\n"
         +  "***********  Yuriamor  ***********\n"
         +  "**********************************\n"
         +  "   A text based adventure game!  \n\n\n";
-        doThis.sendOutput(output);
+        io.sendOutput(output);
         
         
         // gets character name
         output = "Enter Character Name: ";
-        doThis.sendOutput(output);
-        String playerName = doThis.getInput();
+        io.sendOutput(output);
+        String playerName = io.getInput();
         
         // gets character race
         output = "Enter Character Race: ";
-        doThis.sendOutput(output);
-        String playerRace = doThis.getInput();
+        io.sendOutput(output);
+        String playerRace = io.getInput();
         
         // outputs character name and race
         output = "\n***********************************\n\n\n";
-        doThis.sendOutput(output);
+        io.sendOutput(output);
         output = "Welcome to Yuriamor, " + playerName + "!" + " You are a " + playerRace + ".";
-        doThis.sendOutput(output);
+        io.sendOutput(output);
     }
     
     // Program Start
