@@ -1,5 +1,5 @@
-Yuriamor: Yuriamor.java IO.java
-	javac Yuriamor.java IO.java
+Yuriamor: Yuriamor.java IO.java Intro.java
+	javac Yuriamor.java IO.java Intro.java
 clean:
 	rm *.class
 jar:
