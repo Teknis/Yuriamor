@@ -10,7 +10,7 @@ public class Yuriamor {
     
     // Variables
     String playerName;
-    int playerRace;
+    String playerRace;
     
     // Methods
     public static void startScreen() {
