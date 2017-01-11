@@ -9,6 +9,7 @@
 public class Yuriamor {
     
     // Variables
+	String playerSex;
     String playerName;
     String playerRace;
     
@@ -29,21 +30,26 @@ public class Yuriamor {
         +  "   A text based adventure game!  \n\n\n";
         io.sendOutput(output);
         
-        
+        // gets character sex
+        output = "Enter 'Female' or 'Male': ";
+        io.sendOutput(output);
+        String playerSex = io.getInput();
+        		
+        		
         // gets character name
         output = "Enter Character Name: ";
         io.sendOutput(output);
         String playerName = io.getInput();
         
         // gets character race
-        output = "Enter Character Race: ";
+        output = "Enter Character Race (type either 'Human', 'Elf', or 'Wizard': ";
         io.sendOutput(output);
         String playerRace = io.getInput();
         
-        // outputs character name and race
+        // outputs character sex, name, and race
         output = "\n***********************************\n\n\n";
         io.sendOutput(output);
-        output = "Welcome to Yuriamor, " + playerName + "!" + " You are a " + playerRace + ".";
+        output = "Welcome to Yuriamor, " + playerName + "!" + " You have chosen to be a " + playerSex + " " + playerRace + ".";
         io.sendOutput(output);
     }
     
