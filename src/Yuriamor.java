@@ -9,53 +9,25 @@
 public class Yuriamor {
     
     // Variables
-	String playerSex;
+    String playerSex;
     String playerName;
     String playerRace;
     
     // Methods
     public static void startScreen() {
         
-        // temp storage / local variables
-        String input;
-        String output;
+        Intro intro = new Intro();
         
-        // create IO object
-        IO io = new IO();
-        
-        // Intro
-        output = "**********************************\n"
-        +  "***********  Yuriamor  ***********\n"
-        +  "**********************************\n"
-        +  "   A text based adventure game!  \n\n\n";
-        io.sendOutput(output);
-        
-        // gets character sex
-        output = "Enter 'Female' or 'Male': ";
-        io.sendOutput(output);
-        String playerSex = io.getInput();
-        		
-        		
-        // gets character name
-        output = "Enter Character Name: ";
-        io.sendOutput(output);
-        String playerName = io.getInput();
-        
-        // gets character race
-        output = "Enter Character Race (type either 'Human', 'Elf', or 'Wizard': ";
-        io.sendOutput(output);
-        String playerRace = io.getInput();
-        
-        // outputs character sex, name, and race
-        output = "\n***********************************\n\n\n";
-        io.sendOutput(output);
-        output = "Welcome to Yuriamor, " + playerName + "!" + " You have chosen to be a " + playerSex + " " + playerRace + ".";
-        io.sendOutput(output);
+        //INTRO
+        intro.beginning();
+        String playerSex = intro.gender();
+        String playerName = intro.name();
+        String playerRace = intro.race();
+        intro.end(playerSex,playerName,playerRace);
     }
     
     // Program Start
     public static void main(String[] args) {
         startScreen();
-        
     }
 }
