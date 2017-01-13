@@ -7,11 +7,6 @@
 
 public class Yuriamor {
     
-    // Variables
-    String playerSex;
-    String playerName;
-    String playerRace;
-    
     // Methods
     public static void startScreen() {
         
@@ -20,10 +15,9 @@ public class Yuriamor {
         
         //INTRO
         intro.beginning();
-        String playerSex = intro.gender();
         String playerName = intro.name();
-        String playerRace = intro.race();
-        intro.end(playerSex,playerName,playerRace);
+        int charProf = intro.charProf();
+        intro.end(playerName,charProf);
     }
     
     // Program Start
