@@ -3,7 +3,6 @@
  GROUP: CHANDLER, CALEB, JACOB
  DATE: 1/10/16
  FILE: Yuriamor.java
- LAST MODIFICATION: Today
  ************************/
 
 public class Yuriamor {
@@ -17,6 +16,7 @@ public class Yuriamor {
     public static void startScreen() {
         
         Intro intro = new Intro();
+	MainMenu mainmenu = new MainMenu();
         
         //INTRO
         intro.beginning();
