@@ -10,31 +10,40 @@ import java.util.Scanner;
 
 public class IO {
     
-    // Methods //
+   	// Methods //
     
-    // GETS USER INPUT
-    // Scans it and then sends it back
-    // When we implement swing all we will need to change
-    //     is this function and the send method instead of 
-    //     all of the functions in the original.
+   	// GETS USER INPUT
+   	// Scans it and then sends it back
+   	// When we implement swing all we will need to change
+   	//     is this function and the send method instead of 
+   	//     all of the functions in the original.
     
 	
 	//gets String inputs
-	public String getStringInput() {
-        Scanner userInput = new Scanner(System.in);
-        String storeInput = userInput.nextLine();
-        return storeInput;
-    }
-	//gets Integer inputs
-	public int getIntegerInput() {
-		Scanner userInput = new Scanner(System.in);
-		int storeInput = userInput.nextInt();
-		return storeInput;
+	public String getInput() {
+       		Scanner userInput = new Scanner(System.in);
+       	 	String storeInput = userInput.nextLine();
+       	 	return storeInput;
+    	}
+	
+    	// SENDS MAIN OUTPUT
+    	// Sends information to console/terminal
+    	public void sendOutput(String output) {
+        	System.out.print(output);
+   	}
+
+	// CLEAR SCREEN
+	public void clearScreen(){
+		final String ANSI_CLS = "\u001b[2J";
+        	final String ANSI_HOME = "\u001b[H";
+        	System.out.print(ANSI_CLS + ANSI_HOME);
+        	System.out.flush();
 	}
 	
-    // SENDS MAIN OUTPUT
-    // Sends information to console/terminal
-    public void sendOutput(String output) {
-        System.out.print(output);
-    }
+	// PAUSE
+	public void pauseScreen(){
+		sendOutput("\n\nPress enter to continue...");
+		Scanner userInput = new Scanner(System.in);
+		userInput.nextLine();
+	}
 }

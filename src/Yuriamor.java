@@ -1,3 +1,4 @@
+
 /************************
  PROJECT: YURIAMOR
  GROUP: CHANDLER, CALEB, JACOB
@@ -18,6 +19,8 @@ public class Yuriamor {
         String playerName = intro.name();
         int charProf = intro.charProf();
         intro.end(playerName,charProf);
+
+	mainmenu.resume();
     }
     
     // Program Start
