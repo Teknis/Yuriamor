@@ -1,7 +1,7 @@
 /************************
  PROJECT: YURIAMOR
  GROUP: CHANDLER, CALEB, JACOB
- DATE: 1/10/16
+ DATE: 1/12/16
  FILE: Character.java
  LAST MODIFICATION: Today
  ************************/
