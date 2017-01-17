@@ -36,11 +36,15 @@ public class MainMenu {
 
 		//Body
 		String bodyTitle = " Ye ol' menu \n"
-				+  "-------------\n"
-				+  " 1) Travel   \n"
-				+  " 2) Test     \n"
-				+  " 3) Quit     \n"
-				+  "-------------\n"
+				+  "------------- \n"
+				+  " 1) Explore   \n"
+				+  " 2) Travel    \n"
+				+  " 3) Blacksmith\n"
+				+  " 4) Market    \n"
+				+  " 5) Trainer   \n"
+				+  " 6) Inn       \n"
+				+  " 7) Quit      \n"
+				+  "------------- \n"
 				+  "Choice: ";
 		io.sendOutput(bodyTitle);
 		int choice = Integer.parseInt(io.getInput());
