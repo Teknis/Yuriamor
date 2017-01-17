@@ -10,7 +10,7 @@ public class Character {
 
     //Character makeup
     String playerName;
-    String playerSex;
+    String presetStatString;
     
     //preset stats, beginning character presets
     int presetStats;
@@ -44,17 +44,20 @@ public class Character {
     String chestArmorName;
     String legArmorName;
     
-    
-    //Constructors
-    public Character(int presetStats, String playerName, String playerSex){
+    //Default Constructor
+    public Character(){
+    	
+    }
+    //Constructor (after user input)
+    public Character(int presetStats, String playerName){
         
         //sets variables to character
         this.presetStats = presetStats;
         this.playerName = playerName;
-        this.playerSex = playerSex;
         
         //preset stats for wizard
         if (presetStats == 1) {
+        this.presetStatString = "Wizard";
         this.health = 120;
         this.staminaMana = 105;
         this.intellect = 10;
@@ -63,6 +66,7 @@ public class Character {
         
         //preset stats for warrior
         } else if (presetStats == 2) {
+        this.presetStatString = "Warrior";
         this.health = 125;
         this.staminaMana = 100;
         this.intellect = 5;
@@ -71,6 +75,7 @@ public class Character {
         
         //preset stats for rogue
         } else if (presetStats == 3) {
+        this.presetStatString = "Rogue";
         this.health = 105;
         this.staminaMana = 120;
         this.intellect = 5;
@@ -79,6 +84,7 @@ public class Character {
         
         //preset stats for ranger
         } else if (presetStats == 4) {
+        this.presetStatString = "Ranger";
         this.health = 100;
         this.staminaMana = 125;
         this.intellect = 4;
@@ -99,16 +105,9 @@ public class Character {
 		this.playerName = playerName;
 	}
 
-
-	public String getPlayerSex() {
-		return playerSex;
+	public String getPresetStatString() {
+		return presetStatString;
 	}
-
-
-	public void setPlayerSex(String playerSex) {
-		this.playerSex = playerSex;
-	}
-
 
 	public int getHealth() {
 		return health;

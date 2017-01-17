@@ -8,14 +8,20 @@ LAST MODIFICATION: Today
 
 public class Intro {
     
-    	// temp storage / local variables
+    // temp storage / local variables
 	String input;
-    	String output;
+    String output;
+    String playerName;
+    int presetStatNumber;
     
-    	// create IO object
-    	IO io = new IO();
-    	//Character character = new Character();
-   	//for when we implement the character class
+    // create IO object
+    IO io = new IO();
+    Character character = new Character();
+    
+    //Constructor
+    public Intro (Character character){
+    	this.character = character;
+    }
    	     
    	public void beginning(){
         	// Intro
@@ -27,28 +33,32 @@ public class Intro {
             	io.sendOutput(output);
     	}
     
-    	public String name(){
+    	public void name(){
             	// gets character name
             	output = "Enter Character Name: ";
             	io.sendOutput(output);
-            	String playerName = io.getInput();
-            	return playerName;
+            	playerName = io.getInput();
     	}
-    	public int charProf(){
+    	public void presetStatNumber(){
             	// gets character character profession
-            	output = "Select Character Profession \n1) Wizard \n2) Warrior \n3) Rogue \nChoice: ";
+            	output = "Select Character Profession \n1) Wizard \n2) Warrior \n3) Rogue \n4) Ranger \nChoice: ";
             	io.sendOutput(output);
-            	int charProf = Integer.parseInt(io.getInput());
-            	return charProf;
+            	presetStatNumber = Integer.parseInt(io.getInput());
     	}
-    	public void end(String playerName, int charProf){
-            	// outputs character sex, name, and race
-            	output = "\n***********************************\n\n\n";
-            	io.sendOutput(output);
+    	public void end(){
+    		
+    		//set Base stats of character
+    		character = new Character(presetStatNumber,playerName);
+    		
+            // outputs character sex, name, and race
+            output = "\n***********************************\n\n\n";
+            io.sendOutput(output);
+            
          	// left space to output character profession
-            	output = "Welcome to Yuriamor, " + playerName + "! You have selected "
-            	+ charProf + " as your Characters Profession!";
-            	io.sendOutput(output);
+            output = "Welcome to Yuriamor, " + character.getPlayerName() + "! You have selected "
+            + character.getPresetStatString() + " as your Characters Profession!";
+            io.sendOutput(output);
+            
 		io.pauseScreen();
     	}
 }

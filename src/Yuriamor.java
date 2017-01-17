@@ -11,16 +11,18 @@ public class Yuriamor {
     // Methods
     public static void startScreen() {
         
-        Intro intro = new Intro();
-	MainMenu mainmenu = new MainMenu();
+    	Character character = new Character();
+    	
+    	Intro intro = new Intro(character);
+    	MainMenu mainmenu = new MainMenu(character);
         
         //INTRO
         intro.beginning();
-        String playerName = intro.name();
-        int charProf = intro.charProf();
-        intro.end(playerName,charProf);
+        intro.name();
+        intro.presetStatNumber();
+        intro.end();
 
-	mainmenu.resume();
+        mainmenu.resume();
     }
     
     // Program Start

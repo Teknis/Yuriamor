@@ -12,8 +12,7 @@ public class MainMenu {
 	// create new objects
 	IO io = new IO();
 	Adventure adventure = new Adventure();
-	//Character character = new Character();
-   	//for when we implement the character class
+	Character character = new Character();
 
 	/*
 		We will need...
@@ -23,6 +22,11 @@ public class MainMenu {
 		- Error handling, maybe not necessary yet but will need it eventually
 		- switch or case
 	*/
+	
+	//Constructor
+	public MainMenu(Character character){
+		this.character = character;
+	}
 	
 	public void resume(){
 		io.clearScreen();
