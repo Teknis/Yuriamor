@@ -12,8 +12,8 @@ public class Character {
     String playerName;
     String playerSex;
     
-    //CharacterProfession
-    int charProf;
+    //preset stats, beginning character presets
+    int presetStats;
 
     //basic stats
     int health;
@@ -25,16 +25,36 @@ public class Character {
     int dex; // modifies chances of landing an attack (minor, major, excellent) and slight melee/spell damage bonus.
     
     
+    //Weapon int slots
+    int primararyWeaponID;
+    int secondaryWeaponID;
+    
+    //Weapon IDs
+    String primaryWeaponName;
+    String secondaryWeaponName;
+    
+    
+    //Armor int slots
+    int headArmorID;
+    int chestArmorID;
+    int legArmorID;
+    
+    //Armor IDs
+    String headArmorName;
+    String chestArmorName;
+    String legArmorName;
+    
+    
     //Constructors
-    public Character(int charProf, String playerName, String playerSex){
+    public Character(int presetStats, String playerName, String playerSex){
         
         //sets variables to character
-        this.charProf = charProf;
+        this.presetStats = presetStats;
         this.playerName = playerName;
         this.playerSex = playerSex;
         
         //preset stats for wizard
-        if (charProf == 1) {
+        if (presetStats == 1) {
         this.health = 120;
         this.staminaMana = 105;
         this.intellect = 10;
@@ -42,7 +62,7 @@ public class Character {
         this.dex = 5;
         
         //preset stats for warrior
-        } else if (charProf == 2) {
+        } else if (presetStats == 2) {
         this.health = 125;
         this.staminaMana = 100;
         this.intellect = 5;
@@ -50,16 +70,20 @@ public class Character {
         this.dex = 5;
         
         //preset stats for rogue
-        } else if (charProf == 3) {
+        } else if (presetStats == 3) {
         this.health = 105;
         this.staminaMana = 120;
         this.intellect = 5;
         this.strength = 5;
         this.dex = 10;
-       
-
         
-        //invalid character profession
+        //preset stats for ranger
+        } else if (presetStats == 4) {
+        this.health = 100;
+        this.staminaMana = 125;
+        this.intellect = 4;
+        this.strength = 4;
+        this.dex = 12;
         }
     
     }
@@ -133,6 +157,86 @@ public class Character {
 
 	public void setDex(int dex) {
 		this.dex = dex;
+	}
+
+	public int getPrimararyWeaponID() {
+		return primararyWeaponID;
+	}
+
+	public void setPrimararyWeaponID(int primararyWeaponID) {
+		this.primararyWeaponID = primararyWeaponID;
+	}
+
+	public int getSecondaryWeaponID() {
+		return secondaryWeaponID;
+	}
+
+	public void setSecondaryWeaponID(int secondaryWeaponID) {
+		this.secondaryWeaponID = secondaryWeaponID;
+	}
+
+	public String getPrimaryWeaponName() {
+		return primaryWeaponName;
+	}
+
+	public void setPrimaryWeaponName(String primaryWeaponName) {
+		this.primaryWeaponName = primaryWeaponName;
+	}
+
+	public String getSecondaryWeaponName() {
+		return secondaryWeaponName;
+	}
+
+	public void setSecondaryWeaponName(String secondaryWeaponName) {
+		this.secondaryWeaponName = secondaryWeaponName;
+	}
+
+	public int getHeadArmorID() {
+		return headArmorID;
+	}
+
+	public void setHeadArmorID(int headArmorID) {
+		this.headArmorID = headArmorID;
+	}
+
+	public int getChestArmorID() {
+		return chestArmorID;
+	}
+
+	public void setChestArmorID(int chestArmorID) {
+		this.chestArmorID = chestArmorID;
+	}
+
+	public int getLegArmorID() {
+		return legArmorID;
+	}
+
+	public void setLegArmorID(int legArmorID) {
+		this.legArmorID = legArmorID;
+	}
+
+	public String getHeadArmorName() {
+		return headArmorName;
+	}
+
+	public void setHeadArmorName(String headArmorName) {
+		this.headArmorName = headArmorName;
+	}
+
+	public String getChestArmorName() {
+		return chestArmorName;
+	}
+
+	public void setChestArmorName(String chestArmorName) {
+		this.chestArmorName = chestArmorName;
+	}
+
+	public String getLegArmorName() {
+		return legArmorName;
+	}
+
+	public void setLegArmorName(String legArmorName) {
+		this.legArmorName = legArmorName;
 	} 
 	
 	
