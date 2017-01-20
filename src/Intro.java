@@ -28,21 +28,26 @@ public class Intro {
 		io.clearScreen();
             	output = "**********************************\n"
             	+  "***********  Yuriamor  ***********\n"
-            	+  "**********************************\n"
-            	+  "   A text based adventure game!  \n\n\n";
+            	+  "**********************************\n";
             	io.sendOutput(output);
+            	
+            	output = "   A text based adventure game!  \n\n";
+            	io.sendOutputTyping(output,30);
+            	
+            	io.pauseScreen();
     	}
     
     	public void name(){
             	// gets character name
+    			io.clearScreen();
             	output = "Enter Character Name: ";
-            	io.sendOutput(output);
+            	io.sendOutputTyping(output,40);
             	playerName = io.getInput();
     	}
     	public void presetStatNumber(){
             	// gets character character profession
             	output = "Select Character Profession \n1) Wizard \n2) Warrior \n3) Rogue \n4) Ranger \nChoice: ";
-            	io.sendOutput(output);
+            	io.sendOutputTyping(output,40);
             	presetStatNumber = Integer.parseInt(io.getInput());
     	}
     	public void end(){
@@ -57,7 +62,7 @@ public class Intro {
          	// left space to output character profession
             output = "Welcome to Yuriamor, " + character.getPlayerName() + "! You have selected "
             + character.getPresetStatString() + " as your Characters Profession!";
-            io.sendOutput(output);
+            io.sendOutputTyping(output,30);
             
 		io.pauseScreen();
     	}
