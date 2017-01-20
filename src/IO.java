@@ -7,6 +7,7 @@ LAST MODIFICATION: Today
 ************************/
 
 import java.util.Scanner;
+import java.io.*;
 
 public class IO {
     
@@ -56,8 +57,34 @@ public class IO {
 	
 	// PAUSE
 	public void pauseScreen(){
-		sendOutput("\n\nPress enter to continue...");
+		sendOutput("Press enter to continue...");
 		Scanner userInput = new Scanner(System.in);
 		userInput.nextLine();
 	}
+	
+	public void saveInfo(Character toSave){
+		try {
+			FileOutputStream fileOut = new FileOutputStream("CharacterData.txt");
+			ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+			objectOut.writeObject(toSave);
+			objectOut.close();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public Character loadInfo(){
+		Character tempChar = new Character();
+		try{
+			FileInputStream fileIn = new FileInputStream("CharacterData.txt");
+			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+			tempChar = (Character)objectIn.readObject();
+			objectIn.close();
+		} catch (Exception e){
+			System.out.println(e.getMessage());
+		}
+		return tempChar;
+	}
 }
+		
+	
