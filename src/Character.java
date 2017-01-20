@@ -16,6 +16,7 @@ public class Character {
     int presetStats;
 
     //basic stats
+    int charLevel;
     int health;
     int staminaMana;
     
@@ -25,7 +26,8 @@ public class Character {
     //damage modifying stats
     int intellect; // modifies spell damage
     int strength; // modifies melee damage
-    int dex; // modifies chances of landing an attack (minor, major, excellent) and slight melee/spell damage bonus.
+    int dex; // modifies range damage
+    int accuracy; // modifies chances of landing an attack (minor, major, excellent) and slight melee/spell damage bonus.
     
     
     //Weapon int slots
@@ -58,6 +60,7 @@ public class Character {
         this.presetStats = presetStats;
         this.playerName = playerName;
         this.charCurrency = 10;
+        this.charLevel = 1;
         
         //preset stats for wizard
         if (presetStats == 1) {
@@ -95,7 +98,8 @@ public class Character {
         this.strength = 4;
         this.dex = 12;
         }
-    
+        
+        this.accuracy = 5;
     }
 
     //setters and getters
@@ -113,6 +117,14 @@ public class Character {
 		return presetStatString;
 	}
 
+	public int getCharLevel() {
+		return charLevel;
+	}
+	
+	public void setCharLevel(int charLevel) {
+		this.charLevel = charLevel;
+	}
+	
 	public int getHealth() {
 		return health;
 	}
@@ -171,6 +183,14 @@ public class Character {
 
 	public void setDex(int dex) {
 		this.dex = dex;
+	}
+	
+	public int getAccuracy() {
+		return accuracy;
+	}
+	
+	public void setAccuracy(int accuracy){
+		this.accuracy = accuracy;
 	}
 
 	public int getPrimararyWeaponID() {
