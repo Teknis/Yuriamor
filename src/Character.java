@@ -18,6 +18,9 @@ public class Character {
     //basic stats
     int health;
     int staminaMana;
+    
+    //money storage
+    int charCurrency;	// set to 10 on character creation
    
     //damage modifying stats
     int intellect; // modifies spell damage
@@ -54,6 +57,7 @@ public class Character {
         //sets variables to character
         this.presetStats = presetStats;
         this.playerName = playerName;
+        this.charCurrency = 10;
         
         //preset stats for wizard
         if (presetStats == 1) {
@@ -128,7 +132,18 @@ public class Character {
 		this.staminaMana = staminaMana;
 	}
 
+	public int getCharCurrency() {
+		return charCurrency;
+	}
 
+	public void addCharCurrency(int increaseCurrency) {
+		this.charCurrency += increaseCurrency;
+	}
+	
+	public void subtractCharCurrency(int decreaseCurrency) {
+		this.charCurrency -= decreaseCurrency;
+	}
+	
 	public int getIntellect() {
 		return intellect;
 	}
