@@ -11,6 +11,7 @@ public class Character {
     //Character makeup
     String playerName;
     String presetStatString;
+    int characterLocation;
     
     //preset stats, beginning character presets
     int presetStats;
@@ -61,6 +62,7 @@ public class Character {
         this.playerName = playerName;
         this.charCurrency = 10;
         this.charLevel = 1;
+        this.characterLocation = 1;
         
         //preset stats for wizard
         if (presetStats == 1) {
@@ -108,11 +110,18 @@ public class Character {
 		return playerName;
 	}
 
-
 	public void setPlayerName(String playerName) {
 		this.playerName = playerName;
 	}
 
+	public int getCharacterLocation() {
+		return characterLocation;
+	}
+	
+	public void setCharacterLocation(int characterLocation){
+		this.characterLocation = characterLocation;
+	}
+	
 	public String getPresetStatString() {
 		return presetStatString;
 	}
