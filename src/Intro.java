@@ -16,7 +16,7 @@ public class Intro {
     String playerName;
     int presetStatNumber;
     
-    // create IO object
+    // create IO and Character object
     IO io = new IO();
     Character character = new Character();
     
@@ -112,7 +112,8 @@ public class Intro {
             output = "Welcome to Yuriamor, " + character.getPlayerName() + "! You have selected "
             + character.getPresetStatString() + " as your Characters Profession!\n\n";
             io.sendOutputTyping(output,30);
-            
+            character.setSaved(1);
+            io.saveInfo(character);
             io.pauseScreen();
     	}
 }

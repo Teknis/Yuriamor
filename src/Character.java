@@ -6,12 +6,15 @@
  LAST MODIFICATION: Today
  ************************/
 
-public class Character {
+import java.io.Serializable;
+
+public class Character implements Serializable{
 
     //Character makeup
     String playerName;
     String presetStatString;
     int characterLocation;
+    int isSaved = 0;
     
     //preset stats, beginning character presets
     int presetStats;
@@ -120,6 +123,14 @@ public class Character {
 	
 	public void setCharacterLocation(int characterLocation){
 		this.characterLocation = characterLocation;
+	}
+	
+	public int checkIfSaved() {
+		return isSaved;
+	}
+	
+	public void setSaved(int isSaved){
+		this.isSaved = isSaved;
 	}
 	
 	public String getPresetStatString() {
