@@ -26,11 +26,26 @@ public class IO {
        	 	return storeInput;
     	}
 	
-    	// SENDS MAIN OUTPUT
-    	// Sends information to console/terminal
-    	public void sendOutput(String output) {
+    // SENDS MAIN OUTPUT
+    // Sends information to console/terminal
+    public void sendOutput(String output) {
         	System.out.print(output);
    	}
+    
+    // SENDS MAIN OUTPUT TOO
+    // But it does it with a typing effect
+    public void sendOutputTyping(String output, long msPerChar){
+    	for (int i = 0; i < output.length(); i++) {
+    		System.out.print(output.charAt(i));
+    		
+    		try{
+    			Thread.sleep(msPerChar);
+    		}
+    		catch (InterruptedException e){
+    			e.printStackTrace();
+    		}
+    	}
+    }
 
 	// CLEAR SCREEN
 	public void clearScreen() {

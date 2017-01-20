@@ -6,6 +6,8 @@ FILE: Intro.java
 LAST MODIFICATION: Today
 ************************/
 
+import java.util.*;
+
 public class Intro {
     
     // temp storage / local variables
@@ -26,24 +28,76 @@ public class Intro {
    	public void beginning(){
         	// Intro
 		io.clearScreen();
-            	output = "**********************************\n"
-            	+  "***********  Yuriamor  ***********\n"
-            	+  "**********************************\n"
-            	+  "   A text based adventure game!  \n\n\n";
+            	output =  " __   __  __   __  ______    ___   _______  __   __  _______  ______   \n"
+            			+ "|  | |  ||  | |  ||    _ |  |   | |   _   ||  |_|  ||       ||    _ |  \n"
+            			+ "|  |_|  ||  | |  ||   | ||  |   | |  |_|  ||       ||   _   ||   | ||  \n"
+            			+ "|       ||  |_|  ||   |_||_ |   | |       ||       ||  | |  ||   |_||_ \n"
+            			+ "|_     _||       ||    __  ||   | |       ||       ||  |_|  ||    __  |\n"
+            			+ "  |   |  |       ||   |  | ||   | |   _   || ||_|| ||       ||   |  | |\n"
+            			+ "  |___|  |_______||___|  |_||___| |__| |__||_|   |_||_______||___|  |_|\n"
+            			+ " ===================================================================== \n";
             	io.sendOutput(output);
+            	
+            	output = "\n\n         Welcome to Yuriamor! Prepare for battle and triumph!  \n                    ";
+            	io.sendOutputTyping(output,30);
+            	
+            	io.pauseScreen();
     	}
     
     	public void name(){
             	// gets character name
-            	output = "Enter Character Name: ";
-            	io.sendOutput(output);
-            	playerName = io.getInput();
+    			io.clearScreen();
+    			int i = 0;
+    			while (i == 0) {
+    				output = "Enter Character Name: ";
+    				io.sendOutputTyping(output,40);
+    				playerName = io.getInput();
+    				
+    				if (playerName != null && !playerName.isEmpty()){
+    					i = 1;
+    				}
+    				else{
+    					output = "\nPlease enter something!";
+    					io.sendOutput(output);
+    					io.getInput();
+    					io.clearScreen();
+    				}
+    			}
+            	
     	}
     	public void presetStatNumber(){
             	// gets character character profession
-            	output = "Select Character Profession \n1) Wizard \n2) Warrior \n3) Rogue \n4) Ranger \nChoice: ";
-            	io.sendOutput(output);
-            	presetStatNumber = Integer.parseInt(io.getInput());
+    			int i = 0;
+    			int caught = 0;
+    			while (i == 0){
+    				output = "Select Character Profession \n1) Wizard \n2) Warrior \n3) Rogue \n4) Ranger \nChoice: ";
+    				io.sendOutputTyping(output,40);
+    				try{
+    					presetStatNumber = Integer.parseInt(io.getInput());
+    				}
+    				catch(NumberFormatException exception)
+    				{
+    					output = "\nPlease enter a number!";
+    					io.sendOutput(output);
+    					io.getInput();
+    					io.clearScreen();
+    					caught = 1;
+    				}
+    				if (caught == 0){
+    					if(presetStatNumber >= 1 && presetStatNumber <= 4){
+    						i = 1;
+    					}
+    					else{
+    						output = "\nThat's not a choice!";
+        					io.sendOutput(output);
+        					io.getInput();
+        					io.clearScreen();
+    					}
+    				}
+    				else{
+    					caught = 0;
+    				}
+    			}
     	}
     	public void end(){
     		
@@ -56,9 +110,9 @@ public class Intro {
             
          	// left space to output character profession
             output = "Welcome to Yuriamor, " + character.getPlayerName() + "! You have selected "
-            + character.getPresetStatString() + " as your Characters Profession!";
-            io.sendOutput(output);
+            + character.getPresetStatString() + " as your Characters Profession!\n\n";
+            io.sendOutputTyping(output,30);
             
-		io.pauseScreen();
+            io.pauseScreen();
     	}
 }
