@@ -33,11 +33,10 @@ public class IO {
    	}
 
 	// CLEAR SCREEN
-	public void clearScreen(){
-		final String ANSI_CLS = "\u001b[2J";
-        final String ANSI_HOME = "\u001b[H";
-        System.out.print(ANSI_CLS + ANSI_HOME);
-        System.out.flush();
+	public void clearScreen() {
+		for (int i = 0; i < 50; ++i) {
+			System.out.println();
+		}
 	}
 	
 	// PAUSE

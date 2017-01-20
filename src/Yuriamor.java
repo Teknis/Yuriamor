@@ -11,8 +11,10 @@ public class Yuriamor {
     // Methods
     public static void startScreen() {
         
+    	//Character Object
     	Character character = new Character();
     	
+    	//Objects using Character
     	Intro intro = new Intro(character);
     	MainMenu mainmenu = new MainMenu(character);
         
@@ -22,6 +24,7 @@ public class Yuriamor {
         intro.presetStatNumber();
         intro.end();
 
+        //MAINMENU
         mainmenu.resume();
     }
     
