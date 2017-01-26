@@ -18,11 +18,8 @@ public class Yuriamor {
     	//LOAD (if there is anything)
     	character = io.loadInfo();
     	
-    	//Objects using Character
-    	Intro intro = new Intro(character);
-    	MainMenu mainmenu = new MainMenu(character);
-    	
     	//INTRO
+    	Intro intro = new Intro(character);
     	intro.beginning();
         if (character.checkIfSaved() == 0){
         	intro.name();
@@ -31,6 +28,8 @@ public class Yuriamor {
         }
 
         //MAINMENU
+        character = io.loadInfo();
+        MainMenu mainmenu = new MainMenu(character);
         mainmenu.resume();
     }
     }

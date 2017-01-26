@@ -25,7 +25,7 @@ public class IO {
        		Scanner userInput = new Scanner(System.in);
        	 	String storeInput = userInput.nextLine();
        	 	return storeInput;
-    	}
+    }
 	
     // SENDS MAIN OUTPUT
     // Sends information to console/terminal
@@ -83,6 +83,7 @@ public class IO {
 		} catch (Exception e){
 			System.out.println(e.getMessage());
 		}
+			tempChar.reloadItemList();
 		return tempChar;
 	}
 }

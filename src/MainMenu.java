@@ -48,9 +48,9 @@ public class MainMenu {
 							+  "------------- \n"
 							+  " 1) Explore   \n"
 							+  " 2) Travel    \n"
-							+  " 3) Blacksmith\n"
-							+  " 4) Market    \n"
-							+  " 5) Trainer   \n"
+							+  " 3) Shops     \n" //contains blacksmith and market and trainer
+							+  " 4) Stats     \n"
+							+  " 5) Inventory \n"
 							+  " 6) Inn       \n"
 							+  " 7) Restart   \n"
 							+  " 8) Quit      \n"
@@ -69,10 +69,10 @@ public class MainMenu {
 				
 			}
 			if (choice == 4){
-				
+				stats();
 			}
 			if (choice == 5){
-				
+				inventory();
 			}
 			if (choice == 6){
 				
@@ -85,6 +85,82 @@ public class MainMenu {
 			}
 			io.pauseScreen();
 		}
+	}
+	
+	//STATS
+	public void stats(){
+		io.clearScreen();
+		
+		//NAME
+		String output = "		--STATS--\n Name: " + character.getPlayerName();
+		io.sendOutputTyping(output, 20);
+		
+		//CLASS
+		output = "\n Class: " + character.getPresetStatString();
+		io.sendOutputTyping(output, 20);
+		
+		//MONEY
+		output = "\n Currency: $" + character.getCharCurrency();
+		io.sendOutputTyping(output, 20);
+				
+		//LEVEL
+		output = "\n ----- \n Level: " + character.getCharLevel();
+		io.sendOutputTyping(output, 20);
+		
+		//HEALTH
+		output = "\n Health: " + character.getHealth();
+		io.sendOutputTyping(output, 20);
+		
+		//STAMINA
+		output = "\n Stamina/Mana: " + character.getStaminaMana();
+		io.sendOutputTyping(output, 20);
+		
+		//DAMAGE
+		output = "\n Damage: " + character.getDamage();
+		io.sendOutputTyping(output, 20);
+		
+		//ARMOR
+		output = "\n Armor: " + character.getArmor();
+		io.sendOutputTyping(output, 20);
+		
+		//INTELLECT
+		output = "\n Intellect: " + character.getIntellect();
+		io.sendOutputTyping(output, 20);
+		
+		//STRENGTH
+		output = "\n Strength: " + character.getStrength();
+		io.sendOutputTyping(output, 20);
+		
+		//DEXTERITY
+		output = "\n Dexterity: " + character.getDex();
+		io.sendOutputTyping(output, 20);
+		
+		//ACCURACY
+		output = "\n Accuracy: " + character.getAccuracy() + "\n\n ";
+		io.sendOutputTyping(output, 20);
+	}
+	
+	//INVENTORY
+	public void inventory(){
+		//PRIMARY
+		String output = "		--INVENTORY--\n Primary: " + character.getPrimaryWeaponName();
+		io.sendOutputTyping(output, 20);
+				
+		//SECONDARY
+		output = "\n Secondary: " + character.getSecondaryWeaponName();
+		io.sendOutputTyping(output, 20);
+				
+		//HEAD
+		output = "\n Helmet: " + character.getHeadArmorName();
+		io.sendOutputTyping(output, 20);
+		
+		//CHEST
+		output = "\n Chest: " + character.getChestArmorName();
+		io.sendOutputTyping(output, 20);
+
+		//LEGS
+		output = "\n Legs: " + character.getLegArmorName() + "\n\n ";
+		io.sendOutputTyping(output, 20);
 	}
 	
 	//RESTART
@@ -100,7 +176,7 @@ public class MainMenu {
 			io.sendOutputTyping(output,150);
 			//Delete old data
 			try{
-				File file = new File("./CharacterData.txt");
+				File file = new File("CharacterData.txt");
 				file.delete();
 			} catch (Exception e) {
 				e.printStackTrace();

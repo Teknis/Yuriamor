@@ -7,9 +7,10 @@
  ************************/
 
 import java.io.Serializable;
+import java.io.*;
 
 public class Character implements Serializable{
-
+	
     //Character makeup
     String playerName;
     String presetStatString;
@@ -23,6 +24,8 @@ public class Character implements Serializable{
     int charLevel;
     int health;
     int staminaMana;
+    int damage;
+    int armor;
     
     //money storage
     int charCurrency;	// set to 10 on character creation
@@ -33,15 +36,17 @@ public class Character implements Serializable{
     int dex; // modifies range damage
     int accuracy; // modifies chances of landing an attack (minor, major, excellent) and slight melee/spell damage bonus.
     
+    //Item Arrays
+    String[] itemName = new String[1000];
+    int[] itemStat = new int[1000];
     
     //Weapon int slots
-    int primararyWeaponID;
+    int primaryWeaponID;
     int secondaryWeaponID;
     
     //Weapon IDs
     String primaryWeaponName;
     String secondaryWeaponName;
-    
     
     //Armor int slots
     int headArmorID;
@@ -66,6 +71,16 @@ public class Character implements Serializable{
         this.charCurrency = 10;
         this.charLevel = 1;
         this.characterLocation = 1;
+        
+        //sets default items
+        reloadItemList();
+        this.primaryWeaponID = 0;
+        this.secondaryWeaponID = 100;
+        this.headArmorID = 201;
+        this.chestArmorID = 200;
+        this.legArmorID = 202;
+        
+        charUpdate();
         
         //preset stats for wizard
         if (presetStats == 1) {
@@ -105,6 +120,45 @@ public class Character implements Serializable{
         }
         
         this.accuracy = 5;
+    }
+    
+    //METHODS
+    
+    //Reloads the item list, should only need to be done once per game open
+    public void reloadItemList(){
+    	String itemList = "ItemIdList.txt";
+    	BufferedReader br = null;
+    	
+    	String splitter = "/";
+    	String line = "";
+    	
+    	try{
+    		br = new BufferedReader(new FileReader(itemList));
+    		br.readLine();
+    		
+    		while((line = br.readLine()) != null){
+    			//seperator time
+    			String[] storage = line.split(splitter);
+    			System.out.println(Integer.parseInt(storage[0]));
+    			int ID = Integer.parseInt(storage[0]);
+    			itemName[ID] = storage[1];
+    			itemStat[ID] = Integer.parseInt(storage[2]);
+    		}
+    	} catch (Exception e) {
+    		System.out.println(e.getMessage());
+    	}
+    }
+    
+    //Update names, damage, and armor whenever you load or change equipped pieces
+    public void charUpdate(){
+    	 this.primaryWeaponName = itemName[primaryWeaponID];
+         this.secondaryWeaponName = itemName[secondaryWeaponID];
+         this.headArmorName = itemName[headArmorID];
+         this.chestArmorName = itemName[chestArmorID];
+         this.legArmorName = itemName[legArmorID];
+         
+         this.damage = itemStat[primaryWeaponID] + itemStat[secondaryWeaponID];
+         this.armor = itemStat[headArmorID] + itemStat[chestArmorID] + itemStat[legArmorID];
     }
 
     //setters and getters
@@ -149,19 +203,32 @@ public class Character implements Serializable{
 		return health;
 	}
 
-
 	public void setHealth(int health) {
 		this.health = health;
 	}
 
-
 	public int getStaminaMana() {
 		return staminaMana;
 	}
-
-
+	
 	public void setStaminaMana(int staminaMana) {
 		this.staminaMana = staminaMana;
+	}
+	
+	public int getDamage() {
+		return damage;
+	}
+	
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
+	
+	public int getArmor() {
+		return armor;
+	}
+	
+	public void setArmor(int armor) {
+		this.armor = armor;
 	}
 
 	public int getCharCurrency() {
@@ -212,13 +279,13 @@ public class Character implements Serializable{
 	public void setAccuracy(int accuracy){
 		this.accuracy = accuracy;
 	}
-
-	public int getPrimararyWeaponID() {
-		return primararyWeaponID;
+	
+	public int getPrimaryWeaponID() {
+		return primaryWeaponID;
 	}
 
-	public void setPrimararyWeaponID(int primararyWeaponID) {
-		this.primararyWeaponID = primararyWeaponID;
+	public void setPrimaryWeaponID(int primaryWeaponID) {
+		this.primaryWeaponID = primaryWeaponID;
 	}
 
 	public int getSecondaryWeaponID() {
@@ -291,14 +358,5 @@ public class Character implements Serializable{
 
 	public void setLegArmorName(String legArmorName) {
 		this.legArmorName = legArmorName;
-	} 
-	
-	
-	
-	
-	
-	
-	
-	
-
+	}
 }

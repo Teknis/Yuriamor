@@ -11,5 +11,4 @@ public class Adventure {
 	IO io = new IO();
 
 	//rest of code here
-
 }

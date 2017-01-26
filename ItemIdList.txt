@@ -1,0 +1,8 @@
+ID/Item/Stat
+000/Wooden Sword/5
+001/Iron Sword/8
+002/Steel Sword/10
+100/Wooden Dagger/5
+200/Wooden Chest/5
+201/Wooden Helmet/3
+202/Wooden Leggings/2
