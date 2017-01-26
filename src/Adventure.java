@@ -9,6 +9,10 @@ public class Adventure {
 
 	// create IO object
 	IO io = new IO();
+	Character character = new Character();
 
 	//rest of code here
+	public Adventure(Character character){
+		this.character = character;
+	}
 }

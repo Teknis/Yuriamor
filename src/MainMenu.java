@@ -12,8 +12,8 @@ public class MainMenu {
 
 	// create new objects
 	IO io = new IO();
-	Adventure adventure = new Adventure();
 	Character character = new Character();
+	Adventure adventure = new Adventure(character);
 
 	/*
 		We will need...
@@ -30,6 +30,7 @@ public class MainMenu {
 	//Constructor
 	public MainMenu(Character character){
 		this.character = character;
+		this.adventure = new Adventure(character);
 	}
 	
 	public void resume(){
@@ -49,9 +50,9 @@ public class MainMenu {
 							+  " 1) Explore   \n"
 							+  " 2) Travel    \n"
 							+  " 3) Shops     \n" //contains blacksmith and market and trainer
-							+  " 4) Stats     \n"
+							+  " 4) Inn       \n"
 							+  " 5) Inventory \n"
-							+  " 6) Inn       \n"
+							+  " 6) Stats     \n"
 							+  " 7) Restart   \n"
 							+  " 8) Quit      \n"
 							+  "------------- \n"
@@ -60,7 +61,7 @@ public class MainMenu {
 			int choice = Integer.parseInt(io.getInput());
 	
 			if (choice == 1){
-				
+				explore();
 			}
 			if (choice == 2){
 				
@@ -69,13 +70,13 @@ public class MainMenu {
 				
 			}
 			if (choice == 4){
-				stats();
+				
 			}
 			if (choice == 5){
 				inventory();
 			}
 			if (choice == 6){
-				
+				stats();
 			}
 			if (choice == 7){
 				restart();
@@ -85,6 +86,18 @@ public class MainMenu {
 			}
 			io.pauseScreen();
 		}
+	}
+	
+	//EXPLORE
+	public void explore(){
+		io.clearScreen();
+		
+		//Header
+		String location = "Explore"; // Change this to character location later
+		String header = "	/--------------------\\\n"
+					+	"	|      " + location + "       |\n"
+					+	"	\\--------------------/\n\n";
+		io.sendOutput(header);
 	}
 	
 	//STATS
