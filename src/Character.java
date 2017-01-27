@@ -40,6 +40,11 @@ public class Character implements Serializable{
     String[] itemName = new String[1000];
     int[] itemStat = new int[1000];
     
+    //Adventure Arrays
+    String[] eventMessage = new String[1000];
+    String[] eventItem = new String[1000];
+    int[] eventGain = new int[1000];
+    
     //Weapon int slots
     int primaryWeaponID;
     int secondaryWeaponID;
@@ -127,11 +132,13 @@ public class Character implements Serializable{
     //Reloads the item list, should only need to be done once per game open
     public void reloadItemList(){
     	String itemList = "ItemIdList.txt";
+    	String eventList = "EventIdList.txt";
     	BufferedReader br = null;
     	
     	String splitter = "/";
     	String line = "";
     	
+    	//READ IN ITEM LIST
     	try{
     		br = new BufferedReader(new FileReader(itemList));
     		br.readLine();
@@ -139,10 +146,28 @@ public class Character implements Serializable{
     		while((line = br.readLine()) != null){
     			//seperator time
     			String[] storage = line.split(splitter);
-    			System.out.println(Integer.parseInt(storage[0]));
+    			//System.out.println(Integer.parseInt(storage[0]));
     			int ID = Integer.parseInt(storage[0]);
     			itemName[ID] = storage[1];
     			itemStat[ID] = Integer.parseInt(storage[2]);
+    		}
+    	} catch (Exception e) {
+    		System.out.println(e.getMessage());
+    	}
+    	
+    	//READ IN EVENT LIST
+    	try{
+    		br = new BufferedReader(new FileReader(eventList));
+    		br.readLine();
+    		
+    		while((line = br.readLine()) != null){
+    			//seperator time
+    			String[] storage = line.split(splitter);
+    			//System.out.println(Integer.parseInt(storage[0]));
+    			int ID = Integer.parseInt(storage[0]);
+    			eventMessage[ID] = storage[1];
+    			eventItem[ID] = storage[2];
+    			eventGain[ID] = Integer.parseInt(storage[3]);
     		}
     	} catch (Exception e) {
     		System.out.println(e.getMessage());
@@ -161,6 +186,14 @@ public class Character implements Serializable{
          this.armor = itemStat[headArmorID] + itemStat[chestArmorID] + itemStat[legArmorID];
     }
 
+    //Gets an event if called
+    public String[] getEventData(int i){
+    	String[] event = new String[3];
+    	event[0] = this.eventMessage[i];
+    	event[1] = this.eventItem[i];
+    	event[2] = Integer.toString(this.eventGain[i]);
+    	return event;
+    }
     //setters and getters
     
 	public String getPlayerName() {
