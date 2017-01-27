@@ -1,0 +1,2 @@
+Number/Message/GainType/Gain
+001/Find a chest/Currency/100

@@ -35,28 +35,29 @@ public class MainMenu {
 	
 	public void resume(){
 		while(repeat == 1){
+			io.saveInfo(character);
 			io.clearScreen();
 		
 			//Header
-			String location = "Yuriamor"; // Change this to character location later
+			String location = "Test Town"; // Change this to character location later
 			String header = "	/--------------------\\\n"
-						+	"	|      " + location + "      |\n"
+						+	"	|     " + location + "      |\n"
 						+	"	\\--------------------/\n\n";
 			io.sendOutput(header);
 
 			//Body
-			String bodyTitle = " Ye ol' menu \n"
-							+  "------------- \n"
-							+  " 1) Explore   \n"
-							+  " 2) Travel    \n"
-							+  " 3) Shops     \n" //contains blacksmith and market and trainer
-							+  " 4) Inn       \n"
-							+  " 5) Inventory \n"
-							+  " 6) Stats     \n"
-							+  " 7) Restart   \n"
-							+  " 8) Quit      \n"
-							+  "------------- \n"
-							+  "Choice: ";
+			String bodyTitle = " 	     Ye ol' menu \n"
+							+  "	    ------------- \n"
+							+  " 	     1) Explore   \n"
+							+  " 	     2) Travel    \n"
+							+  " 	     3) Shops     \n" //contains blacksmith and market and trainer
+							+  " 	     4) Inn       \n"
+							+  " 	     5) Inventory \n"
+							+  " 	     6) Stats     \n"
+							+  " 	     7) Restart   \n"
+							+  " 	     8) Quit      \n"
+							+  "	    ------------- \n"
+							+  "	     Choice: ";
 			io.sendOutput(bodyTitle);
 			int choice = Integer.parseInt(io.getInput());
 	
@@ -84,12 +85,14 @@ public class MainMenu {
 			if (choice == 8){
 				quit();
 			}
-			io.pauseScreen();
 		}
 	}
 	
 	//EXPLORE
 	public void explore(){
+
+	int exploreRepeat = 1;
+	while(exploreRepeat == 1){
 		io.clearScreen();
 		
 		//Header
@@ -98,6 +101,50 @@ public class MainMenu {
 					+	"	|      " + location + "       |\n"
 					+	"	\\--------------------/\n\n";
 		io.sendOutput(header);
+		
+		String bodyTitle = "              What to do... \n"
+						+  "       --------------------------  \n"
+						+  "        1) Go to training ground   \n"
+						+  "        2) TBD                     \n"
+						+  "        3) TBD                     \n"
+						+  "        4) TBD                     \n"
+						+  "        5) TBD                     \n"
+						+  "        6) TBD                     \n"
+						+  "        7) TBD                     \n"
+						+  "        8) Go Back                 \n"
+						+  "       --------------------------  \n"
+						+  "	     Choice: ";
+		io.sendOutput(bodyTitle);
+		int choice = Integer.parseInt(io.getInput());
+		
+		if (choice == 1){
+			adventure.trainingGround();
+		}
+		if (choice == 2){
+			
+		}
+		if (choice == 3){
+			
+		}
+		if (choice == 4){
+			
+		}
+		if (choice == 5){
+			
+		}
+		if (choice == 6){
+
+		}
+		if (choice == 7){
+
+		}
+		if (choice == 8){
+			exploreRepeat = 0;
+			String newLine = "\n";
+			io.sendOutput(newLine);
+		}
+		
+	}
 	}
 	
 	//STATS
@@ -105,75 +152,81 @@ public class MainMenu {
 		io.clearScreen();
 		
 		//NAME
-		String output = "		--STATS--\n Name: " + character.getPlayerName();
+		String output = "		--STATS--\n		Name: " + character.getPlayerName();
 		io.sendOutputTyping(output, 20);
 		
 		//CLASS
-		output = "\n Class: " + character.getPresetStatString();
+		output = "\n		Class: " + character.getPresetStatString();
 		io.sendOutputTyping(output, 20);
 		
 		//MONEY
-		output = "\n Currency: $" + character.getCharCurrency();
+		output = "\n		Currency: $" + character.getCharCurrency();
 		io.sendOutputTyping(output, 20);
 				
 		//LEVEL
-		output = "\n ----- \n Level: " + character.getCharLevel();
+		output = "\n		----- \n		Level: " + character.getCharLevel();
 		io.sendOutputTyping(output, 20);
 		
 		//HEALTH
-		output = "\n Health: " + character.getHealth();
+		output = "\n		Health: " + character.getHealth();
 		io.sendOutputTyping(output, 20);
 		
 		//STAMINA
-		output = "\n Stamina/Mana: " + character.getStaminaMana();
+		output = "\n		Stamina/Mana: " + character.getStaminaMana();
 		io.sendOutputTyping(output, 20);
 		
 		//DAMAGE
-		output = "\n Damage: " + character.getDamage();
+		output = "\n		Damage: " + character.getDamage();
 		io.sendOutputTyping(output, 20);
 		
 		//ARMOR
-		output = "\n Armor: " + character.getArmor();
+		output = "\n		Armor: " + character.getArmor();
 		io.sendOutputTyping(output, 20);
 		
 		//INTELLECT
-		output = "\n Intellect: " + character.getIntellect();
+		output = "\n		Intellect: " + character.getIntellect();
 		io.sendOutputTyping(output, 20);
 		
 		//STRENGTH
-		output = "\n Strength: " + character.getStrength();
+		output = "\n		Strength: " + character.getStrength();
 		io.sendOutputTyping(output, 20);
 		
 		//DEXTERITY
-		output = "\n Dexterity: " + character.getDex();
+		output = "\n		Dexterity: " + character.getDex();
 		io.sendOutputTyping(output, 20);
 		
 		//ACCURACY
-		output = "\n Accuracy: " + character.getAccuracy() + "\n\n ";
+		output = "\n		Accuracy: " + character.getAccuracy() + "\n\n ";
 		io.sendOutputTyping(output, 20);
+		
+		io.pauseScreen();
 	}
 	
 	//INVENTORY
 	public void inventory(){
+		io.clearScreen();
+		
 		//PRIMARY
-		String output = "		--INVENTORY--\n Primary: " + character.getPrimaryWeaponName();
+		String output = "		--INVENTORY--\n		Primary: " + character.getPrimaryWeaponName();
 		io.sendOutputTyping(output, 20);
 				
 		//SECONDARY
-		output = "\n Secondary: " + character.getSecondaryWeaponName();
+		output = "\n		Secondary: " + character.getSecondaryWeaponName();
 		io.sendOutputTyping(output, 20);
 				
 		//HEAD
-		output = "\n Helmet: " + character.getHeadArmorName();
+		output = "\n		Helmet: " + character.getHeadArmorName();
 		io.sendOutputTyping(output, 20);
 		
 		//CHEST
-		output = "\n Chest: " + character.getChestArmorName();
+		output = "\n		Chest: " + character.getChestArmorName();
 		io.sendOutputTyping(output, 20);
 
 		//LEGS
-		output = "\n Legs: " + character.getLegArmorName() + "\n\n ";
+		output = "\n		Legs: " + character.getLegArmorName() + "\n\n ";
 		io.sendOutputTyping(output, 20);
+		
+		io.pauseScreen();
 	}
 	
 	//RESTART
@@ -209,6 +262,9 @@ public class MainMenu {
 		if (YorN == 'Y' || YorN == 'y'){
 			output = "\nFarewell...\n";
 			io.sendOutputTyping(output,100);
+			
+			//Save
+			io.saveInfo(character);
 			
 			//end program
 			System.exit(0);
