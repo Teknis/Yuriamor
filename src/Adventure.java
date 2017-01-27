@@ -48,15 +48,15 @@ public class Adventure {
 	
 	//METHODS FOR AREAS - BATTLE, EVENT, OR QUEST
 	public void randomOccurence(){
-		int choice = randomNumber(0,2);
+		int choice = randomNumber(1,3);
 		
-		if (choice == 0){
+		if (choice == 1){
 			battle();
 		} 
-		else if (choice == 1){
+		else if (choice == 2){
 			event();
 		}
-		else if (choice == 2){
+		else if (choice == 3){
 			quest();
 		}
 	}
@@ -69,11 +69,11 @@ public class Adventure {
 	
 	public void event(){
 		//Choose event and gather that event data
-		int eventChoice = randomNumber(1,1);
+		int eventChoice = randomNumber(1,10);
 		String[] eventData = character.getEventData(eventChoice);
 		
 		//Set the event message
-		String message = eventData[0];
+		String message = "\n\n" + eventData[0];
 		io.sendOutputTyping(message, 40);
 		
 		//Figure out what the event is giving the player and assign it with a message
@@ -99,7 +99,7 @@ public class Adventure {
 		int finalNum = 0;
 		
 		Random rand = new Random();
-		finalNum = rand.nextInt(max) + min;
+		finalNum = rand.nextInt((max - min) + 1) + min;
 		
 		return finalNum;
 	}

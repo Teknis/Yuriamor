@@ -1,2 +1,11 @@
 Number/Message/GainType/Gain
-001/Find a chest/Currency/100
+001/You found a pouch hidden underneath a slab of the training ground!/Currency/10
+002/There was a coin sticking out of the ground!/Currency/1
+003/The dummy you were whacking at spit out a couple coins!/Currency/3
+004/Stole some coins from a beggar's cup... you ass.../Currency/2
+005/Pickpocketed another trainee, very successfully I might add!/Currency/8
+006/Found a chest at the edge of the training ground, already looted though, they left you a coin however.../Currency/1
+007/You found a pouch hidden behind a loose brick in the wall!/Currency/5
+008/Pickpocketed another trainee, he must have come from a poor village.../Currency/2
+009/Walked past a building and got hit by a falling coin, stupid kids.../Currency/1
+010/Accidentally broke a pot during training and found a secret stash!/Currency/15
