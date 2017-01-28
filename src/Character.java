@@ -87,9 +87,9 @@ public class Character implements Serializable{
         reloadItemList();
         this.primaryWeaponID = 1;
         this.secondaryWeaponID = 100;
-        this.headArmorID = 201;
+        this.headArmorID = 300;
         this.chestArmorID = 200;
-        this.legArmorID = 202;
+        this.legArmorID = 400;
         for (int i = 0; i < 50; i++){
         	inventory[i] = 0;
         }
@@ -231,6 +231,37 @@ public class Character implements Serializable{
 		item[1] = Integer.toString(this.itemStat[i]);
 		item[2] = Integer.toString(this.itemPrice[i]);
 		return item;
+    }
+    
+    //Swapping out items from inventory to player
+    public void swap(int invSlot){
+    	int check;
+    	int tempID;
+    	check = ((inventory[invSlot]/100)+1);
+    	if (inventory[invSlot] == 0){
+    		//Does nothing
+    	} else if(check == 1) {
+    		tempID = this.primaryWeaponID;
+    		this.primaryWeaponID = inventory[invSlot];
+    		inventory[invSlot] = tempID;
+    	} else if(check == 2) {
+    		tempID = this.secondaryWeaponID;
+    		this.secondaryWeaponID = inventory[invSlot];
+    		inventory[invSlot] = tempID;
+    	} else if(check == 3) {
+    		tempID = this.chestArmorID;
+    		this.chestArmorID = inventory[invSlot];
+    		inventory[invSlot] = tempID;
+    	} else if(check == 4) {
+    		tempID = this.headArmorID;
+    		this.headArmorID = inventory[invSlot];
+    		inventory[invSlot] = tempID;
+    	} else if(check == 5) {
+    		tempID = this.legArmorID;
+    		this.legArmorID = inventory[invSlot];
+    		inventory[invSlot] = tempID;
+    	}
+    	charUpdate();
     }
     
     //setters and getters

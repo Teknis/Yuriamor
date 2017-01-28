@@ -252,7 +252,7 @@ public class MainMenu {
 		}
 		
 		if(intChoice >= 0 && intChoice <= 9) {
-			//swap
+			character.swap(intChoice);
 		}
 		else if (choice.equals("n") || choice.equals("N")) {
 			invRepeat = 1;

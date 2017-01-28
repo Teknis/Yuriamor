@@ -7,5 +7,5 @@ ID/Item/Stat/Price
 101/Sharp Wooden Dagger/6/5
 102/Fancy Wooden Dagger/5/10
 200/Wooden Chest/5/1
-201/Wooden Helmet/3/1
-202/Wooden Leggings/2/1
+300/Wooden Helmet/3/1
+400/Wooden Leggings/2/1
