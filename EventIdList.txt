@@ -9,3 +9,9 @@ Number/Message/GainType/Gain
 008/Pickpocketed another trainee, he must have come from a poor village.../Currency/2
 009/Walked past a building and got hit by a falling coin, stupid kids.../Currency/1
 010/Accidentally broke a pot during training and found a secret stash!/Currency/15
+011/Found a spare wooden sword left around!/Item/1
+012/Sweet, this is a really fancy wooden sword! It might sell for more.../Item/3
+013/This sword looks pretty sharp.. for a wooden sword.../Item/2
+014/There was a dagger still stuck inside of the dummy.../Item/100
+015/You pick up a dagger from inside a random pot, it has a jewel embezzled in it!/Item/102
+016/You pull a dagger out of a stone, it must be a pretty sharp wooden dagger!/Item/101

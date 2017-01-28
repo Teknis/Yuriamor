@@ -39,6 +39,7 @@ public class Character implements Serializable{
     //Item Arrays
     String[] itemName = new String[1000];
     int[] itemStat = new int[1000];
+    int[] itemPrice = new int[1000];
     
     //Adventure Arrays
     String[] eventMessage = new String[1000];
@@ -63,6 +64,11 @@ public class Character implements Serializable{
     String chestArmorName;
     String legArmorName;
     
+    //INVENTORY (max 50, base 10)
+    int currentSize = 9;
+    int nextOpenSlot = 0;
+    int[] inventory = new int[50];
+    
     //Default Constructor
     public Character(){
     	
@@ -79,11 +85,14 @@ public class Character implements Serializable{
         
         //sets default items
         reloadItemList();
-        this.primaryWeaponID = 0;
+        this.primaryWeaponID = 1;
         this.secondaryWeaponID = 100;
         this.headArmorID = 201;
         this.chestArmorID = 200;
         this.legArmorID = 202;
+        for (int i = 0; i < 50; i++){
+        	inventory[i] = 0;
+        }
         
         charUpdate();
         
@@ -150,6 +159,7 @@ public class Character implements Serializable{
     			int ID = Integer.parseInt(storage[0]);
     			itemName[ID] = storage[1];
     			itemStat[ID] = Integer.parseInt(storage[2]);
+    			itemPrice[ID] = Integer.parseInt(storage[3]);
     		}
     	} catch (Exception e) {
     		System.out.println(e.getMessage());
@@ -185,7 +195,9 @@ public class Character implements Serializable{
          this.damage = itemStat[primaryWeaponID] + itemStat[secondaryWeaponID];
          this.armor = itemStat[headArmorID] + itemStat[chestArmorID] + itemStat[legArmorID];
     }
-
+    
+    //Array setters and getters
+    
     //Gets an event if called
     public String[] getEventData(int i){
     	String[] event = new String[3];
@@ -194,8 +206,34 @@ public class Character implements Serializable{
     	event[2] = Integer.toString(this.eventGain[i]);
     	return event;
     }
-    //setters and getters
+    //Gets an item ID from inventory
+    public int getItemID(int invNumber){
+    	int ID = 0;
+    	ID = this.inventory[invNumber];
+    	return ID;
+    }
     
+    public void setItemID(int invNumber, int value){
+    	if(value != 0){
+    		this.inventory[invNumber] = value;
+    		setNextSlot(getNextSlot() + 1);
+    	}
+    	else{
+    		this.inventory[invNumber-1] = value;
+    		setNextSlot(getNextSlot() - 1);
+    	}
+    }
+    
+    //Gets a specific items properties
+    public String[] getItemData(int i){
+    	String[] item = new String[3];
+    	item[0] = this.itemName[i];
+		item[1] = Integer.toString(this.itemStat[i]);
+		item[2] = Integer.toString(this.itemPrice[i]);
+		return item;
+    }
+    
+    //setters and getters
 	public String getPlayerName() {
 		return playerName;
 	}
@@ -391,5 +429,21 @@ public class Character implements Serializable{
 
 	public void setLegArmorName(String legArmorName) {
 		this.legArmorName = legArmorName;
+	}
+	
+	public int getInvSize() {
+		return currentSize;
+	}
+	
+	public void setInvSize(int setSize) {
+		this.currentSize = setSize;
+	}
+	
+	public int getNextSlot() {
+		return nextOpenSlot;
+	}
+	
+	public void setNextSlot(int setSlot) {
+		this.nextOpenSlot = setSlot;
 	}
 }

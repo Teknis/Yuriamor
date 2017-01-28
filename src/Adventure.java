@@ -69,7 +69,7 @@ public class Adventure {
 	
 	public void event(){
 		//Choose event and gather that event data
-		int eventChoice = randomNumber(1,10);
+		int eventChoice = randomNumber(1,16);
 		String[] eventData = character.getEventData(eventChoice);
 		
 		//Set the event message
@@ -83,6 +83,14 @@ public class Adventure {
 			String moneyGain = "\n" + character.getPlayerName() + " has earned " + gain + " coins!\n\n";
 			io.sendOutputTyping(moneyGain, 20);
 			character.addCharCurrency(gain);
+			
+			io.pauseScreen();
+		}
+		else if(item.equals("Item")){
+			String[] itemData = character.getItemData(gain);
+			String itemGain = "\n" + character.getPlayerName() + " has received a " + itemData[0] + "!\n\n";
+			io.sendOutputTyping(itemGain, 20);
+			character.setItemID(character.getNextSlot(), gain);
 			
 			io.pauseScreen();
 		}
