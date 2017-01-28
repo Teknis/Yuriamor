@@ -6,6 +6,9 @@
  ************************/
 
 import java.lang.*;
+
+import javax.print.DocFlavor.STRING;
+
 import java.io.*;
 
 public class MainMenu {
@@ -240,12 +243,18 @@ public class MainMenu {
 		}
 		output = "\n\nChoose a piece to switch out or 'N' to continue...\nChoice:";
 		io.sendOutput(output);
-		int choice = Integer.parseInt(io.getInput());
-		if(choice >= 0 || choice <= 9) {
+		String choice = io.getInput();
+		int intChoice;
+		try{
+			intChoice = Integer.parseInt(choice);
+		} catch (Exception e) {
+			intChoice = 10;
+		}
+		
+		if(intChoice >= 0 && intChoice <= 9) {
 			//swap
 		}
-		// NEED TO CONVERT FROM INT TO CHAR
-		else if (choice == 'n' || choice == 'N') {
+		else if (choice.equals("n") || choice.equals("N")) {
 			invRepeat = 1;
 		}	
 	}
