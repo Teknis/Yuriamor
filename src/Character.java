@@ -23,7 +23,9 @@ public class Character implements Serializable{
     //basic stats
     int charLevel;
     int health;
+    int maxHealth;
     int staminaMana;
+    int maxStaminaMana;
     int damage;
     int armor;
     
@@ -133,6 +135,8 @@ public class Character implements Serializable{
         this.dex = 12;
         }
         
+        this.maxHealth = this.health;
+        this.maxStaminaMana = this.staminaMana;
         this.accuracy = 5;
     }
     
@@ -308,6 +312,14 @@ public class Character implements Serializable{
 	public void setHealth(int health) {
 		this.health = health;
 	}
+	
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+
+	public void setMaxHealth(int health) {
+		this.maxHealth = health;
+	}
 
 	public int getStaminaMana() {
 		return staminaMana;
@@ -315,6 +327,14 @@ public class Character implements Serializable{
 	
 	public void setStaminaMana(int staminaMana) {
 		this.staminaMana = staminaMana;
+	}
+	
+	public int getMaxStaminaMana() {
+		return maxStaminaMana;
+	}
+	
+	public void setMaxStaminaMana(int staminaMana) {
+		this.maxStaminaMana = staminaMana;
 	}
 	
 	public int getDamage() {
