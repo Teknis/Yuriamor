@@ -60,21 +60,24 @@ public class MainMenu {
 							+  " 	     7) Restart   \n"
 							+  " 	     8) Quit      \n"
 							+  "	    ------------- \n"
+							+  "	      COINS: " + character.getCharCurrency() + "\n"
 							+  "	     Choice: ";
 			io.sendOutput(bodyTitle);
-			int choice = Integer.parseInt(io.getInput());
+			int choice = 9;
+			try{
+			choice = Integer.parseInt(io.getInput());} catch (Exception e) {}
 	
 			if (choice == 1){
 				explore();
 			}
 			if (choice == 2){
-				
+				travel();
 			}
 			if (choice == 3){
-				
+				shops();
 			}
 			if (choice == 4){
-				
+				inn();
 			}
 			if (choice == 5){
 				inventory();
@@ -91,7 +94,7 @@ public class MainMenu {
 		}
 	}
 	
-	//EXPLORE (submenu)
+	//EXPLORE (sub menu)
 	public void explore(){
 
 	int exploreRepeat = 1;
@@ -109,15 +112,14 @@ public class MainMenu {
 						+  "        1) Go to training ground   \n"
 						+  "        2) TBD                     \n"
 						+  "        3) TBD                     \n"
-						+  "        4) TBD                     \n"
-						+  "        5) TBD                     \n"
-						+  "        6) TBD                     \n"
-						+  "        7) TBD                     \n"
-						+  "        8) Go Back                 \n"
+						+  "        4) Go Back                 \n"
 						+  "       --------------------------  \n"
+						+  "	      COINS: " + character.getCharCurrency() + "\n"
 						+  "	     Choice: ";
 		io.sendOutput(bodyTitle);
-		int choice = Integer.parseInt(io.getInput());
+		int choice = 9;
+		try{
+		choice = Integer.parseInt(io.getInput());} catch (Exception e) {}
 		
 		if (choice == 1){
 			adventure.trainingGround();
@@ -129,24 +131,143 @@ public class MainMenu {
 			
 		}
 		if (choice == 4){
-			
-		}
-		if (choice == 5){
-			
-		}
-		if (choice == 6){
-
-		}
-		if (choice == 7){
-
-		}
-		if (choice == 8){
 			exploreRepeat = 0;
 			String newLine = "\n";
 			io.sendOutput(newLine);
 		}
 		
 	}
+	}
+	
+	//TRAVEL (not finished yet)
+	public void travel(){
+		io.clearScreen();
+		
+		String output = "No where to travel to yet...\n\n";
+		io.sendOutput(output);
+		
+		io.pauseScreen();
+	}
+	
+	//SHOPS (blacksmith, market, and trainer
+	public void shops(){
+		int shopsRepeat = 1;
+		while(shopsRepeat == 1){
+			io.saveInfo(character);
+			io.clearScreen();
+			
+			String location = "SHOPS"; // Change this to character location later
+			String header = "	/--------------------\\\n"
+						+	"	|       " + location + "        |\n"
+						+	"	\\--------------------/\n\n";
+			io.sendOutput(header);
+			
+			String bodyTitle = "              Where should I shop... \n"
+					+  "       --------------------------  \n"
+					+  "        1) Blacksmith              \n"
+					+  "        2) Market                  \n"
+					+  "        3) Trainer                 \n"
+					+  "        4) Go Back                 \n"
+					+  "       --------------------------  \n"
+					+  "	      COINS: " + character.getCharCurrency() + "\n"
+					+  "	     Choice: ";
+			io.sendOutput(bodyTitle);
+			int choice = 9;
+			try{
+			choice = Integer.parseInt(io.getInput());} catch (Exception e) {}
+			String output;
+			
+			if (choice == 1){
+				output = "\nCLOSED\n";
+				io.sendOutput(output);
+				
+				io.pauseScreen();
+			}
+			if (choice == 2){
+				output = "\nCLOSED\n";
+				io.sendOutput(output);
+				
+				io.pauseScreen();
+			}
+			if (choice == 3){
+				output = "\nCLOSED\n";
+				io.sendOutput(output);
+				
+				io.pauseScreen();
+			}
+			if (choice == 4){
+				shopsRepeat = 0;
+				String newLine = "\n";
+				io.sendOutput(newLine);
+			}
+		}
+	}
+	
+	//INN (for resting and questing)
+	public void inn(){
+		int innRepeat = 1;
+		while(innRepeat == 1){
+			io.saveInfo(character);
+			io.clearScreen();
+			
+			String location = "INN"; // Change this to character location later
+			String header = "	/--------------------\\\n"
+						+	"	|        " + location + "         |\n"
+						+	"	\\--------------------/\n\n";
+			io.sendOutput(header);
+			
+			String bodyTitle = "              Welcome to ye old inn! \n"
+					+  "       --------------------------  \n"
+					+  "        1) Rest your head (1 coin) \n"
+					+  "        2) Look for a quest        \n"
+					+  "        3) Go Back                 \n"
+					+  "       --------------------------  \n"
+					+  "	      COINS: " + character.getCharCurrency() + "\n"
+					+  "	     Choice: ";
+				io.sendOutput(bodyTitle);
+				int choice = 9;
+				try{
+				choice = Integer.parseInt(io.getInput());} catch (Exception e) {}
+				
+				//Replenish health, take a coin, and don't let the user do it if at max health
+				if (choice == 1){ 											//if they choose 1
+					String output;
+					if(character.getHealth() != character.getMaxHealth()){ 	//if they don't have max health
+						if (character.getCharCurrency() > 0){				//if they have money
+							character.setHealth(character.getMaxHealth());
+							character.subtractCharCurrency(1);
+							
+							output = "\nReplenished max health!";
+							io.sendOutput(output);
+							
+							io.pauseScreen();
+						}
+						else {
+							output = "\nNo money!";
+							io.sendOutput(output);
+							
+							io.pauseScreen();
+						}
+					}
+					else {
+						output = "\nAlready at full health!\n";
+						io.sendOutput(output);
+						
+						io.pauseScreen();
+					}
+				}
+				if (choice == 2){
+					String output = "\nNo rumors yet...\n";
+					io.sendOutput(output);
+					
+					io.pauseScreen();
+				}
+				if (choice == 3){
+					innRepeat = 0;
+					String newLine = "\n";
+					io.sendOutput(newLine);
+				}
+		}
 	}
 	
 	//STATS
@@ -208,6 +329,7 @@ public class MainMenu {
 	public void inventory(){
 	int invRepeat = 0;
 	while (invRepeat == 0){
+		io.saveInfo(character);
 		io.clearScreen();
 		
 		//PRIMARY
