@@ -34,6 +34,8 @@ public class Adventure {
 		
 			//Check if user wants to continue
 			io.clearScreen();
+			String output = quickStats();
+			io.sendOutput(output);
 			String end = "\n\nDo you want to keep going? Y/N\nChoice: ";
 			io.sendOutputTyping(end, 30);
 			String choice = io.getInput();
@@ -125,5 +127,22 @@ public class Adventure {
 		finalNum = rand.nextInt((max - min) + 1) + min;
 		
 		return finalNum;
+	}
+	
+	//METHODS FOR CONVENIENCE
+	//QUICK STATS
+	//"    HP: 100/100 || SP: 100/100 || 30 COINS || INV 1/10\n"
+	public String quickStats(){
+		int hp1, hp2, sp1, sp2, coins, inv1, inv2;
+		hp1 = character.getHealth();
+		hp2 = character.getMaxHealth();
+		sp1 = character.getStaminaMana();
+		sp2 = character.getMaxStaminaMana();
+		coins = character.getCharCurrency();
+		inv1 = character.getNextSlot();
+		inv2 = character.getInvSize() + 1;
+			
+		String output = "    HP: " + hp1 + "/" + hp2 + " || SP: " + sp1 + "/" + sp2 + " || " + coins + " COINS || INV " + inv1 + "/" + inv2 + "\n";
+		return output;
 	}
 }

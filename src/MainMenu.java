@@ -57,8 +57,8 @@ public class MainMenu {
 							+  " 	     7) Restart   \n"
 							+  " 	     8) Quit      \n"
 							+  "	    ------------- \n"
-							+  "	      COINS: " + character.getCharCurrency() + "\n"
-							+  "	     Choice: ";
+							+  quickStats()
+							+  "    Choice: ";
 			io.sendOutput(bodyTitle);
 			int choice = 9;
 			try{
@@ -108,8 +108,8 @@ public class MainMenu {
 						+  "        3) TBD                     \n"
 						+  "        4) Go Back                 \n"
 						+  "       --------------------------  \n"
-						+  "	      COINS: " + character.getCharCurrency() + "\n"
-						+  "	     Choice: ";
+						+  quickStats()
+						+  "    Choice: ";
 		io.sendOutput(bodyTitle);
 		int choice = 9;
 		try{
@@ -160,8 +160,8 @@ public class MainMenu {
 					+  "        3) Trainer                 \n"
 					+  "        4) Go Back                 \n"
 					+  "       --------------------------  \n"
-					+  "	      COINS: " + character.getCharCurrency() + "\n"
-					+  "	     Choice: ";
+					+  quickStats()
+					+  "    Choice: ";
 			io.sendOutput(bodyTitle);
 			int choice = 9;
 			try{
@@ -207,8 +207,8 @@ public class MainMenu {
 				+  "        2) Sell                    \n"
 				+  "        3) Go Back                 \n"
 				+  "       --------------------------  \n"
-				+  "	      COINS: " + character.getCharCurrency() + "\n"
-				+  "	     Choice: ";
+				+  quickStats()
+				+  "    Choice: ";
 		io.sendOutput(bodyTitle);
 		int smithChoice = 9;
 		try{
@@ -249,8 +249,8 @@ public class MainMenu {
 				}
 				
 				output = "\n       --------------------------  \n"
-						+  "	      COINS: " + character.getCharCurrency() + "\n"
-						+ "Choose a piece to buy or 'N' to continue...\nChoice:";
+						+  quickStats()
+						+ "    Choose a piece to buy or 'N' to continue...\nChoice:";
 				io.sendOutput(output);
 				
 				String buyChoice = io.getInput();
@@ -301,8 +301,8 @@ public class MainMenu {
 			}
 			
 			output = "\n       --------------------------  \n"
-					+  "	      COINS: " + character.getCharCurrency() + "\n"
-					+ "Choose a piece to sell or 'N' to continue...\nChoice:";
+					+  quickStats()
+					+ "    Choose a piece to sell or 'N' to continue...\nChoice:";
 			io.sendOutput(output);
 			
 			String sellChoice = io.getInput();
@@ -346,8 +346,8 @@ public class MainMenu {
 					+  "        2) Look for a quest        \n"
 					+  "        3) Go Back                 \n"
 					+  "       --------------------------  \n"
-					+  "	      COINS: " + character.getCharCurrency() + "\n"
-					+  "	     Choice: ";
+					+  quickStats()
+					+  "    Choice: ";
 				io.sendOutput(bodyTitle);
 				int choice = 9;
 				try{
@@ -548,36 +548,52 @@ public class MainMenu {
 			System.exit(0);
 		}
 	}
-			//HEADER
-			public void header(String title){
-			int length = title.length();
-			int spacing = 20 - length;
-			StringBuilder sb = new StringBuilder();
-			String sp1, sp2;
+	//HEADER
+	public void header(String title){
+		int length = title.length();
+		int spacing = 20 - length;
+		StringBuilder sb = new StringBuilder();
+		String sp1, sp2;
 			
-			//If even or odd...
-			if(spacing%2 == 0){
-				for(int i = 0; i < (spacing / 2); i++){
-					sb.append(" ");
-				}
-				
-				sp1 = sb.toString();
-				sp2 = sp1;
-			} else {
-				for(int i = 0; i < (spacing / 2); i++){
-					sb.append(" ");
-				}
-				
-				sp1 = sb.toString();
-				
+		//If even or odd...
+		if(spacing%2 == 0){
+			for(int i = 0; i < (spacing / 2); i++){
 				sb.append(" ");
-				sp2 = sb.toString();
 			}
+				
+			sp1 = sb.toString();
+			sp2 = sp1;
+		} else {
+			for(int i = 0; i < (spacing / 2); i++){
+				sb.append(" ");
+			}
+				
+			sp1 = sb.toString();
+				
+			sb.append(" ");
+			sp2 = sb.toString();
+		}
 			
-			String header = "	/--------------------\\\n"
-					+	"	|" + sp1 + title + sp2 + "|\n"
-					+	"	\\--------------------/\n\n";
-			io.sendOutput(header);
-		}	
+		String header = "	/--------------------\\\n"
+				+	"	|" + sp1 + title + sp2 + "|\n"
+				+	"	\\--------------------/\n\n";
+		io.sendOutput(header);
+	}	
+	
+	//QUICK STATS
+	//"    HP: 100/100 || SP: 100/100 || 30 COINS || INV 1/10\n"
+	public String quickStats(){
+		int hp1, hp2, sp1, sp2, coins, inv1, inv2;
+		hp1 = character.getHealth();
+		hp2 = character.getMaxHealth();
+		sp1 = character.getStaminaMana();
+		sp2 = character.getMaxStaminaMana();
+		coins = character.getCharCurrency();
+		inv1 = character.getNextSlot();
+		inv2 = character.getInvSize() + 1;
+		
+		String output = "    HP: " + hp1 + "/" + hp2 + " || SP: " + sp1 + "/" + sp2 + " || " + coins + " COINS || INV " + inv1 + "/" + inv2 + "\n";
+		return output;
+	}
 	
 }
