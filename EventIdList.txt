@@ -13,5 +13,6 @@ Number/Message/GainType/Gain
 012/Sweet, this is a really fancy wooden sword! It might sell for more.../Item/3
 013/This sword looks pretty sharp.. for a wooden sword.../Item/2
 014/There was a dagger still stuck inside of the dummy.../Item/100
-015/You pick up a dagger from inside a random pot, it has a jewel embezzled in it!/Item/102
+015/You pick up a dagger from inside a random pot, it has a jewel embezzled in it!/Item/103
 016/You pull a dagger out of a stone, it must be a pretty sharp wooden dagger!/Item/101
+017/You pick up a dagger from inside a random pot, it looks pretty fancy!/Item/102

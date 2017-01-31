@@ -3,9 +3,18 @@ ID/Item/Stat/Price
 001/Wooden Sword/5/1
 002/Sharp Wooden Sword/6/5
 003/Fancy Wooden Sword/5/10
+004/Jeweled Wooden Sword/4/25
+005/Redak Sword/7/10
+006/Sharp Redak Sword/8/15
+007/Fancy Redak Sword/7/20
+008/Jeweled Redak Sword/6/50
 100/Wooden Dagger/5/1
 101/Sharp Wooden Dagger/6/5
 102/Fancy Wooden Dagger/5/10
+103/Jeweled Wooden Dagger/4/25
 200/Wooden Chest/5/1
+201/Hard Wooden Chest/6/5
 300/Wooden Helmet/3/1
+301/Hard Wooden Chest/6/5
 400/Wooden Leggings/2/1
+401/Hard Wooden Chest/6/5

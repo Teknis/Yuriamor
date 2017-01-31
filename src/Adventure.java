@@ -69,7 +69,7 @@ public class Adventure {
 	
 	public void event(){
 		//Choose event and gather that event data
-		int eventChoice = randomNumber(1,16);
+		int eventChoice = randomNumber(1,17);
 		String[] eventData = character.getEventData(eventChoice);
 		
 		//Set the event message
@@ -87,12 +87,21 @@ public class Adventure {
 			io.pauseScreen();
 		}
 		else if(item.equals("Item")){
-			String[] itemData = character.getItemData(gain);
-			String itemGain = "\n" + character.getPlayerName() + " has received a " + itemData[0] + "!\n\n";
-			io.sendOutputTyping(itemGain, 20);
-			character.setItemID(character.getNextSlot(), gain);
+			if (character.getNextSlot() <= character.getInvSize())
+			{
+				String[] itemData = character.getItemData(gain);
+				String itemGain = "\n" + character.getPlayerName() + " has received a " + itemData[0] + "!\n\n";
+				io.sendOutputTyping(itemGain, 20);
+				character.setItemID(character.getNextSlot(), gain);
 			
-			io.pauseScreen();
+				io.pauseScreen();
+			}
+			else{
+				String output = "\nNo inventory space, phooey...\n\n";
+				io.sendOutputTyping(output,20);
+				
+				io.pauseScreen();
+			}
 		}
 	}
 	

@@ -178,10 +178,7 @@ public class MainMenu {
 			String output;
 			
 			if (choice == 1){
-				output = "\nCLOSED\n";
-				io.sendOutput(output);
-				
-				io.pauseScreen();
+				blacksmith();
 			}
 			if (choice == 2){
 				output = "\nCLOSED\n";
@@ -201,6 +198,96 @@ public class MainMenu {
 				io.sendOutput(newLine);
 			}
 		}
+	}
+	
+	//Blacksmith
+	public void blacksmith(){
+		int smithRepeat = 1;
+		while (smithRepeat == 1){
+		io.saveInfo(character);
+		io.clearScreen();
+		
+		String location = "BLACKSMITH"; // Change this to character location later
+		String header = "	/--------------------\\\n"
+					+	"	|     " + location + "     |\n"
+					+	"	\\--------------------/\n\n";
+		io.sendOutput(header);
+		
+		String bodyTitle = "              Whatcha' lookin to do? \n"
+				+  "       --------------------------  \n"
+				+  "        1) Buy                     \n"
+				+  "        2) Sell                    \n"
+				+  "        3) Go Back                 \n"
+				+  "       --------------------------  \n"
+				+  "	      COINS: " + character.getCharCurrency() + "\n"
+				+  "	     Choice: ";
+		io.sendOutput(bodyTitle);
+		int smithChoice = 9;
+		try{
+		smithChoice = Integer.parseInt(io.getInput());} catch (Exception e) {}
+		String output;
+		
+		//BUY
+		if (smithChoice == 1){
+			output = "\nNothing on stock right now...\n";
+			io.sendOutput(output);
+			
+			io.pauseScreen();
+		}
+		
+		//SELL
+		if (smithChoice == 2){
+			int sellRepeat = 1;
+			while (sellRepeat == 1){
+			io.saveInfo(character);
+			io.clearScreen();
+			
+			String text = "SELL"; // Change this to character location later
+			String sellHeader = "	/--------------------\\\n"
+						+	"	|        " + text + "        |\n"
+						+	"	\\--------------------/\n\n";
+			io.sendOutput(sellHeader);
+			
+			String sellTitle = "              Sell... \n"
+					+  "       --------------------------  ";
+			io.sendOutput(sellTitle);
+			
+			for (int i = 0; i <= character.getInvSize();i++){
+				String[] itemData = character.getItemData(character.getItemID(i));
+				String itemName = itemData[0];
+				
+				output ="\n	    [" + i + "] Slot " + (i+1) + ": " + itemName;
+				io.sendOutput(output);
+			}
+			
+			output = "\n       --------------------------  \n"
+					+  "	      COINS: " + character.getCharCurrency() + "\n"
+					+ "Choose a piece to sell or 'N' to continue...\nChoice:";
+			io.sendOutput(output);
+			
+			String sellChoice = io.getInput();
+			int intChoice;
+			try{
+				intChoice = Integer.parseInt(sellChoice);
+			} catch (Exception e) {
+				intChoice = 10;
+			}
+			
+			if(intChoice >= 0 && intChoice <= 9) {
+				character.sell(intChoice);
+			}
+			else if (sellChoice.equals("n") || sellChoice.equals("N")) {
+				sellRepeat = 0;
+			}
+			}
+		}
+		if (smithChoice == 3){
+			smithRepeat = 0;
+			String newLine = "\n";
+			io.sendOutput(newLine);
+		}
+	
+		}	
 	}
 	
 	//INN (for resting and questing)

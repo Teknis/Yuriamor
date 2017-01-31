@@ -268,6 +268,25 @@ public class Character implements Serializable{
     	charUpdate();
     }
     
+    //Sell things
+    public void sell(int invSlot){
+    	int ID = inventory[invSlot];
+    	int price = itemPrice[ID];
+    	if (ID != 0){
+    		charCurrency = charCurrency + price;
+    		int i;
+    		int toReplace = invSlot;
+    		int replaceWith = invSlot + 1;
+    		for (i = ((currentSize) - invSlot); i > 0; i--){
+    			inventory[toReplace] = inventory[replaceWith];
+    			toReplace++;
+    			replaceWith++;
+    		}
+    		inventory[currentSize] = 0;
+    		nextOpenSlot--;
+    	}
+    }
+    
     //setters and getters
 	public String getPlayerName() {
 		return playerName;
