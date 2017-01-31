@@ -268,12 +268,19 @@ public class Character implements Serializable{
     	charUpdate();
     }
     
+    //Buy things
+    public void buy(int itemID, int price){
+    	charCurrency -= price;
+    	inventory[nextOpenSlot] = itemID;
+    	nextOpenSlot++;
+    }
+    
     //Sell things
     public void sell(int invSlot){
     	int ID = inventory[invSlot];
     	int price = itemPrice[ID];
     	if (ID != 0){
-    		charCurrency = charCurrency + price;
+    		charCurrency += price;
     		int i;
     		int toReplace = invSlot;
     		int replaceWith = invSlot + 1;

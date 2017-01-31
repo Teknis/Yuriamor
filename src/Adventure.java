@@ -30,14 +30,20 @@ public class Adventure {
 			io.sendOutputTyping(dots, 100);
 		
 			//Have something occur
-			randomOccurence();
+			randomOccurence(1, 17);
 		
 			//Check if user wants to continue
 			io.clearScreen();
 			String end = "\n\nDo you want to keep going? Y/N\nChoice: ";
 			io.sendOutputTyping(end, 30);
 			String choice = io.getInput();
-			char YorN = choice.charAt(0);
+			char YorN;
+			
+			try{
+				YorN = choice.charAt(0);
+			} catch (Exception e) {
+				YorN = 'Y';
+			}
 		
 			if (YorN == 'n' || YorN == 'N'){
 				repeat = 0;
@@ -47,14 +53,14 @@ public class Adventure {
 	}
 	
 	//METHODS FOR AREAS - BATTLE, EVENT, OR QUEST
-	public void randomOccurence(){
+	public void randomOccurence(int eventMin, int eventMax){
 		int choice = randomNumber(1,3);
 		
 		if (choice == 1){
 			battle();
 		} 
 		else if (choice == 2){
-			event();
+			event(eventMin, eventMax);
 		}
 		else if (choice == 3){
 			quest();
@@ -67,9 +73,9 @@ public class Adventure {
 		io.pauseScreen();
 	}
 	
-	public void event(){
+	public void event(int min, int max){
 		//Choose event and gather that event data
-		int eventChoice = randomNumber(1,17);
+		int eventChoice = randomNumber(min, max);
 		String[] eventData = character.getEventData(eventChoice);
 		
 		//Set the event message

@@ -229,10 +229,68 @@ public class MainMenu {
 		
 		//BUY
 		if (smithChoice == 1){
-			output = "\nNothing on stock right now...\n";
-			io.sendOutput(output);
-			
-			io.pauseScreen();
+			int buyRepeat = 1;
+			while (buyRepeat == 1){
+				io.saveInfo(character);
+				io.clearScreen();
+				
+				String text = "BUY"; // Change this to character location later
+				String sellHeader = "	/--------------------\\\n"
+							+	"	|         " + text + "        |\n"
+							+	"	\\--------------------/\n\n";
+				io.sendOutput(sellHeader);
+				
+				//To replace later
+				int[] smithID = new int[5];
+				int[] price = new int[5];
+				smithID[0] = 2;
+				smithID[1] = 101;
+				smithID[2] = 201;
+				smithID[3] = 301;
+				smithID[4] = 401;
+				
+				String sellTitle = "              Buy... \n"
+						+  "       --------------------------  ";
+				io.sendOutput(sellTitle);
+				
+				for(int i = 0; i < smithID.length; i++){
+					int itemID = smithID[i];
+					String[] itemData = character.getItemData(itemID);
+					String itemName = itemData[0];
+					price[i] = (Integer.parseInt(itemData[2])*5);
+					
+					output = "\n	    [" + i + "] Price:" + price[i] + "  " + itemName;
+					io.sendOutput(output);
+				}
+				
+				output = "\n       --------------------------  \n"
+						+  "	      COINS: " + character.getCharCurrency() + "\n"
+						+ "Choose a piece to buy or 'N' to continue...\nChoice:";
+				io.sendOutput(output);
+				
+				String buyChoice = io.getInput();
+				int intChoice;
+				try{
+					intChoice = Integer.parseInt(buyChoice);
+				} catch (Exception e) {
+					intChoice = 10;
+				}
+				
+				if(intChoice >= 0 && intChoice <= 4) {
+					if(character.getNextSlot() <= character.getInvSize() && character.getCharCurrency() >= price[intChoice]){
+						character.buy(smithID[intChoice], price[intChoice]);
+					}
+					else{
+						String invFull = "\nInventory is full or you don't have enough money!\n";
+						io.sendOutput(invFull);
+						
+						io.pauseScreen();
+					}
+				}
+				else if (buyChoice.equals("n") || buyChoice.equals("N")) {
+					buyRepeat = 0;
+				}
+			}
 		}
 		
 		//SELL
