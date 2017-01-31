@@ -43,10 +43,7 @@ public class MainMenu {
 		
 			//Header
 			String location = "Test Town"; // Change this to character location later
-			String header = "	/--------------------\\\n"
-						+	"	|     " + location + "      |\n"
-						+	"	\\--------------------/\n\n";
-			io.sendOutput(header);
+			header(location);
 
 			//Body
 			String bodyTitle = " 	     Ye ol' menu \n"
@@ -101,11 +98,8 @@ public class MainMenu {
 	while(exploreRepeat == 1){
 		io.clearScreen();
 		
-		String location = "Explore"; // Change this to character location later
-		String header = "	/--------------------\\\n"
-					+	"	|      " + location + "       |\n"
-					+	"	\\--------------------/\n\n";
-		io.sendOutput(header);
+		String exploreTitle = "Explore"; // Change this to character location later
+		header(exploreTitle);
 		
 		String bodyTitle = "              What to do... \n"
 						+  "       --------------------------  \n"
@@ -156,11 +150,8 @@ public class MainMenu {
 			io.saveInfo(character);
 			io.clearScreen();
 			
-			String location = "SHOPS"; // Change this to character location later
-			String header = "	/--------------------\\\n"
-						+	"	|       " + location + "        |\n"
-						+	"	\\--------------------/\n\n";
-			io.sendOutput(header);
+			String shopTitle = "SHOPS"; // Change this to character location later
+			header(shopTitle);
 			
 			String bodyTitle = "              Where should I shop... \n"
 					+  "       --------------------------  \n"
@@ -207,11 +198,8 @@ public class MainMenu {
 		io.saveInfo(character);
 		io.clearScreen();
 		
-		String location = "BLACKSMITH"; // Change this to character location later
-		String header = "	/--------------------\\\n"
-					+	"	|     " + location + "     |\n"
-					+	"	\\--------------------/\n\n";
-		io.sendOutput(header);
+		String smithTitle = "BLACKSMITH"; // Change this to character location later
+		header(smithTitle);
 		
 		String bodyTitle = "              Whatcha' lookin to do? \n"
 				+  "       --------------------------  \n"
@@ -235,10 +223,7 @@ public class MainMenu {
 				io.clearScreen();
 				
 				String text = "BUY"; // Change this to character location later
-				String sellHeader = "	/--------------------\\\n"
-							+	"	|         " + text + "        |\n"
-							+	"	\\--------------------/\n\n";
-				io.sendOutput(sellHeader);
+				header(text);
 				
 				//To replace later
 				int[] smithID = new int[5];
@@ -301,10 +286,7 @@ public class MainMenu {
 			io.clearScreen();
 			
 			String text = "SELL"; // Change this to character location later
-			String sellHeader = "	/--------------------\\\n"
-						+	"	|        " + text + "        |\n"
-						+	"	\\--------------------/\n\n";
-			io.sendOutput(sellHeader);
+			header(text);
 			
 			String sellTitle = "              Sell... \n"
 					+  "       --------------------------  ";
@@ -355,11 +337,8 @@ public class MainMenu {
 			io.saveInfo(character);
 			io.clearScreen();
 			
-			String location = "INN"; // Change this to character location later
-			String header = "	/--------------------\\\n"
-						+	"	|        " + location + "         |\n"
-						+	"	\\--------------------/\n\n";
-			io.sendOutput(header);
+			String innTitle = "INN"; // Change this to character location later
+			header(innTitle);
 			
 			String bodyTitle = "              Welcome to ye old inn! \n"
 					+  "       --------------------------  \n"
@@ -569,4 +548,36 @@ public class MainMenu {
 			System.exit(0);
 		}
 	}
+			//HEADER
+			public void header(String title){
+			int length = title.length();
+			int spacing = 20 - length;
+			StringBuilder sb = new StringBuilder();
+			String sp1, sp2;
+			
+			//If even or odd...
+			if(spacing%2 == 0){
+				for(int i = 0; i < (spacing / 2); i++){
+					sb.append(" ");
+				}
+				
+				sp1 = sb.toString();
+				sp2 = sp1;
+			} else {
+				for(int i = 0; i < (spacing / 2); i++){
+					sb.append(" ");
+				}
+				
+				sp1 = sb.toString();
+				
+				sb.append(" ");
+				sp2 = sb.toString();
+			}
+			
+			String header = "	/--------------------\\\n"
+					+	"	|" + sp1 + title + sp2 + "|\n"
+					+	"	\\--------------------/\n\n";
+			io.sendOutput(header);
+		}	
+	
 }
