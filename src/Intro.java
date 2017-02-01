@@ -14,7 +14,9 @@ public class Intro {
 	String input;
     String output;
     String playerName;
-    int presetStatNumber;
+    int addStr = 0;
+    int addInt = 0;
+    int addDex = 0;
     
     // create IO and Character object
     IO io = new IO();
@@ -42,6 +44,10 @@ public class Intro {
             	io.sendOutputTyping(output,30);
             	
             	io.pauseScreen();
+            	
+            	
+            	// INTRO STORY ELEMENTS //
+            
     	}
     
     	public void name(){
@@ -68,49 +74,94 @@ public class Intro {
     	public void presetStatNumber(){
             	// gets character character profession
     			int i = 0;
-    			int caught = 0;
+    			int defaultStr, defaultInt, defaultDex;
+    			defaultStr = 5;
+    			defaultInt = 5;
+    			defaultDex = 5;
+    			int pointsToAssign = 5;
     			while (i == 0){
-    				output = "Select Character Profession \n1) Wizard \n2) Warrior \n3) Rogue \n4) Ranger \nChoice: ";
-    				io.sendOutputTyping(output,40);
+    				io.clearScreen();
+    				
+    				output = "Add   Sub   |   Allocate your stats\n"
+    						+"-----------------------------------\n"
+    						+"[1]   [4]   |    Strength (" + (defaultStr + addStr) + ") \n"
+    						+"[2]   [5]   |    Intelligence (" + (defaultInt + addInt) + ") \n"
+    						+"[3]   [6]   |    Dexterity (" + (defaultDex + addDex) + ") \n"
+    						+"-----------------------------------\n"
+    						+"Points to Assign: " + pointsToAssign + "\n"
+    						+"When done, input [0]!\n"
+    						+"Choice: ";
+    				io.sendOutput(output);
+    				
+    				int choice;
     				try{
-    					presetStatNumber = Integer.parseInt(io.getInput());
+    					choice = Integer.parseInt(io.getInput());
+    				} catch (Exception e) {
+    					choice = 0;
     				}
-    				catch(NumberFormatException exception)
-    				{
-    					output = "\nPlease enter a number!";
-    					io.sendOutput(output);
-    					io.getInput();
-    					io.clearScreen();
-    					caught = 1;
+    				
+    				if (choice == 1) {
+    					if (pointsToAssign != 0){
+    						addStr++;
+        					pointsToAssign--;
+    					}
     				}
-    				if (caught == 0){
-    					if(presetStatNumber >= 1 && presetStatNumber <= 4){
+    				else if (choice == 2) {
+    					if (pointsToAssign != 0){
+    						addInt++;
+    						pointsToAssign--;
+    					}
+    				}
+    				else if (choice == 3) {
+    					if (pointsToAssign != 0){
+    						addDex++;
+    						pointsToAssign--;
+    					}
+    				}
+    				else if (choice == 4) {
+    					if (addStr > 0){
+    						addStr--;
+    						pointsToAssign++;
+    					}
+    				}
+    				else if (choice == 5) {
+    					if (addInt > 0){
+    						addInt--;
+    						pointsToAssign++;
+    					}
+    				}
+    				else if (choice == 6) {
+    					if (addDex > 0){
+    						addDex--;
+    						pointsToAssign++;
+    					}
+    				}
+    				
+    				if(choice == 0){
+    					if (pointsToAssign == 0){
     						i = 1;
+    						io.sendOutput("\n");
+    						io.pauseScreen();
     					}
-    					else{
-    						output = "\nThat's not a choice!";
-        					io.sendOutput(output);
-        					io.getInput();
-        					io.clearScreen();
+    					else {
+    						String uhoh = "\nCheck again, you may have unallocated points!\n";
+        					io.sendOutput(uhoh);
+        					io.pauseScreen();
     					}
-    				}
-    				else{
-    					caught = 0;
     				}
     			}
     	}
     	public void end(){
     		
     		//set Base stats of character
-    		character = new Character(presetStatNumber,playerName);
+    		character = new Character(playerName,addStr,addInt,addDex);
     		
             // outputs character sex, name, and race
             output = "\n***********************************\n\n\n";
             io.sendOutput(output);
             
          	// left space to output character profession
-            output = "Welcome to Yuriamor, " + character.getPlayerName() + "! You have selected "
-            + character.getPresetStatString() + " as your Characters Profession!\n\n";
+            output = "Welcome to Yuriamor, " + character.getPlayerName() + "!\n";
             io.sendOutputTyping(output,30);
             character.setSaved(1);
             io.saveInfo(character);

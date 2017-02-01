@@ -352,7 +352,76 @@ public class MainMenu {
 			String output;
 			
 			if (marketChoice == 1){
-				
+				int buyLoop = 1;
+				while (buyLoop == 1){
+					io.saveInfo(character);
+					io.clearScreen();
+					int[] potionID = new int[1000];
+					
+					String marketBuy = "BUY";
+					header(marketBuy);
+					
+					String body = "         What would you like to buy? \n"
+							+  "       --------------------------  \n";
+					io.sendOutput(body);
+					
+					// 1) Health Potion (5) | 10 Coins
+					// int num, String name, int price
+					potionID[0] = 1;
+					potionID[1] = 101;
+					
+					int counter = 1;
+					for(int i = 0; i < 1000; i++){
+						if (potionID[i] != 0){
+							String[] potionData = character.getPotionData(potionID[i]);
+							String potionName = potionData[0];
+							int potionPrice = Integer.parseInt(potionData[3]);
+							int potionAmount = Integer.parseInt(potionData[2]);
+							
+							String display = "    " + (i + 1) + ") " + potionName + " ("+ potionAmount + ") | " + (potionPrice*2) + " Coins\n";
+							io.sendOutput(display);
+							counter++;
+						}
+					}
+					
+					String bottom = "    " + counter +") Go back\n"
+							+ "       --------------------------  \n"
+							+   quickStats()
+							+ "       Choose what potion to buy: ";
+					io.sendOutput(bottom);
+					
+					int choice = 0;
+					try{
+						choice = Integer.parseInt(io.getInput());
+					} catch (Exception e) {
+						choice = 0;
+					}
+					
+					if(choice != counter){
+						if (character.getPotionAmount(potionID[choice-1]) < character.getMaxPotionAmount()){
+							if (character.getCharCurrency() >= character.getPotionPrice(potionID[choice-1])){
+								character.subtractCharCurrency((character.getPotionPrice(potionID[choice-1]))*2);
+								character.setPotionAmount(potionID[choice-1], 1);
+								
+								String boughtPotion = "       Purchase Successful!\n";
+								io.sendOutput(boughtPotion);
+								io.pauseScreen();
+							} else {
+								String noMoney = "       Not enough money!\n";
+								io.sendOutput(noMoney);
+								io.pauseScreen();
+							}
+						} else {
+							String tooManyPotions = "       Too many potions!\n";
+							io.sendOutput(tooManyPotions);
+							io.pauseScreen();
+						}
+					} else {
+						buyLoop = 0;
+						String newLine = "\n";
+						io.sendOutput(newLine);
+					}
+				}
 			}
 			if (marketChoice == 2){
 			int sellLoop = 1;
@@ -364,7 +433,7 @@ public class MainMenu {
 				String marketSell = "SELL";
 				header(marketSell);
 				
-				String body= "         What would you like to sell? \n"
+				String body = "         What would you like to sell? \n"
 						+  "       --------------------------  \n";
 				io.sendOutput(body);
 				
@@ -488,10 +557,6 @@ public class MainMenu {
 		String output = "		--STATS--\n		Name: " + character.getPlayerName();
 		io.sendOutput(output);
 		
-		//CLASS
-		output = "\n		Class: " + character.getPresetStatString();
-		io.sendOutput(output);
-		
 		//MONEY
 		output = "\n		Currency: $" + character.getCharCurrency();
 		io.sendOutput(output);
@@ -505,7 +570,7 @@ public class MainMenu {
 		io.sendOutput(output);
 		
 		//STAMINA
-		output = "\n		Energy: " + character.getStaminaMana();
+		output = "\n		Energy: " + character.getEnergy();
 		io.sendOutput(output);
 		
 		//DAMAGE
@@ -621,7 +686,7 @@ public class MainMenu {
 		String sp1, sp2;
 			
 		//If even or odd...
-		if(spacing%2 == 0){
+		if(spacing % 2 == 0){
 			for(int i = 0; i < (spacing / 2); i++){
 				sb.append(" ");
 			}
@@ -651,11 +716,12 @@ public class MainMenu {
 		int hp1, hp2, sp1, sp2, coins, inv1, inv2;
 		hp1 = character.getHealth();
 		hp2 = character.getMaxHealth();
-		sp1 = character.getStaminaMana();
-		sp2 = character.getMaxStaminaMana();
+		sp1 = character.getEnergy();
+		sp2 = character.getMaxEnergy();
 		coins = character.getCharCurrency();
 		inv1 = character.getNextSlot();
 		inv2 = character.getInvSize() + 1;
+		
 		
 		String output = "    HP: " + hp1 + "/" + hp2 + " || EP: " + sp1 + "/" + sp2 + " || " + coins + " COINS || INV " + inv1 + "/" + inv2 + "\n";
 		return output;

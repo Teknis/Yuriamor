@@ -13,7 +13,6 @@ public class Character implements Serializable{
 	
     //Character makeup
     String playerName;
-    String presetStatString;
     int characterLocation;
     int isSaved = 0;
     
@@ -24,8 +23,8 @@ public class Character implements Serializable{
     int charLevel;
     int health;
     int maxHealth;
-    int staminaMana;
-    int maxStaminaMana;
+    int energy;
+    int maxEnergy;
     int damage;
     int armor;
     
@@ -49,6 +48,7 @@ public class Character implements Serializable{
     int[] eventGain = new int[1000];
     
     //Potion Arrays
+    int maxAmount = 15;
     String[] potionName = new String[1000];
     int[] potionGain = new int[1000];
     int[] potionPrice = new int[1000];
@@ -82,11 +82,10 @@ public class Character implements Serializable{
     	
     }
     //Constructor (after user input)
-    public Character(int presetStats, String playerName){
+    public Character(String playerName, int addStr, int addInt, int addDex){
         
         //sets variables to character
-        this.presetStats = presetStats;
-        this.playerName = playerName;
+    	this.playerName = playerName;
         this.charCurrency = 10;
         this.charLevel = 1;
         this.characterLocation = 1;
@@ -110,45 +109,14 @@ public class Character implements Serializable{
         	
         charUpdate();
         
-        //preset stats for wizard
-        if (presetStats == 1) {
-        this.presetStatString = "Wizard";
-        this.health = 120;
-        this.staminaMana = 105;
-        this.intellect = 10;
-        this.strength = 5;
-        this.dex = 5;
+        setStrength(5 + addStr);
+        setIntellect(5 + addInt);
+        setDex(5 + addDex);
         
-        //preset stats for warrior
-        } else if (presetStats == 2) {
-        this.presetStatString = "Warrior";
-        this.health = 125;
-        this.staminaMana = 100;
-        this.intellect = 5;
-        this.strength = 10;
-        this.dex = 5;
-        
-        //preset stats for rogue
-        } else if (presetStats == 3) {
-        this.presetStatString = "Rogue";
-        this.health = 105;
-        this.staminaMana = 120;
-        this.intellect = 5;
-        this.strength = 5;
-        this.dex = 10;
-        
-        //preset stats for ranger
-        } else if (presetStats == 4) {
-        this.presetStatString = "Ranger";
         this.health = 100;
-        this.staminaMana = 125;
-        this.intellect = 4;
-        this.strength = 4;
-        this.dex = 12;
-        }
-        
+        this.energy = 100;     
         this.maxHealth = this.health;
-        this.maxStaminaMana = this.staminaMana;
+        this.maxEnergy = this.energy;
         this.accuracy = 5;
     }
     
@@ -362,10 +330,6 @@ public class Character implements Serializable{
 	public void setSaved(int isSaved){
 		this.isSaved = isSaved;
 	}
-	
-	public String getPresetStatString() {
-		return presetStatString;
-	}
 
 	public int getCharLevel() {
 		return charLevel;
@@ -391,20 +355,20 @@ public class Character implements Serializable{
 		this.maxHealth = health;
 	}
 
-	public int getStaminaMana() {
-		return staminaMana;
+	public int getEnergy() {
+		return energy;
 	}
 	
-	public void setStaminaMana(int staminaMana) {
-		this.staminaMana = staminaMana;
+	public void setEnergy(int energy) {
+		this.energy = energy;
 	}
 	
-	public int getMaxStaminaMana() {
-		return maxStaminaMana;
+	public int getMaxEnergy() {
+		return maxEnergy;
 	}
 	
-	public void setMaxStaminaMana(int staminaMana) {
-		this.maxStaminaMana = staminaMana;
+	public void setMaxEnergy(int energy) {
+		this.maxEnergy = energy;
 	}
 	
 	public int getDamage() {
@@ -566,5 +530,17 @@ public class Character implements Serializable{
 	
 	public void setNextSlot(int setSlot) {
 		this.nextOpenSlot = setSlot;
+	}
+	
+	public int getMaxPotionAmount() {
+		return maxAmount;
+	}
+	
+	public int getPotionAmount(int ID){
+		return potionAmount[ID];
+	}
+	
+	public int getPotionPrice(int ID){
+		return potionPrice[ID];
 	}
 }

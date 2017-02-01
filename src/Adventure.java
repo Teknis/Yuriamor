@@ -136,8 +136,8 @@ public class Adventure {
 		int hp1, hp2, sp1, sp2, coins, inv1, inv2;
 		hp1 = character.getHealth();
 		hp2 = character.getMaxHealth();
-		sp1 = character.getStaminaMana();
-		sp2 = character.getMaxStaminaMana();
+		sp1 = character.getEnergy();
+		sp2 = character.getMaxEnergy();
 		coins = character.getCharCurrency();
 		inv1 = character.getNextSlot();
 		inv2 = character.getInvSize() + 1;
