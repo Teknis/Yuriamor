@@ -172,10 +172,7 @@ public class MainMenu {
 				blacksmith();
 			}
 			if (choice == 2){
-				output = "\nCLOSED\n";
-				io.sendOutput(output);
-				
-				io.pauseScreen();
+				market();
 			}
 			if (choice == 3){
 				output = "\nCLOSED\n";
@@ -330,6 +327,95 @@ public class MainMenu {
 		}	
 	}
 	
+	//Market (consumable buying and selling)
+	public void market(){
+		int marketRepeat = 1;
+		while (marketRepeat == 1){
+			io.saveInfo(character);
+			io.clearScreen();
+		
+			String marketTitle = "MARKET"; // Change this to character location later
+			header(marketTitle);
+		
+			String bodyTitle = "         Potions and food! Buyin' or sellin'! \n"
+				+  "       --------------------------  \n"
+				+  "        1) Buy                     \n"
+				+  "        2) Sell                    \n"
+				+  "        3) Go Back                 \n"
+				+  "       --------------------------  \n"
+				+  quickStats()
+				+  "    Choice: ";
+			io.sendOutput(bodyTitle);
+			int marketChoice = 9;
+			try{
+				marketChoice = Integer.parseInt(io.getInput());} catch (Exception e) {}
+			String output;
+			
+			if (marketChoice == 1){
+				
+			}
+			if (marketChoice == 2){
+			int sellLoop = 1;
+			while (sellLoop == 1){
+				io.saveInfo(character);
+				io.clearScreen();
+				int[] potionID = new int[1000];
+				
+				String marketSell = "SELL";
+				header(marketSell);
+				
+				String body= "         What would you like to sell? \n"
+						+  "       --------------------------  \n";
+				io.sendOutput(body);
+				
+				int counter = 0;
+				for (int i = 0; i < 1000; i++){
+					String[] toCheck = character.getPotionData(i);
+					if(Integer.parseInt(toCheck[2]) != 0){
+						potionID[counter] = i;
+						counter++;
+						
+						// 1) Health Potion (5)| 10 Coins
+						String potions = "    " + counter + ") " + toCheck[0] + " (" + toCheck[2] + ") | " + toCheck[3] + " Coins\n";
+						io.sendOutput(potions);
+					}
+				}
+				
+				String bottom = "    " + (counter + 1) +") Go back\n"
+						+ "       --------------------------  \n"
+						+   quickStats()
+						+ "       Choose what potion to sell: ";
+				io.sendOutput(bottom);
+				
+				int choice = 0;
+				try{
+					choice = Integer.parseInt(io.getInput());
+				} catch (Exception e) {
+					choice = 0;
+				}
+				
+				if (choice != (counter + 1)){
+					if (choice != 0){
+						String[] potionData = character.getPotionData(potionID[choice - 1]);
+						int price = Integer.parseInt(potionData[3]);
+						character.addCharCurrency(price);
+						character.setPotionAmount(potionID[choice - 1],  -1);
+					}
+				} else {
+					sellLoop = 0;
+					String newLine = "\n";
+					io.sendOutput(newLine);
+				}
+			}
+			}
+			if (marketChoice == 3){
+				marketRepeat = 0;
+				String newLine = "\n";
+				io.sendOutput(newLine);
+			}
+		}
+	}
+	
 	//INN (for resting and questing)
 	public void inn(){
 		int innRepeat = 1;
@@ -419,7 +505,7 @@ public class MainMenu {
 		io.sendOutput(output);
 		
 		//STAMINA
-		output = "\n		Stamina/Mana: " + character.getStaminaMana();
+		output = "\n		Energy: " + character.getStaminaMana();
 		io.sendOutput(output);
 		
 		//DAMAGE
@@ -451,60 +537,39 @@ public class MainMenu {
 	
 	//INVENTORY
 	public void inventory(){
-	int invRepeat = 0;
-	while (invRepeat == 0){
-		io.saveInfo(character);
-		io.clearScreen();
+		int inventoryRepeat = 1;
+		while (inventoryRepeat == 1){
+			io.saveInfo(character);
+			io.clearScreen();
 		
-		//PRIMARY
-		String output = "		--EQUIPPED--\n		Primary: " + character.getPrimaryWeaponName();
-		io.sendOutput(output);
-				
-		//SECONDARY
-		output = "\n		Secondary: " + character.getSecondaryWeaponName();
-		io.sendOutput(output);
-				
-		//HEAD
-		output = "\n		Helmet: " + character.getHeadArmorName();
-		io.sendOutput(output);
+			String inventoryTitle = "INVENTORY";
+			header(inventoryTitle);
 		
-		//CHEST
-		output = "\n		Chest: " + character.getChestArmorName();
-		io.sendOutput(output);
-
-		//LEGS
-		output = "\n		Legs: " + character.getLegArmorName() + "\n\n ";
-		io.sendOutput(output);
-		
-		//INVENTORY
-		output = "		--INVENTORY--";
-		io.sendOutput(output);
-		
-		for (int i = 0; i <= character.getInvSize();i++){
-			String[] itemData = character.getItemData(character.getItemID(i));
-			String itemName = itemData[0];
+			String bodyTitle = "              Gear or Pots? \n"
+				+  "       --------------------------  \n"
+				+  "        1) Gear Storage            \n"
+				+  "        2) Potion Storage          \n"
+				+  "        3) Go Back                 \n"
+				+  "       --------------------------  \n"
+				+  quickStats()
+				+  "    Choice: ";
+			io.sendOutput(bodyTitle);
+			int choice = 9;
+			try{
+			choice = Integer.parseInt(io.getInput());} catch (Exception e) {}
 			
-			output ="\n		[" + i + "] Slot " + (i+1) + ": " + itemName;
-			io.sendOutput(output);
+			if (choice == 1){
+				gear();
+			}
+			if (choice == 2){
+				potions();
+			}
+			if (choice == 3){
+				inventoryRepeat = 0;
+				String newLine = "\n";
+				io.sendOutput(newLine);
+			}
 		}
-		output = "\n\nChoose a piece to switch out or 'N' to continue...\nChoice:";
-		io.sendOutput(output);
-		String choice = io.getInput();
-		int intChoice;
-		try{
-			intChoice = Integer.parseInt(choice);
-		} catch (Exception e) {
-			intChoice = 10;
-		}
-		
-		if(intChoice >= 0 && intChoice <= 9) {
-			character.swap(intChoice);
-		}
-		else if (choice.equals("n") || choice.equals("N")) {
-			invRepeat = 1;
-		}	
-	}
-		io.pauseScreen();
 	}
 	
 	//RESTART
@@ -592,8 +657,90 @@ public class MainMenu {
 		inv1 = character.getNextSlot();
 		inv2 = character.getInvSize() + 1;
 		
-		String output = "    HP: " + hp1 + "/" + hp2 + " || SP: " + sp1 + "/" + sp2 + " || " + coins + " COINS || INV " + inv1 + "/" + inv2 + "\n";
+		String output = "    HP: " + hp1 + "/" + hp2 + " || EP: " + sp1 + "/" + sp2 + " || " + coins + " COINS || INV " + inv1 + "/" + inv2 + "\n";
 		return output;
 	}
 	
+	//Gear Inventory
+	public void gear(){
+		int invRepeat = 0;
+		while (invRepeat == 0){
+			io.saveInfo(character);
+			io.clearScreen();
+			
+			//PRIMARY
+			String output = "		--EQUIPPED--\n		Primary: " + character.getPrimaryWeaponName();
+			io.sendOutput(output);
+					
+			//SECONDARY
+			output = "\n		Secondary: " + character.getSecondaryWeaponName();
+			io.sendOutput(output);
+					
+			//HEAD
+			output = "\n		Helmet: " + character.getHeadArmorName();
+			io.sendOutput(output);
+			
+			//CHEST
+			output = "\n		Chest: " + character.getChestArmorName();
+			io.sendOutput(output);
+
+			//LEGS
+			output = "\n		Legs: " + character.getLegArmorName() + "\n\n ";
+			io.sendOutput(output);
+			
+			//INVENTORY
+			output = "		--INVENTORY--";
+			io.sendOutput(output);
+			
+			for (int i = 0; i <= character.getInvSize();i++){
+				String[] itemData = character.getItemData(character.getItemID(i));
+				String itemName = itemData[0];
+				
+				output ="\n		[" + i + "] Slot " + (i+1) + ": " + itemName;
+				io.sendOutput(output);
+			}
+			output = "\n\nChoose a piece to switch out or 'N' to continue...\nChoice:";
+			io.sendOutput(output);
+			String choice = io.getInput();
+			int intChoice;
+			try{
+				intChoice = Integer.parseInt(choice);
+			} catch (Exception e) {
+				intChoice = 10;
+			}
+			
+			if(intChoice >= 0 && intChoice <= 9) {
+				character.swap(intChoice);
+			}
+			else if (choice.equals("n") || choice.equals("N")) {
+				invRepeat = 1;
+			}	
+		}
+			io.pauseScreen();
+	}
+	
+	//Potions display
+	public void potions(){
+		io.clearScreen();
+		
+		String potionHeader = "POTIONS";
+		header(potionHeader);
+		
+		String bodyTitle = "              Your Potions \n"
+				+  "       --------------------------  \n";
+		io.sendOutput(bodyTitle);
+		
+		for(int i = 0; i < 1000; i++){
+			String[] toCheck = character.getPotionData(i);
+			if (Integer.parseInt(toCheck[2]) != 0){
+				String display = "       " + toCheck[0] + " | Amount: " + toCheck[2] + "\n";
+				io.sendOutput(display);
+			}
+		}
+		
+		String endBar = "       --------------------------  \n";
+		io.sendOutput(endBar);
+		
+		io.pauseScreen();
+	}
 }

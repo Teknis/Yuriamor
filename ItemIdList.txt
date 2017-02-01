@@ -15,6 +15,6 @@ ID/Item/Stat/Price
 200/Wooden Chest/5/1
 201/Hard Wooden Chest/6/5
 300/Wooden Helmet/3/1
-301/Hard Wooden Helmet/6/5
+301/Hard Wooden Helmet/4/5
 400/Wooden Leggings/2/1
-401/Hard Wooden Leggings/6/5
+401/Hard Wooden Leggings/3/5

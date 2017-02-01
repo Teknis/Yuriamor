@@ -48,6 +48,12 @@ public class Character implements Serializable{
     String[] eventItem = new String[1000];
     int[] eventGain = new int[1000];
     
+    //Potion Arrays
+    String[] potionName = new String[1000];
+    int[] potionGain = new int[1000];
+    int[] potionPrice = new int[1000];
+    int[] potionAmount = new int[1000];
+    
     //Weapon int slots
     int primaryWeaponID;
     int secondaryWeaponID;
@@ -95,7 +101,13 @@ public class Character implements Serializable{
         for (int i = 0; i < 50; i++){
         	inventory[i] = 0;
         }
+        for (int i = 0; i < 1000; i++){
+        	potionAmount[i] = 0;
+        }
         
+        potionAmount[1] = 5;
+        potionAmount[101] = 5;
+        	
         charUpdate();
         
         //preset stats for wizard
@@ -146,6 +158,7 @@ public class Character implements Serializable{
     public void reloadItemList(){
     	String itemList = "ItemIdList.txt";
     	String eventList = "EventIdList.txt";
+    	String potionList = "PotionIdList.txt";
     	BufferedReader br = null;
     	
     	String splitter = "/";
@@ -186,6 +199,22 @@ public class Character implements Serializable{
     	} catch (Exception e) {
     		System.out.println(e.getMessage());
     	}
+    	
+    	try{
+    		br = new BufferedReader(new FileReader(potionList));
+    		br.readLine();
+    		
+    		while((line = br.readLine()) != null){
+    			//seperator
+    			String[] storage = line.split(splitter);
+    			int ID = Integer.parseInt(storage[0]);
+    			potionName[ID] = storage[1];
+    			potionGain[ID] = Integer.parseInt(storage[2]);
+    			potionPrice[ID] = Integer.parseInt(storage[3]);
+    		}
+    	} catch (Exception e) {
+    		System.out.println(e.getMessage());
+    	}
     }
     
     //Update names, damage, and armor whenever you load or change equipped pieces
@@ -210,6 +239,21 @@ public class Character implements Serializable{
     	event[2] = Integer.toString(this.eventGain[i]);
     	return event;
     }
+    
+    //Get potion data
+   public String[] getPotionData(int ID){
+	   String[] potion = new String[4];
+	   potion[0] = this.potionName[ID];
+	   potion[1] = Integer.toString(this.potionGain[ID]);
+	   potion[2] = Integer.toString(this.potionAmount[ID]);
+	   potion[3] = Integer.toString(this.potionPrice[ID]);
+	   return potion;
+   }
+   
+   public void setPotionAmount(int ID, int value){
+	   this.potionAmount[ID] += value;
+   }
+   
     //Gets an item ID from inventory
     public int getItemID(int invNumber){
     	int ID = 0;
