@@ -369,7 +369,7 @@ public class MainMenu {
 					potionID[2] = 101;
 					potionID[3] = 102;
 					potionID[4] = 201;
-					potionID[5]	= 301;
+					potionID[5] = 301;
 					potionID[6] = 401;
 					potionID[7] = 501;
 					potionID[8] = 601;
