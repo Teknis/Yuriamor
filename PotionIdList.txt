@@ -3,6 +3,9 @@ ID/Name/Gain/Price
 002/Greater Health Potion/100/10
 101/Energy Potion/50/5
 102/Greater Energy Potion/100/10
-201/Strength Potion/5/
-301/Intelligence Potion/5/
-401/Dexterity Potion/5/
+201/Strength Potion/5/10
+301/Intelligence Potion/5/10
+401/Dexterity Potion/5/10
+501/Damage Potion/5/10
+601/Armor Potion/5/10
+701/Accuracy Potion/5/10
