@@ -130,6 +130,7 @@ public class Character implements Serializable{
     	BufferedReader br = null;
     	
     	String splitter = "/";
+    	String splitter2 = "&";
     	String line = "";
     	
     	//READ IN ITEM LIST

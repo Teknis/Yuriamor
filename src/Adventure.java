@@ -79,9 +79,27 @@ public class Adventure {
 		//Choose event and gather that event data
 		int eventChoice = randomNumber(min, max);
 		String[] eventData = character.getEventData(eventChoice);
+		String getMessage = eventData[0];
+		String splitter = "&";
+		
+		//Check for newline
+		if (getMessage.contains(splitter)){
+			String finalMessage;
+			StringBuilder stringBuilder = new StringBuilder();
+			String getLine = getMessage;
+			String[] parsedLine = getLine.split(splitter);
+			
+			for(int i = 0; i < parsedLine.length; i++){
+				stringBuilder.append(parsedLine[i]);
+				stringBuilder.append("\n");
+			}
+			finalMessage = stringBuilder.toString();
+			
+			getMessage = finalMessage;
+		}
 		
 		//Set the event message
-		String message = "\n\n" + eventData[0];
+		String message = "\n\n" + getMessage;
 		io.sendOutputTyping(message, 40);
 		
 		//Figure out what the event is giving the player and assign it with a message
