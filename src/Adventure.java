@@ -39,15 +39,15 @@ public class Adventure {
 			String end = "\n\nDo you want to keep going? Y/N\nChoice: ";
 			io.sendOutputTyping(end, 30);
 			String choice = io.getInput();
-			char YorN;
+			char yesOrNo;
 			
 			try{
-				YorN = choice.charAt(0);
+				yesOrNo = choice.charAt(0);
 			} catch (Exception e) {
-				YorN = 'Y';
+				yesOrNo = 'Y';
 			}
 		
-			if (YorN == 'n' || YorN == 'N'){
+			if (yesOrNo == 'n' || yesOrNo == 'N'){
 				repeat = 0;
 			}
 			//Repeat if user doesn't say no
@@ -79,14 +79,14 @@ public class Adventure {
 		//Choose event and gather that event data
 		int eventChoice = randomNumber(min, max);
 		String[] eventData = character.getEventData(eventChoice);
-		String getMessage = eventData[0];
+		String eventMessage = eventData[0];
 		String splitter = "&";
 		
 		//Check for newline
-		if (getMessage.contains(splitter)){
+		if (eventMessage.contains(splitter)){
 			String finalMessage;
 			StringBuilder stringBuilder = new StringBuilder();
-			String getLine = getMessage;
+			String getLine = eventMessage;
 			String[] parsedLine = getLine.split(splitter);
 			
 			for(int i = 0; i < parsedLine.length; i++){
@@ -95,11 +95,11 @@ public class Adventure {
 			}
 			finalMessage = stringBuilder.toString();
 			
-			getMessage = finalMessage;
+			eventMessage = finalMessage;
 		}
 		
 		//Set the event message
-		String message = "\n\n" + getMessage;
+		String message = "\n\n" + eventMessage;
 		io.sendOutputTyping(message, 40);
 		
 		//Figure out what the event is giving the player and assign it with a message
