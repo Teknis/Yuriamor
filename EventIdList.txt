@@ -16,11 +16,11 @@ Number/Message/GainType/Gain
 015/You pick up a dagger from inside a random pot, it&has a jewel embezzled in it!/Item/103
 016/You pull a dagger out of a stone, it must be a&pretty sharp bronze dagger!/Item/101
 017/You pick up a dagger from inside a random pot, it&looks pretty fancy!/Item/102
-018/You look behind some barrels and find a chest piece&made out of wood that looks abandoned./Item/200
-019/Looking around a room, you find some chain mail! This&will add some protection!/Item/201
-020/There is a rusted helmet on top of a training&dummy. You decide to take it, the dummy won't need it.../Item/300
-021/You find a crate with a rusted helm in it. Looks like it has seen some battle, probably not worth much anymore to a blacksmith, but it'll keep you protected!/Item/301
-022/You see some abandoned rusty leg plates next to a building./Item/400
+018/You look behind some barrels and find a rusted&bronze breast-plate that looks abandoned./Item/200
+019/Looking around a room, you find a nice bronze breast-plate! This&will add some protection!/Item/201
+020/There is a rusted bronze helmet on top of a training&dummy. You decide to take it, the dummy won't need it.../Item/300
+021/You find a crate with a bronze helmet in it.&Looks like it has seen some battle, probably not&worth much anymore to a blacksmith, but it'll keep&you protected!/Item/301
+022/You see some abandoned rusty bronze leg plates&next to a building./Item/400
 023/You open a chest and find a pretty nice set of bronze leg plates./Item/401
 024/A child runs up to you and exclaims his sister&has fallen into a turbulent river and needs help.&You jump in and manage to save her. It turns out&they are children of a wealthy trader who rewards&you with a Jeweled Dagger./Item/103
 025/You see three guards chasing a man through an&alley, pushing people out of the way and knocking&things over. A vase tips over and out of it&falls 2 gold coins. No one notices you grab them amongst&the chaos. Well done, bud./Currency/2

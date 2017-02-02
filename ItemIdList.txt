@@ -4,7 +4,7 @@ ID/Item/Stat/Price
 002/Sharp Bronze Sword/6/5
 003/Fancy Bronze Sword/5/10
 004/Jeweled Bronze Sword/4/25
-005/Redak Sword/7/10
+005/Dull Redak Sword/7/10
 006/Sharp Redak Sword/8/15
 007/Fancy Redak Sword/7/20
 008/Jeweled Redak Sword/6/50
@@ -12,11 +12,9 @@ ID/Item/Stat/Price
 101/Sharp Bronze Dagger/6/5
 102/Fancy Bronze Dagger/5/10
 103/Jeweled Bronze Dagger/4/25
-200/Wooden Breast-plate Armour/5/1
-201/Rusted Mail (chest)/6/5
-300/Rusted Training Helmet/3/1
-301/Rusted Helmet/4/5
-302/Frog-mouth Helm/5/6
-303/Armet Helmet/6/8
-400/Rusty Bronze leg plates/2/1
-401/Bronze leg plates/3/5
+200/Rusted Bronze Breast-plate/5/1
+201/Bronze Breast-plate/6/5
+300/Rusted Bronze Helmet/3/1
+301/Bronze Helmet/4/5
+400/Rusty Bronze Leg Plates/2/1
+401/Bronze Leg Plates/3/5
