@@ -1,20 +1,22 @@
 ID/Item/Stat/Price
 000/-empty-/0/0
-001/Wooden Sword/5/1
-002/Sharp Wooden Sword/6/5
-003/Fancy Wooden Sword/5/10
-004/Jeweled Wooden Sword/4/25
+001/Dull Bronze Sword/5/1
+002/Sharp Bronze Sword/6/5
+003/Fancy Bronze Sword/5/10
+004/Jeweled Bronze Sword/4/25
 005/Redak Sword/7/10
 006/Sharp Redak Sword/8/15
 007/Fancy Redak Sword/7/20
 008/Jeweled Redak Sword/6/50
-100/Wooden Dagger/5/1
-101/Sharp Wooden Dagger/6/5
-102/Fancy Wooden Dagger/5/10
-103/Jeweled Wooden Dagger/4/25
-200/Wooden Chest/5/1
-201/Hard Wooden Chest/6/5
-300/Wooden Helmet/3/1
-301/Hard Wooden Helmet/4/5
-400/Wooden Leggings/2/1
-401/Hard Wooden Leggings/3/5
+100/Dull Bronze Dagger/5/1
+101/Sharp Bronze Dagger/6/5
+102/Fancy Bronze Dagger/5/10
+103/Jeweled Bronze Dagger/4/25
+200/Wooden Breast-plate Armour/5/1
+201/Rusted Mail (chest)/6/5
+300/Rusted Training Helmet/3/1
+301/Rusted Helmet/4/5
+302/Frog-mouth Helm/5/6
+303/Armet Helmet/6/8
+400/Rusty Bronze leg plates/2/1
+401/Bronze leg plates/3/5
