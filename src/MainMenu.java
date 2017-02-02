@@ -365,8 +365,15 @@ public class MainMenu {
 					// 1) Health Potion (5) | 10 Coins
 					// int num, String name, int price
 					potionID[0] = 1;
-					potionID[1] = 101;
-					
+					potionID[1] = 2;
+					potionID[2] = 101;
+					potionID[3] = 102;
+					potionID[4] = 201;
+					potionID[5]	= 301;
+					potionID[6] = 401;
+					potionID[7] = 501;
+					potionID[8] = 601;
+					potionID[9] = 701;
 					int counter = 1;
 					for(int i = 0; i < 1000; i++){
 						if (potionID[i] != 0){
