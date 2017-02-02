@@ -30,7 +30,7 @@ public class Adventure {
 			io.sendOutputTyping(dots, 100);
 		
 			//Have something occur
-			randomOccurence(1, 17);
+			randomOccurence(1, 33);
 		
 			//Check if user wants to continue
 			io.clearScreen();
