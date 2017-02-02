@@ -175,10 +175,7 @@ public class MainMenu {
 				market();
 			}
 			if (choice == 3){
-				output = "\nCLOSED\n";
-				io.sendOutput(output);
-				
-				io.pauseScreen();
+				trainer();
 			}
 			if (choice == 4){
 				shopsRepeat = 0;
@@ -483,6 +480,40 @@ public class MainMenu {
 				io.sendOutput(newLine);
 			}
 		}
+	}
+	
+	public void trainer() {
+		int trainerRepeat = 1;
+		while (trainerRepeat == 1) {
+			io.saveInfo(character);
+			io.clearScreen();
+			
+			String trainerTitle = "Trainer"; // Change this to character location later
+			header(trainerTitle);
+			
+			String bodyTitle = "              Whatcha' lookin to do? \n"
+					+  "       --------------------------  \n"
+					+  "        1) Upgrade Skills          \n"
+					+  "        2) Go Back                 \n"
+					+  "       --------------------------  \n"
+					+  quickStats()
+					+  "    Choice: ";
+			io.sendOutput(bodyTitle);
+			int trainerChoice = 9;
+			try{
+			trainerChoice = Integer.parseInt(io.getInput());} catch (Exception e) {}
+			
+			if (trainerChoice == 1) {
+				String output = "\nNot yet implemented\n";
+				io.sendOutput(output);
+				io.pauseScreen();
+			}
+			if (trainerChoice == 2) {
+				trainerRepeat = 0;
+				String newLine = "\n";
+				io.sendOutput(newLine);
+			}
+		}	
 	}
 	
 	//INN (for resting and questing)
