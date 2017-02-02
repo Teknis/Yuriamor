@@ -512,11 +512,8 @@ public class MainMenu {
 				trainerRepeat = 0;
 				String newLine = "\n";
 				io.sendOutput(newLine);
-				
-				
 			}
-		}
-				
+		}	
 	}
 	
 	//INN (for resting and questing)
