@@ -129,6 +129,20 @@ public class Adventure {
 				io.pauseScreen();
 			}
 		}
+		else if (item.equals("Potion")){
+			if (character.getPotionAmount(gain) < character.getMaxPotionAmount()){
+				String[] potionData = character.getPotionData(gain);
+				String potionGain = "\nYou have received a " + potionData[0] + "!\n\n";
+				io.sendOutputTyping(potionGain, 20);
+				character.setPotionAmount(gain, 1);
+				io.pauseScreen();
+			}
+			else{
+				String output = "\nNo Potion inventory space, phooey...\n\n";
+				io.sendOutputTyping(output,20);
+				io.pauseScreen();
+			}	
+		}
 	}
 	
 	public void quest(){

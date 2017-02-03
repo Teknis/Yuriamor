@@ -495,7 +495,7 @@ public class MainMenu {
 			io.saveInfo(character);
 			io.clearScreen();
 			
-			String trainerTitle = "Trainer"; // Change this to character location later
+			String trainerTitle = "TRAINER";
 			header(trainerTitle);
 			
 			String bodyTitle = "              Whatcha' lookin to do? \n"
@@ -511,19 +511,172 @@ public class MainMenu {
 			trainerChoice = Integer.parseInt(io.getInput());} catch (Exception e) {}
 			
 			if (trainerChoice == 1) {
-				String output = "\nNot yet implemented\n";
-				io.sendOutput(output);
-				io.pauseScreen();
+				int trainerLoop = 1;
+				while (trainerLoop == 1){
+					io.saveInfo(character);
+					io.clearScreen();
+				
+					String upgradeTitle = "UPGRADE";
+					header(upgradeTitle);
+				
+					//gets current skill level
+					int[] currentSkillLevels = new int[]{character.getStrength(), character.getIntellect(), character.getDex()};
+					int[] currentSkillPrices = new int[]{character.getStrPrice(), character.getIntPrice(), character.getDexPrice()};
+					
+					String skillsTitle = "          Upgrade Skills \n"
+									+  "       --------------------------  \n"
+									+  "       1) Strength (" + currentSkillLevels[0] + ")   " + currentSkillPrices[0] + " coins \n"
+									+  "       2) Intelligence (" + currentSkillLevels[1] + ")   " + currentSkillPrices[1] + " coins \n"
+									+  "       3) Dexterity (" + currentSkillLevels[2] + ")   " + currentSkillPrices[2] + " coins \n"
+									+  "       4) Go Back                  \n"
+									+  "       --------------------------  \n"
+									+ quickStats()
+									+ "    Choice: ";
+							
+					io.sendOutput(skillsTitle);
+					
+					int skillChoice = 9;
+					
+					try{
+						skillChoice = Integer.parseInt(io.getInput());
+					} 
+					catch (Exception e) {	
+					}
+					
+					if (skillChoice == 1){
+						if (character.getCharCurrency() >= currentSkillPrices[skillChoice - 1]) {
+							String output = "\n\nAre you sure you want to apply this? Y/N \nChoice: ";
+							io.sendOutput(output);
+							String choice = io.getInput();
+						
+							char YorN;
+							try{
+								YorN = choice.charAt(0);
+							} catch (Exception e) {
+								YorN = 'Y';
+							}
+						
+							if (YorN == 'Y' || YorN == 'y'){
+								//Take money
+								character.subtractCharCurrency(currentSkillPrices[skillChoice - 1]);
+								//Add to skill
+								character.setStrength(character.getStrength() + 1);
+								//Set new price
+								character.setStrPrice(character.getStrPrice() * 2);
+								//Set char level
+								character.setCharLevel(character.getCharLevel() + 1);
+								//Set char health and energy
+								character.setMaxHealth(character.getMaxHealth() + 10);
+								character.setHealth(character.getMaxHealth());
+								character.setMaxEnergy(character.getMaxEnergy() + 10);
+								character.setEnergy(character.getMaxEnergy());
+								
+								output = "\nIncreased Strength to " + character.getStrength() + "!\n\n";
+								io.sendOutputTyping(output, 20);
+								
+								io.pauseScreen();
+							}
+						} else {
+							String output = "\n\nNot enough money...\n\n";
+							io.sendOutput(output);
+							
+							io.pauseScreen();
+						}
+					}
+					if (skillChoice == 2){
+						if (character.getCharCurrency() >= currentSkillPrices[skillChoice - 1]) {
+							String output = "\n\nAre you sure you want to apply this? Y/N \nChoice: ";
+							io.sendOutput(output);
+							String choice = io.getInput();
+						
+							char YorN;
+							try{
+								YorN = choice.charAt(0);
+							} catch (Exception e) {
+								YorN = 'Y';
+							}
+						
+							if (YorN == 'Y' || YorN == 'y'){
+								//Take money
+								character.subtractCharCurrency(currentSkillPrices[skillChoice - 1]);
+								//Add to skill
+								character.setIntellect(character.getIntellect() + 1);
+								//Set new price
+								character.setIntPrice(character.getIntPrice() * 2);
+								//Set char level
+								character.setCharLevel(character.getCharLevel() + 1);
+								//Set char health and energy
+								character.setMaxHealth(character.getMaxHealth() + 10);
+								character.setHealth(character.getMaxHealth());
+								character.setMaxEnergy(character.getMaxEnergy() + 10);
+								character.setEnergy(character.getMaxEnergy());
+								
+								output = "\nIncreased Intellect to " + character.getIntellect() + "!\n\n";
+								io.sendOutputTyping(output, 20);
+								
+								io.pauseScreen();
+							}
+						} else {
+							String output = "\n\nNot enough money...\n\n";
+							io.sendOutput(output);
+							
+							io.pauseScreen();
+						}
+					}
+					if (skillChoice == 3){
+						if (character.getCharCurrency() >= currentSkillPrices[skillChoice - 1]) {
+							String output = "\n\nAre you sure you want to apply this? Y/N \nChoice: ";
+							io.sendOutput(output);
+							String choice = io.getInput();
+						
+							char YorN;
+							try{
+								YorN = choice.charAt(0);
+							} catch (Exception e) {
+								YorN = 'Y';
+							}
+						
+							if (YorN == 'Y' || YorN == 'y'){
+								//Take money
+								character.subtractCharCurrency(currentSkillPrices[skillChoice - 1]);
+								//Add to skill
+								character.setDex(character.getDex() + 1);
+								//Set new price
+								character.setDexPrice(character.getDexPrice() * 2);
+								//Set char level
+								character.setCharLevel(character.getCharLevel() + 1);
+								//Set char health and energy
+								character.setMaxHealth(character.getMaxHealth() + 10);
+								character.setHealth(character.getMaxHealth());
+								character.setMaxEnergy(character.getMaxEnergy() + 10);
+								character.setEnergy(character.getMaxEnergy());
+								
+								output = "\nIncreased Dexterity to " + character.getDex() + "!\n\n";
+								io.sendOutputTyping(output, 20);
+								
+								io.pauseScreen();
+							}
+						} else {
+							String output = "\n\nNot enough money...\n\n";
+							io.sendOutput(output);
+							
+							io.pauseScreen();
+						}
+					}
+					if (skillChoice == 4){
+						trainerLoop = 0;
+						String newLine = "\n";
+						io.sendOutput(newLine);	
+					}			
+				}		
 			}
+			
 			if (trainerChoice == 2) {
 				trainerRepeat = 0;
 				String newLine = "\n";
-				io.sendOutput(newLine);
-				
-				
+				io.sendOutput(newLine);	
 			}
-		}
-				
+		}		
 	}
 	
 	//INN (for resting and questing)
@@ -684,7 +837,13 @@ public class MainMenu {
 					  + "(Note this will reset EVERTHING) \nY/N Choice: ";
 		io.sendOutput(output);
 		String choice = io.getInput();
-		char YorN = choice.charAt(0);
+		
+		char YorN;
+		try{
+			YorN = choice.charAt(0);
+		} catch (Exception e) {
+			YorN = 'Y';
+		}
 		
 		if (YorN == 'Y' || YorN == 'y'){
 			output = "\nRestarting...\n";
@@ -706,7 +865,13 @@ public class MainMenu {
 		String output = "\n\nAre you sure you want to quit? Y/N \nChoice: ";
 		io.sendOutput(output);
 		String choice = io.getInput();
-		char YorN = choice.charAt(0);
+		
+		char YorN;
+		try{
+			YorN = choice.charAt(0);
+		} catch (Exception e) {
+			YorN = 'Y';
+		}
 		
 		if (YorN == 'Y' || YorN == 'y'){
 			output = "\nFarewell...\n";
