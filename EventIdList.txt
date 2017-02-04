@@ -10,12 +10,12 @@ Number/Message/GainType/Gain
 009/Walked past a building and got hit by a falling&coin, stupid kids.../Currency/1
 010/Accidentally broke a pot during training and&found a secret stash!/Currency/15
 011/Found a spare dull bronze sword left around!/Item/1
-012/Sweet, this is a really fancy bronze sword! It&might sell for more.../Item/3
+012/Sweet, this is a really fancy Ancient Coin! It&might sell for more.../Junk/6
 013/This sword looks pretty sharp.. for a bronze sword.../Item/2
 014/There was a dagger still stuck inside of the dummy.../Item/100
-015/You pick up a dagger from inside a random pot, it&has a jewel embezzled in it!/Item/103
+015/You pick up a fragment from a random pot, it&looks like a jewel!/Junk/3
 016/You pull a dagger out of a stone, it must be a&pretty sharp bronze dagger!/Item/101
-017/You pick up a dagger from inside a random pot, it&looks pretty fancy!/Item/102
+017/You couldn't find anything, so you picked up&grass growing in a field nearby./Junk/5
 018/You look behind some barrels and find a rusted&bronze breast-plate that looks abandoned./Item/200
 019/Looking around a room, you find a nice bronze breast-plate! This&will add some protection!/Item/201
 020/There is a rusted bronze helmet on top of a training&dummy. You decide to take it, the dummy won't need it.../Item/300
