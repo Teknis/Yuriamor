@@ -143,6 +143,19 @@ public class Adventure {
 				io.pauseScreen();
 			}	
 		}
+		else if (item.equals("Junk")){
+			if(character.getJunkAmount(gain) < character.getMaxJunkAmount()){
+				String junkGain = "\nYou have received a " + character.getJunkName(gain) +"!\n\n";
+				io.sendOutputTyping(junkGain, 20);
+				character.setJunkAmount(gain, 1);
+				io.pauseScreen();
+			}
+			else{
+				String output = "\nNo Junk inventory space, phooey...\n\n";
+				io.sendOutputTyping(output,20);
+				io.pauseScreen();
+			}
+		}
 	}
 	
 	public void quest(){

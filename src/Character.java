@@ -59,6 +59,12 @@ public class Character implements Serializable{
     int[] potionPrice = new int[1000];
     int[] potionAmount = new int[1000];
     
+    //Junk Arrays
+    int maxJunkAmount = 100;
+	String[] junkName = new String[1000];
+    int[] junkPrice = new int[1000];
+    int[] junkAmount = new int[1000];
+    
     //Weapon int slots
     int primaryWeaponID;
     int secondaryWeaponID;
@@ -112,6 +118,7 @@ public class Character implements Serializable{
         }
         for (int i = 0; i < 1000; i++){
         	potionAmount[i] = 0;
+        	junkAmount[i] = 0;
         }
         
         potionAmount[1] = 5;
@@ -137,6 +144,7 @@ public class Character implements Serializable{
     	String itemList = "ItemIdList.txt";
     	String eventList = "EventIdList.txt";
     	String potionList = "PotionIdList.txt";
+    	String junkList = "JunkIdList.txt";
     	BufferedReader br = null;
     	
     	String splitter = "/";
@@ -190,6 +198,21 @@ public class Character implements Serializable{
     			potionName[ID] = storage[1];
     			potionGain[ID] = Integer.parseInt(storage[2]);
     			potionPrice[ID] = Integer.parseInt(storage[3]);
+    		}
+    	} catch (Exception e) {
+    		System.out.println(e.getMessage());
+    	}
+    	
+    	try{
+    		br = new BufferedReader(new FileReader(junkList));
+    		br.readLine();
+    		
+    		while((line = br.readLine()) != null){
+    			//seperator
+    			String[] storage = line.split(splitter);
+    			int ID = Integer.parseInt(storage[0]);
+    			junkName[ID] = storage[1];
+    			junkPrice[ID] = Integer.parseInt(storage[2]);
     		}
     	} catch (Exception e) {
     		System.out.println(e.getMessage());
@@ -577,5 +600,29 @@ public class Character implements Serializable{
 	
 	public void setDexPrice(int dexPrice) {
 		this.dexPrice = dexPrice;
+	}
+	
+	public int getMaxJunkAmount() {
+		return maxJunkAmount;
+	}
+	
+	public void setMaxJunkAmount(int maxJunkAmount) {
+		this.maxJunkAmount = maxJunkAmount;
+	}
+	
+	public String getJunkName(int ID) {
+		return junkName[ID];
+	}
+	
+	public int getJunkPrice(int ID) {
+		return junkPrice[ID];
+	}
+	
+	public int getJunkAmount(int ID) {
+		return junkAmount[ID];
+	}
+	
+	public void setJunkAmount(int ID, int value) {
+		this.junkAmount[ID] += value;
 	}
 }

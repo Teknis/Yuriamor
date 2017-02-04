@@ -1,0 +1,7 @@
+ID/Name/Price
+001/Rock Fragment/5
+002/Broken Sword/5
+003/Jewel Fragment/15
+004/Worn Tools/5
+005/Tufts of Grass/1
+006/Ancient Coin/25
