@@ -30,7 +30,7 @@ public class Adventure {
 			io.sendOutputTyping(dots, 100);
 		
 			//Have something occur
-			randomOccurence(1, 33);
+			randomOccurence(1, 41);
 		
 			//Check if user wants to continue
 			io.clearScreen();
@@ -59,13 +59,15 @@ public class Adventure {
 		int choice = randomNumber(1,3);
 		
 		if (choice == 1){
-			battle();
+			//battle();
+			event(eventMin, eventMax);
 		} 
 		else if (choice == 2){
 			event(eventMin, eventMax);
 		}
 		else if (choice == 3){
-			quest();
+			//quest();
+			event(eventMin, eventMax);
 		}
 	}
 	

@@ -563,6 +563,7 @@ public class MainMenu {
 			if (trainerChoice == 1) {
 				int trainerLoop = 1;
 				while (trainerLoop == 1){
+					
 					io.saveInfo(character);
 					io.clearScreen();
 				
@@ -576,7 +577,7 @@ public class MainMenu {
 					String skillsTitle = "          Upgrade Skills \n"
 									+  "       --------------------------  \n"
 									+  "       1) Strength (" + currentSkillLevels[0] + ")   " + currentSkillPrices[0] + " coins \n"
-									+  "       2) Intelligence (" + currentSkillLevels[1] + ")   " + currentSkillPrices[1] + " coins \n"
+									+  "       2) Intellect (" + currentSkillLevels[1] + ")   " + currentSkillPrices[1] + " coins \n"
 									+  "       3) Dexterity (" + currentSkillLevels[2] + ")   " + currentSkillPrices[2] + " coins \n"
 									+  "       4) Go Back                  \n"
 									+  "       --------------------------  \n"
@@ -594,124 +595,142 @@ public class MainMenu {
 					}
 					
 					if (skillChoice == 1){
-						if (character.getCharCurrency() >= currentSkillPrices[skillChoice - 1]) {
-							String output = "\n\nAre you sure you want to apply this? Y/N \nChoice: ";
-							io.sendOutput(output);
-							String choice = io.getInput();
 						
-							char YorN;
-							try{
-								YorN = choice.charAt(0);
-							} catch (Exception e) {
-								YorN = 'Y';
-							}
-						
-							if (YorN == 'Y' || YorN == 'y'){
-								//Take money
-								character.subtractCharCurrency(currentSkillPrices[skillChoice - 1]);
-								//Add to skill
-								character.setStrength(character.getStrength() + 1);
-								//Set new price
-								character.setStrPrice(character.getStrPrice() * 2);
-								//Set char level
-								character.setCharLevel(character.getCharLevel() + 1);
-								//Set char health and energy
-								character.setMaxHealth(character.getMaxHealth() + 10);
-								character.setHealth(character.getMaxHealth());
-								character.setMaxEnergy(character.getMaxEnergy() + 10);
-								character.setEnergy(character.getMaxEnergy());
-								
-								output = "\nIncreased Strength to " + character.getStrength() + "!\n\n";
-								io.sendOutputTyping(output, 20);
-								
-								io.pauseScreen();
-							}
-						} else {
-							String output = "\n\nNot enough money...\n\n";
-							io.sendOutput(output);
+						//check to see if player has enough money to buy skill increase
+						if (character.getCharCurrency() > character.getStrPrice()){
 							
+							//Ask user if they are sure they want to spend coins to increase skill
+							String buyStr = "\nAre you sure you to spend " + character.getStrPrice() + " coins to increase Strength by 1?\n"
+											+ "Y/N\n";
+							io.sendOutput(buyStr);
+							
+							//gets the users input choice
+							String choice = io.getInput();
+							char yesOrNo;							
+							try{
+								yesOrNo = choice.charAt(0);
+							} catch (Exception e) {
+								yesOrNo = 'Y';
+							}
+							
+							//applies skill increase and coin decrease changes if answer is yes
+							if (yesOrNo == 'Y' || yesOrNo == 'y'){
+								character.setStrength(character.getStrength() + 1);
+								character.subtractCharCurrency(100);
+								character.setCharLevel(character.getCharLevel() + 1);
+								
+								//increases the price of the next strength skill by 15
+								character.setStrPrice(character.strPrice + 15);
+								
+								//increase the characters max health and energy by 5 for each strength skill purchased
+								character.setMaxEnergy(character.getMaxEnergy() + 5);
+								character.setEnergy(character.getEnergy() + 5);
+								character.setMaxHealth(character.getMaxHealth() + 5);
+								character.setHealth(character.getHealth() + 5);
+							}
+						
+							//repeats trainerLoop if answer is no
+							if (yesOrNo == 'n' || yesOrNo == 'N'){
+			
+							}	
+						}else{
+							String lowFunds = "\nYou don't have enough coins!....dumbass.\n\n";
+							io.sendOutputTyping(lowFunds, 40);
 							io.pauseScreen();
 						}
 					}
 					if (skillChoice == 2){
-						if (character.getCharCurrency() >= currentSkillPrices[skillChoice - 1]) {
-							String output = "\n\nAre you sure you want to apply this? Y/N \nChoice: ";
-							io.sendOutput(output);
-							String choice = io.getInput();
 						
-							char YorN;
-							try{
-								YorN = choice.charAt(0);
-							} catch (Exception e) {
-								YorN = 'Y';
-							}
-						
-							if (YorN == 'Y' || YorN == 'y'){
-								//Take money
-								character.subtractCharCurrency(currentSkillPrices[skillChoice - 1]);
-								//Add to skill
-								character.setIntellect(character.getIntellect() + 1);
-								//Set new price
-								character.setIntPrice(character.getIntPrice() * 2);
-								//Set char level
-								character.setCharLevel(character.getCharLevel() + 1);
-								//Set char health and energy
-								character.setMaxHealth(character.getMaxHealth() + 10);
-								character.setHealth(character.getMaxHealth());
-								character.setMaxEnergy(character.getMaxEnergy() + 10);
-								character.setEnergy(character.getMaxEnergy());
-								
-								output = "\nIncreased Intellect to " + character.getIntellect() + "!\n\n";
-								io.sendOutputTyping(output, 20);
-								
-								io.pauseScreen();
-							}
-						} else {
-							String output = "\n\nNot enough money...\n\n";
-							io.sendOutput(output);
+						//check to see if player has enough money to buy skill increase
+						if (character.getCharCurrency() > character.getIntPrice()){
 							
+							//Ask user if they are sure they want to spend coins to increase skill
+							String buyStr = "\nAre you sure you to spend " + character.getIntPrice() + " coins to increase Intellect by 1?\n"
+											+ "Y/N\n";
+							io.sendOutput(buyStr);
+							
+							//gets the users input choice
+							String choice = io.getInput();
+							char yesOrNo;							
+							try{
+								yesOrNo = choice.charAt(0);
+							} catch (Exception e) {
+								yesOrNo = 'Y';
+							}
+							
+							//applies skill increase and coin decrease changes if answer is yes
+							if (yesOrNo == 'Y' || yesOrNo == 'y'){
+								character.setIntellect(character.getIntellect() + 1);
+								character.subtractCharCurrency(100);
+								character.setCharLevel(character.getCharLevel() + 1);
+								
+								//increases the price of the next Intellect skill by 15
+								character.setIntPrice(character.intPrice + 15);
+								
+								//increase the characters max health and energy by 5 for each strength skill purchased
+								character.setMaxEnergy(character.getMaxEnergy() + 5);
+								character.setEnergy(character.getEnergy() + 5);
+								character.setMaxHealth(character.getMaxHealth() + 5);
+								character.setHealth(character.getHealth() + 5);
+							}
+						
+							//repeats trainerLoop if answer is no
+							if (yesOrNo == 'n' || yesOrNo == 'N'){
+			
+							}	
+						}else{
+							String lowFunds = "\nYou don't have enough coins!....dumbass.\n\n";
+							io.sendOutputTyping(lowFunds, 40);
 							io.pauseScreen();
 						}
+						
 					}
 					if (skillChoice == 3){
-						if (character.getCharCurrency() >= currentSkillPrices[skillChoice - 1]) {
-							String output = "\n\nAre you sure you want to apply this? Y/N \nChoice: ";
-							io.sendOutput(output);
-							String choice = io.getInput();
 						
-							char YorN;
-							try{
-								YorN = choice.charAt(0);
-							} catch (Exception e) {
-								YorN = 'Y';
-							}
-						
-							if (YorN == 'Y' || YorN == 'y'){
-								//Take money
-								character.subtractCharCurrency(currentSkillPrices[skillChoice - 1]);
-								//Add to skill
-								character.setDex(character.getDex() + 1);
-								//Set new price
-								character.setDexPrice(character.getDexPrice() * 2);
-								//Set char level
-								character.setCharLevel(character.getCharLevel() + 1);
-								//Set char health and energy
-								character.setMaxHealth(character.getMaxHealth() + 10);
-								character.setHealth(character.getMaxHealth());
-								character.setMaxEnergy(character.getMaxEnergy() + 10);
-								character.setEnergy(character.getMaxEnergy());
-								
-								output = "\nIncreased Dexterity to " + character.getDex() + "!\n\n";
-								io.sendOutputTyping(output, 20);
-								
-								io.pauseScreen();
-							}
-						} else {
-							String output = "\n\nNot enough money...\n\n";
-							io.sendOutput(output);
+						//check to see if player has enough money to buy skill increase
+						if (character.getCharCurrency() > character.getDexPrice()){
 							
+							//Ask user if they are sure they want to spend coins to increase skill
+							String buyStr = "\nAre you sure you to spend " + character.getStrPrice() + " coins to increase Dexterity by 1?\n"
+											+ "Y/N\n";
+							io.sendOutput(buyStr);
+							
+							//gets the users input choice
+							String choice = io.getInput();
+							char yesOrNo;							
+							try{
+								yesOrNo = choice.charAt(0);
+							} catch (Exception e) {
+								yesOrNo = 'Y';
+							}
+							
+							//applies skill increase and coin decrease changes if answer is yes
+							if (yesOrNo == 'Y' || yesOrNo == 'y'){
+								character.setDex(character.getDex() + 1);
+								character.subtractCharCurrency(100);
+								character.setCharLevel(character.getCharLevel() + 1);
+								
+								//increases the price of the next Dexterity skill by 15
+								character.setDexPrice(character.dexPrice + 15);
+								
+								//increase the characters max health and energy by 5 for each strength skill purchased
+								character.setMaxEnergy(character.getMaxEnergy() + 5);
+								character.setEnergy(character.getEnergy() +5);
+								character.setMaxHealth(character.getMaxHealth() + 5);
+								character.setHealth(character.getHealth() + 5);
+
+							}
+						
+							//repeats trainerLoop if answer is no
+							if (yesOrNo == 'n' || yesOrNo == 'N'){
+			
+							}	
+						}else{
+							String lowFunds = "\nYou don't have enough coins!....dumbass.\n\n";
+							io.sendOutputTyping(lowFunds, 40);
 							io.pauseScreen();
 						}
+						
 					}
 					if (skillChoice == 4){
 						trainerLoop = 0;
