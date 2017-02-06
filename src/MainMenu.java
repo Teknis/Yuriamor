@@ -495,7 +495,7 @@ public class MainMenu {
 			io.saveInfo(character);
 			io.clearScreen();
 			
-			String trainerTitle = "Trainer"; // Change this to character location later
+			String trainerTitle = "TRAINER";
 			header(trainerTitle);
 			
 			String bodyTitle = "              Whatcha' lookin to do? \n"
@@ -511,19 +511,160 @@ public class MainMenu {
 			trainerChoice = Integer.parseInt(io.getInput());} catch (Exception e) {}
 			
 			if (trainerChoice == 1) {
-				String output = "\nNot yet implemented\n";
-				io.sendOutput(output);
-				io.pauseScreen();
+				int trainerLoop = 1;
+				while (trainerLoop == 1){
+			
+					io.saveInfo(character);
+					io.clearScreen();
+				
+					String upgradeTitle = "UPGRADE";
+					header(upgradeTitle);
+				
+					//gets current skill level
+					int[] currentSkillLevels = new int[]{character.getStrength(), character.getIntellect(), character.getDex()};
+					int[] currentSkillPrices = new int[]{character.getStrPrice(), character.getIntPrice(), character.getDexPrice()};
+					
+					String skillsTitle = "          Upgrade Skills \n"
+									+  "       --------------------------  \n"
+									+  "       1) Strength (" + currentSkillLevels[0] + ")   " + currentSkillPrices[0] + " coins \n"
+									+  "       2) Intellect (" + currentSkillLevels[1] + ")   " + currentSkillPrices[1] + " coins \n"
+									+  "       3) Dexterity (" + currentSkillLevels[2] + ")   " + currentSkillPrices[2] + " coins \n"
+									+  "       4) Go Back                  \n"
+									+  "       --------------------------  \n"
+									+ quickStats()
+									+ "    Choice: ";
+							
+					io.sendOutput(skillsTitle);
+					
+					int skillChoice = 9;
+					
+					try{
+						skillChoice = Integer.parseInt(io.getInput());
+					} 
+					catch (Exception e) {	
+					}
+					
+					if (skillChoice == 1){
+						
+						//check to see if player has enough money to buy skill increase
+						if (character.getCharCurrency() > character.getStrPrice()){
+							
+							//Ask user if they are sure they want to spend coins to increase skill
+							String buyStr = "\nAre you sure you to spend " + character.getStrPrice() + " coins to increase Strength by 1?\n"
+											+ "Y/N\n";
+							io.sendOutput(buyStr);
+							
+							//gets the users input choice
+							String choice = io.getInput();
+							char yesOrNo;							
+							try{
+								yesOrNo = choice.charAt(0);
+							} catch (Exception e) {
+								yesOrNo = 'Y';
+							}
+							
+							//applies skill increase and coin decrease changes if answer is yes
+							if (yesOrNo == 'Y' || yesOrNo == 'y'){
+								character.strength++;
+								character.charCurrency = character.charCurrency - character.strPrice;
+							}
+						
+							//repeats trainerLoop if answer is no
+							if (yesOrNo == 'n' || yesOrNo == 'N'){
+			
+							}	
+						}else{
+							String lowFunds = "\nYou don't have enough coins!....dumbass.\n\n";
+							io.sendOutputTyping(lowFunds, 40);
+							io.pauseScreen();
+						}
+					}
+					if (skillChoice == 2){
+						
+						//check to see if player has enough money to buy skill increase
+						if (character.getCharCurrency() > character.getIntPrice()){
+							
+							//Ask user if they are sure they want to spend coins to increase skill
+							String buyStr = "\nAre you sure you to spend " + character.getIntPrice() + " coins to increase Intellect by 1?\n"
+											+ "Y/N\n";
+							io.sendOutput(buyStr);
+							
+							//gets the users input choice
+							String choice = io.getInput();
+							char yesOrNo;							
+							try{
+								yesOrNo = choice.charAt(0);
+							} catch (Exception e) {
+								yesOrNo = 'Y';
+							}
+							
+							//applies skill increase and coin decrease changes if answer is yes
+							if (yesOrNo == 'Y' || yesOrNo == 'y'){
+								character.intellect++;
+								character.charCurrency = character.charCurrency - character.intPrice;
+							}
+						
+							//repeats trainerLoop if answer is no
+							if (yesOrNo == 'n' || yesOrNo == 'N'){
+			
+							}	
+						}else{
+							String lowFunds = "\nYou don't have enough coins!....dumbass.\n\n";
+							io.sendOutputTyping(lowFunds, 40);
+							io.pauseScreen();
+						}
+						
+					}
+					if (skillChoice == 3){
+						
+						//check to see if player has enough money to buy skill increase
+						if (character.getCharCurrency() > character.getDexPrice()){
+							
+							//Ask user if they are sure they want to spend coins to increase skill
+							String buyStr = "\nAre you sure you to spend " + character.getStrPrice() + " coins to increase Dexterity by 1?\n"
+											+ "Y/N\n";
+							io.sendOutput(buyStr);
+							
+							//gets the users input choice
+							String choice = io.getInput();
+							char yesOrNo;							
+							try{
+								yesOrNo = choice.charAt(0);
+							} catch (Exception e) {
+								yesOrNo = 'Y';
+							}
+							
+							//applies skill increase and coin decrease changes if answer is yes
+							if (yesOrNo == 'Y' || yesOrNo == 'y'){
+								character.dex++;
+								character.charCurrency = character.charCurrency - character.dexPrice;
+							}
+						
+							//repeats trainerLoop if answer is no
+							if (yesOrNo == 'n' || yesOrNo == 'N'){
+			
+							}	
+						}else{
+							String lowFunds = "\nYou don't have enough coins!....dumbass.\n\n";
+							io.sendOutputTyping(lowFunds, 40);
+							io.pauseScreen();
+						}
+						
+					}
+					if (skillChoice == 4){
+						trainerLoop = 0;
+						String newLine = "\n";
+						io.sendOutput(newLine);	
+					}			
+				}		
 			}
+			
 			if (trainerChoice == 2) {
 				trainerRepeat = 0;
 				String newLine = "\n";
-				io.sendOutput(newLine);
-				
-				
+				io.sendOutput(newLine);	
 			}
-		}
-				
+		}		
 	}
 	
 	//INN (for resting and questing)
