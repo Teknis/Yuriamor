@@ -59,13 +59,15 @@ public class Adventure {
 		int choice = randomNumber(1,3);
 		
 		if (choice == 1){
-			battle();
+			//battle();
+			event(eventMin, eventMax);
 		} 
 		else if (choice == 2){
 			event(eventMin, eventMax);
 		}
 		else if (choice == 3){
-			quest();
+			//quest();
+			event(eventMin, eventMax);
 		}
 	}
 	
@@ -142,6 +144,19 @@ public class Adventure {
 				io.sendOutputTyping(output,20);
 				io.pauseScreen();
 			}	
+
+		else if (item.equals("Junk")){
+			if(character.getJunkAmount(gain) < character.getMaxJunkAmount()){
+				String junkGain = "\nYou have received a " + character.getJunkName(gain) +"!\n\n";
+				io.sendOutputTyping(junkGain, 20);
+				character.setJunkAmount(gain, 1);
+				io.pauseScreen();
+			}
+			else{
+				String output = "\nNo Junk inventory space, phooey...\n\n";
+				io.sendOutputTyping(output,20);
+				io.pauseScreen();
+			}
 		}
 	}
 	

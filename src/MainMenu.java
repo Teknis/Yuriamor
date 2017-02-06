@@ -336,9 +336,10 @@ public class MainMenu {
 		
 			String bodyTitle = "         Potions and food! Buyin' or sellin'! \n"
 				+  "       --------------------------  \n"
-				+  "        1) Buy                     \n"
-				+  "        2) Sell                    \n"
-				+  "        3) Go Back                 \n"
+				+  "        1) Buy Potions             \n"
+				+  "        2) Sell Potions            \n"
+				+  "        3) Sell Junk               \n"
+				+  "        4) Go Back                 \n"
 				+  "       --------------------------  \n"
 				+  quickStats()
 				+  "    Choice: ";
@@ -481,7 +482,56 @@ public class MainMenu {
 				}
 			}
 			}
+			
 			if (marketChoice == 3){
+				int sellLoop = 1;
+				while (sellLoop == 1){
+					io.saveInfo(character);
+					io.clearScreen();
+					
+					String junkTitle = "SELL JUNK";
+					header(junkTitle);
+					
+					String body = "         Ready to sell all?     \n"
+							+  "       --------------------------  \n";
+					io.sendOutput(body);
+					
+					int totalPrice = 0;
+					for(int i = 0; i < 1000; i++){
+						if (character.getJunkAmount(i) != 0){
+							int tempPrice = (character.getJunkAmount(i) * character.getJunkPrice(i));
+							String display = "     " + character.getJunkName(i) + " (" + character.getJunkAmount(i) + ") | Price: " + tempPrice + "\n"; 
+							io.sendOutput(display);
+							totalPrice += tempPrice;
+						}
+					}
+					String bottom = "       --------------------------  \n"
+							+ "      Total Price: " + totalPrice +     "\n"
+							+   quickStats()
+							+ "       Do you want to sell all junk? (Y/N): ";
+					io.sendOutput(bottom);
+					
+					String choice = io.getInput();
+					
+					char YorN;
+					try{
+						YorN = choice.charAt(0);
+					} catch (Exception e) {
+						YorN = 'Y';
+					}
+					
+					if (YorN == 'Y' || YorN == 'y'){
+						character.addCharCurrency(totalPrice);
+						for(int i = 0; i < 1000; i++){
+							character.setJunkAmount(i, (-character.getJunkAmount(i)));
+						}
+					} else if (YorN == 'N' || YorN == 'n'){
+						sellLoop = 0;
+					}
+				}	
+			}
+			
+			if (marketChoice == 4){
 				marketRepeat = 0;
 				String newLine = "\n";
 				io.sendOutput(newLine);
@@ -513,7 +563,6 @@ public class MainMenu {
 			if (trainerChoice == 1) {
 				int trainerLoop = 1;
 				while (trainerLoop == 1){
-			
 					io.saveInfo(character);
 					io.clearScreen();
 				
@@ -562,7 +611,7 @@ public class MainMenu {
 							} catch (Exception e) {
 								yesOrNo = 'Y';
 							}
-							
+	
 							//applies skill and level increase and coin decrease changes if answer is yes
 							if (yesOrNo == 'Y' || yesOrNo == 'y'){
 								character.setStrength(character.getStrength() + 1);
@@ -577,7 +626,6 @@ public class MainMenu {
 								character.setEnergy(character.getEnergy() + 5);
 								character.setMaxHealth(character.getMaxHealth() + 5);
 								character.setHealth(character.getHealth() + 5);
-								
 							}
 						
 							//repeats trainerLoop if answer is no
@@ -594,6 +642,7 @@ public class MainMenu {
 						
 						//check to see if player has enough money to buy skill increase
 						if (character.getCharCurrency() >= character.getIntPrice()){
+
 							
 							//Ask user if they are sure they want to spend coins to increase skill
 							String buyStr = "\nAre you sure you to spend " + character.getIntPrice() + " coins to increase Intellect by 1?\n"
@@ -608,7 +657,7 @@ public class MainMenu {
 							} catch (Exception e) {
 								yesOrNo = 'Y';
 							}
-							
+						
 							//applies skill and level increase and coin decrease changes if answer is yes
 							if (yesOrNo == 'Y' || yesOrNo == 'y'){
 								character.setIntellect(character.getIntellect() + 1);
@@ -654,7 +703,7 @@ public class MainMenu {
 							} catch (Exception e) {
 								yesOrNo = 'Y';
 							}
-							
+              
 							//applies skill and level increase and coin decrease changes if answer is yes
 							if (yesOrNo == 'Y' || yesOrNo == 'y'){
 								character.setDex(character.getDex() + 1);
@@ -827,7 +876,8 @@ public class MainMenu {
 				+  "       --------------------------  \n"
 				+  "        1) Gear Storage            \n"
 				+  "        2) Potion Storage          \n"
-				+  "        3) Go Back                 \n"
+				+  "        3) Junk Storage            \n"
+				+  "        4) Go Back                 \n"
 				+  "       --------------------------  \n"
 				+  quickStats()
 				+  "    Choice: ";
@@ -843,6 +893,9 @@ public class MainMenu {
 				potions();
 			}
 			if (choice == 3){
+				junk();
+			}
+			if (choice == 4){
 				inventoryRepeat = 0;
 				String newLine = "\n";
 				io.sendOutput(newLine);
@@ -856,7 +909,13 @@ public class MainMenu {
 					  + "(Note this will reset EVERTHING) \nY/N Choice: ";
 		io.sendOutput(output);
 		String choice = io.getInput();
-		char YorN = choice.charAt(0);
+		
+		char YorN;
+		try{
+			YorN = choice.charAt(0);
+		} catch (Exception e) {
+			YorN = 'Y';
+		}
 		
 		if (YorN == 'Y' || YorN == 'y'){
 			output = "\nRestarting...\n";
@@ -878,7 +937,13 @@ public class MainMenu {
 		String output = "\n\nAre you sure you want to quit? Y/N \nChoice: ";
 		io.sendOutput(output);
 		String choice = io.getInput();
-		char YorN = choice.charAt(0);
+		
+		char YorN;
+		try{
+			YorN = choice.charAt(0);
+		} catch (Exception e) {
+			YorN = 'Y';
+		}
 		
 		if (YorN == 'Y' || YorN == 'y'){
 			output = "\nFarewell...\n";
@@ -1017,6 +1082,29 @@ public class MainMenu {
 			}
 		}
 		
+		String endBar = "       --------------------------  \n";
+		io.sendOutput(endBar);
+		
+		io.pauseScreen();
+	}
+	
+	//Junk Display
+	public void junk(){
+		io.clearScreen();
+		
+		String junkHeader = "JUNK";
+		header(junkHeader);
+		
+		String bodyTitle = "              Your Junk    \n"
+				+  "       --------------------------  \n";
+		io.sendOutput(bodyTitle);
+		
+		for(int i = 0; i < 1000; i++){
+			if (character.getJunkAmount(i) != 0){
+				String display = "       " + character.getJunkName(i) + " | Amount: " + character.getJunkAmount(i) + "\n";
+				io.sendOutput(display);
+			}
+		}
 		String endBar = "       --------------------------  \n";
 		io.sendOutput(endBar);
 		

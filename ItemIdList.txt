@@ -2,16 +2,10 @@ ID/Item/Stat/Price
 000/-empty-/0/0
 001/Dull Bronze Sword/5/1
 002/Sharp Bronze Sword/6/5
-003/Fancy Bronze Sword/5/10
-004/Jeweled Bronze Sword/4/25
 005/Dull Redak Sword/7/10
 006/Sharp Redak Sword/8/15
-007/Fancy Redak Sword/7/20
-008/Jeweled Redak Sword/6/50
 100/Dull Bronze Dagger/5/1
 101/Sharp Bronze Dagger/6/5
-102/Fancy Bronze Dagger/5/10
-103/Jeweled Bronze Dagger/4/25
 200/Rusted Bronze Breast-plate/5/1
 201/Bronze Breast-plate/6/5
 300/Rusted Bronze Helmet/3/1
