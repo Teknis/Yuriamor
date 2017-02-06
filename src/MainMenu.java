@@ -563,7 +563,6 @@ public class MainMenu {
 			if (trainerChoice == 1) {
 				int trainerLoop = 1;
 				while (trainerLoop == 1){
-					
 					io.saveInfo(character);
 					io.clearScreen();
 				
@@ -597,7 +596,7 @@ public class MainMenu {
 					if (skillChoice == 1){
 						
 						//check to see if player has enough money to buy skill increase
-						if (character.getCharCurrency() > character.getStrPrice()){
+						if (character.getCharCurrency() >= character.getStrPrice()){
 							
 							//Ask user if they are sure they want to spend coins to increase skill
 							String buyStr = "\nAre you sure you to spend " + character.getStrPrice() + " coins to increase Strength by 1?\n"
@@ -612,8 +611,8 @@ public class MainMenu {
 							} catch (Exception e) {
 								yesOrNo = 'Y';
 							}
-							
-							//applies skill increase and coin decrease changes if answer is yes
+	
+							//applies skill and level increase and coin decrease changes if answer is yes
 							if (yesOrNo == 'Y' || yesOrNo == 'y'){
 								character.setStrength(character.getStrength() + 1);
 								character.subtractCharCurrency(100);
@@ -642,7 +641,8 @@ public class MainMenu {
 					if (skillChoice == 2){
 						
 						//check to see if player has enough money to buy skill increase
-						if (character.getCharCurrency() > character.getIntPrice()){
+						if (character.getCharCurrency() >= character.getIntPrice()){
+
 							
 							//Ask user if they are sure they want to spend coins to increase skill
 							String buyStr = "\nAre you sure you to spend " + character.getIntPrice() + " coins to increase Intellect by 1?\n"
@@ -657,8 +657,8 @@ public class MainMenu {
 							} catch (Exception e) {
 								yesOrNo = 'Y';
 							}
-							
-							//applies skill increase and coin decrease changes if answer is yes
+						
+							//applies skill and level increase and coin decrease changes if answer is yes
 							if (yesOrNo == 'Y' || yesOrNo == 'y'){
 								character.setIntellect(character.getIntellect() + 1);
 								character.subtractCharCurrency(100);
@@ -688,10 +688,10 @@ public class MainMenu {
 					if (skillChoice == 3){
 						
 						//check to see if player has enough money to buy skill increase
-						if (character.getCharCurrency() > character.getDexPrice()){
+						if (character.getCharCurrency() >= character.getDexPrice()){
 							
 							//Ask user if they are sure they want to spend coins to increase skill
-							String buyStr = "\nAre you sure you to spend " + character.getStrPrice() + " coins to increase Dexterity by 1?\n"
+							String buyStr = "\nAre you sure you to spend " + character.getDexPrice() + " coins to increase Dexterity by 1?\n"
 											+ "Y/N\n";
 							io.sendOutput(buyStr);
 							
@@ -703,8 +703,8 @@ public class MainMenu {
 							} catch (Exception e) {
 								yesOrNo = 'Y';
 							}
-							
-							//applies skill increase and coin decrease changes if answer is yes
+              
+							//applies skill and level increase and coin decrease changes if answer is yes
 							if (yesOrNo == 'Y' || yesOrNo == 'y'){
 								character.setDex(character.getDex() + 1);
 								character.subtractCharCurrency(100);
@@ -718,7 +718,6 @@ public class MainMenu {
 								character.setEnergy(character.getEnergy() +5);
 								character.setMaxHealth(character.getMaxHealth() + 5);
 								character.setHealth(character.getHealth() + 5);
-
 							}
 						
 							//repeats trainerLoop if answer is no

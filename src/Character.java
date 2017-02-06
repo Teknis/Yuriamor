@@ -98,6 +98,7 @@ public class Character implements Serializable{
         //sets variables to character
     	this.playerName = playerName;
         this.charCurrency = 1000;
+
         this.charLevel = 1;
         this.characterLocation = 1;
         
@@ -625,4 +626,5 @@ public class Character implements Serializable{
 	public void setJunkAmount(int ID, int value) {
 		this.junkAmount[ID] += value;
 	}
+
 }

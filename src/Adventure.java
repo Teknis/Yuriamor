@@ -144,7 +144,7 @@ public class Adventure {
 				io.sendOutputTyping(output,20);
 				io.pauseScreen();
 			}	
-		}
+
 		else if (item.equals("Junk")){
 			if(character.getJunkAmount(gain) < character.getMaxJunkAmount()){
 				String junkGain = "\nYou have received a " + character.getJunkName(gain) +"!\n\n";
