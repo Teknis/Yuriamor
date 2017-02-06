@@ -37,6 +37,11 @@ public class Character implements Serializable{
     int dex; // modifies range damage
     int accuracy; // modifies chances of landing an attack (minor, major, excellent) and slight melee/spell damage bonus.
     
+    //price per stat
+    int intPrice;
+	int strPrice;
+    int dexPrice;
+    
     //Item Arrays
     String[] itemName = new String[1000];
     int[] itemStat = new int[1000];
@@ -86,9 +91,14 @@ public class Character implements Serializable{
         
         //sets variables to character
     	this.playerName = playerName;
-        this.charCurrency = 10;
+        this.charCurrency = 200;
         this.charLevel = 1;
         this.characterLocation = 1;
+        
+        //sets starting price to upgrade skills
+        this.intPrice = 100;
+        this.dexPrice = 100;
+        this.strPrice = 100;
         
         //sets default items
         reloadItemList();
@@ -543,5 +553,29 @@ public class Character implements Serializable{
 	
 	public int getPotionPrice(int ID){
 		return potionPrice[ID];
+	}
+	
+	public int getIntPrice() {
+		return intPrice;
+	}
+	
+	public void setIntPrice(int intPrice) {
+		this.intPrice = intPrice;
+	}
+	
+	public int getStrPrice() {
+		return strPrice;
+	}
+	
+	public void setStrPrice(int strPrice) {
+		this.strPrice = strPrice;
+	}
+	
+	public int getDexPrice() {
+		return dexPrice;
+	}
+	
+	public void setDexPrice(int dexPrice) {
+		this.dexPrice = dexPrice;
 	}
 }
