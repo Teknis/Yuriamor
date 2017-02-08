@@ -12,6 +12,7 @@ public class Adventure {
 	// create IO object
 	IO io = new IO();
 	Character character = new Character();
+	Battle start = new Battle(character);
 
 	//rest of code here
 	public Adventure(Character character){
@@ -59,22 +60,19 @@ public class Adventure {
 		int choice = randomNumber(1,3);
 		
 		if (choice == 1){
-			//battle();
-			event(eventMin, eventMax);
+			battle();
 		} 
 		else if (choice == 2){
 			event(eventMin, eventMax);
 		}
 		else if (choice == 3){
 			//quest();
-			event(eventMin, eventMax);
+			battle();
 		}
 	}
 	
 	public void battle(){
-		String battleLine = "\n\nBattles not implemented yet!\n\n";
-		io.sendOutputTyping(battleLine, 30);
-		io.pauseScreen();
+		start.battle();
 	}
 	
 	public void event(int min, int max){

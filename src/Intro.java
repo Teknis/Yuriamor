@@ -85,7 +85,7 @@ public class Intro {
     				output = "Add   Sub   |   Allocate your stats\n"
     						+"-----------------------------------\n"
     						+"[1]   [4]   |    Strength (" + (defaultStr + addStr) + ") \n"
-    						+"[2]   [5]   |    Intellect (" + (defaultInt + addInt) + ") \n"
+    						+"[2]   [5]   |    Intelligence (" + (defaultInt + addInt) + ") \n"
     						+"[3]   [6]   |    Dexterity (" + (defaultDex + addDex) + ") \n"
     						+"-----------------------------------\n"
     						+"Points to Assign: " + pointsToAssign + "\n"
