@@ -22,7 +22,7 @@ Number/Message/GainType/Gain
 021/You find a crate with a bronze helmet in it.&Looks like it has seen some battle, probably not&worth much anymore to a blacksmith, but it'll keep&you protected!/Item/301
 022/You see some abandoned rusty bronze leg plates&next to a building./Item/400
 023/You open a chest and find a pretty nice set of bronze leg plates./Item/401
-024/A child runs up to you and exclaims his sister&has fallen into a turbulent river and needs help.&You jump in and manage to save her. It turns out&they are children of a wealthy trader who rewards&you with a Jeweled Dagger./Item/103
+024/A child runs up to you and exclaims his sister&has fallen into a turbulent river and needs help.&You jump in and manage to save her. It turns out&they are children of a wealthy trader who rewards&you with a Jeweled Fragment./Junk/003
 025/You see three guards chasing a man through an&alley, pushing people out of the way and knocking&things over. A vase tips over and out of it&falls 2 gold coins. No one notices you grab them amongst&the chaos. Well done, bud./Currency/2
 026/You walk along the path until you find a trader&with a broken cart that is missing a wheel.&You help him put the wheel back on cart.&He pays you 10 coins./Currency/10
 027/There is a group of towns folk talking in a group.&They all run off and one drops a bag on the ground.&You walk over to it and pick it up, but they&are long gone. You look inside and find 5 coins./Currency/5

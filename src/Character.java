@@ -65,6 +65,18 @@ public class Character implements Serializable{
     int[] junkPrice = new int[1000];
     int[] junkAmount = new int[1000];
     
+    //Monster Arrays
+    String[] monsterName = new String[1000];
+    String[] monsterType = new String[1000];
+    int[] monsterLevel = new int[1000];
+    int[] monsterHealth = new int[1000];
+    int[] monsterDamage = new int[1000];
+    int[] monsterMove1 = new int[1000];
+    int[] monsterMove2 = new int[1000];
+    int[] monsterMove3 = new int[1000];
+    int[] monsterMove4 = new int[1000];
+    int[] monsterLoot = new int[1000];
+    
     //Weapon int slots
     int primaryWeaponID;
     int secondaryWeaponID;
@@ -146,6 +158,7 @@ public class Character implements Serializable{
     	String eventList = "EventIdList.txt";
     	String potionList = "PotionIdList.txt";
     	String junkList = "JunkIdList.txt";
+    	String monsterList = "MonsterIdList.txt";
     	BufferedReader br = null;
     	
     	String splitter = "/";
@@ -188,6 +201,7 @@ public class Character implements Serializable{
     		System.out.println(e.getMessage());
     	}
     	
+    	//READ IN POTION LIST
     	try{
     		br = new BufferedReader(new FileReader(potionList));
     		br.readLine();
@@ -204,6 +218,7 @@ public class Character implements Serializable{
     		System.out.println(e.getMessage());
     	}
     	
+    	//READ IN JUNK LIST
     	try{
     		br = new BufferedReader(new FileReader(junkList));
     		br.readLine();
@@ -214,6 +229,30 @@ public class Character implements Serializable{
     			int ID = Integer.parseInt(storage[0]);
     			junkName[ID] = storage[1];
     			junkPrice[ID] = Integer.parseInt(storage[2]);
+    		}
+    	} catch (Exception e) {
+    		System.out.println(e.getMessage());
+    	}
+    	
+    	//READ IN MONSTER LIST
+    	try{
+    		br = new BufferedReader(new FileReader(monsterList));
+    		br.readLine();
+    		
+    		while((line = br.readLine()) != null){
+    			//seperator
+    			String[] storage = line.split(splitter);
+    			int ID = Integer.parseInt(storage[0]);
+    			monsterName[ID] = storage[1];
+    			monsterType[ID] = storage[2];
+    			monsterLevel[ID] = Integer.parseInt(storage[3]);
+    			monsterHealth[ID] = Integer.parseInt(storage[4]);
+    			monsterDamage[ID] = Integer.parseInt(storage[5]);
+    			monsterMove1[ID] = Integer.parseInt(storage[6]);
+    			monsterMove2[ID] = Integer.parseInt(storage[7]);
+    			monsterMove3[ID] = Integer.parseInt(storage[8]);
+    			monsterMove4[ID] = Integer.parseInt(storage[9]);
+    			monsterLoot[ID] = Integer.parseInt(storage[10]);
     		}
     	} catch (Exception e) {
     		System.out.println(e.getMessage());
@@ -627,4 +666,43 @@ public class Character implements Serializable{
 		this.junkAmount[ID] += value;
 	}
 
+	public String getMonsterName(int ID){
+		return monsterName[ID];
+	}
+	
+	public String getMonsterType(int ID){
+		return monsterType[ID];
+	}
+	
+	public int getMonsterLevel(int ID){
+		return monsterLevel[ID];
+	}
+	
+	public int getMonsterHealth(int ID){
+		return monsterHealth[ID];
+	}
+	
+	public int getMonsterDamage(int ID){
+		return monsterDamage[ID];
+	}
+	
+	public int getMonsterMove1(int ID){
+		return monsterMove1[ID];
+	}
+	
+	public int getMonsterMove2(int ID){
+		return monsterMove2[ID];
+	}
+	
+	public int getMonsterMove3(int ID){
+		return monsterMove3[ID];
+	}
+	
+	public int getMonsterMove4(int ID){
+		return monsterMove4[ID];
+	}
+	
+	public int getMonsterLoot(int ID){
+		return monsterLoot[ID];
+	}
 }

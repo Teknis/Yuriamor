@@ -774,12 +774,13 @@ public class MainMenu {
 				//Replenish health, take a coin, and don't let the user do it if at max health
 				if (choice == 1){ 											//if they choose 1
 					String output;
-					if(character.getHealth() != character.getMaxHealth()){ 	//if they don't have max health
+					if((character.getHealth() != character.getMaxHealth()) || (character.getEnergy() != character.getMaxEnergy())){ 	//if they don't have max health
 						if (character.getCharCurrency() > 0){				//if they have money
 							character.setHealth(character.getMaxHealth());
+							character.setEnergy(character.getMaxEnergy());
 							character.subtractCharCurrency(1);
 							
-							output = "\nReplenished max health!";
+							output = "\nReplenished max health and energy!";
 							io.sendOutput(output);
 							
 							io.pauseScreen();
@@ -792,7 +793,7 @@ public class MainMenu {
 						}
 					}
 					else {
-						output = "\nAlready at full health!\n";
+						output = "\nAlready at full health and energy!\n";
 						io.sendOutput(output);
 						
 						io.pauseScreen();

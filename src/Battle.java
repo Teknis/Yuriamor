@@ -9,9 +9,23 @@ import java.util.*;
 
 public class Battle {
 
-	//Initialize necessary objects
+	//Initialize necessary objects and variables
 	IO io = new IO();
 	Character character = new Character();
+	int battleLoop = 1;
+	
+	//Monster variables must be global scope
+	String monsterName;
+	String monsterType;
+	int monsterLevel;
+	int monsterHealth;
+	int monsterMaxHealth;
+	int monsterDamage;
+	int monsterMove1;
+	int monsterMove2;
+	int monsterMove3;
+	int monsterMove4;
+	int monsterLoot;
 	
 	//Construct battle with our character
 	public Battle(Character character){
@@ -19,27 +33,43 @@ public class Battle {
 	}
 	
 	//Call battle (most of the methods will be used here)
-	public void battle(){
+	public void battle(int [] monsterIds){
 		
 		// VARIABLES NEEDED HERE//
 		
 		// GET MONSTER INFO HERE //
-		String[] monster = new String[10];
-		monster[0] = "Blob"; 	//Name
-		monster[1] = "Melee"; 	//Damage Type
-		monster[2] = "1";		//Level
-		monster[3] = "100";		//Health
-		monster[4] = "1";		//Damage
-		monster[5] = "001";		//Move 1 ID
-		monster[6] = "000";		//Move 2 ID
-		monster[7] = "000";		//Move 3 ID
-		monster[8] = "000";		//Move 4 ID
-		monster[9] = "001";		//Special Loot ID (normally coins, junk, or potions)
+		int monsterChoice = randomNumber(0,(monsterIds.length - 1));
+		int monsterChoiceId = monsterIds[monsterChoice];
+		
+		//Check for empty monsterSlot from random choice
+		int breakLoop = 0;
+		do{
+			if (monsterChoiceId == 0){
+				monsterChoice -= 1;
+				monsterChoiceId = monsterIds[monsterChoice];
+			}
+			else{
+				breakLoop = 1;
+			}
+		} while (breakLoop == 0);
+		
+		//Set monster to selection
+		monsterName = character.getMonsterName(monsterChoiceId);
+		monsterType = character.getMonsterType(monsterChoiceId);
+		monsterLevel = character.getMonsterLevel(monsterChoiceId);
+		monsterHealth = character.getMonsterHealth(monsterChoiceId);
+		monsterMaxHealth = monsterHealth;
+		monsterDamage = character.getMonsterDamage(monsterChoiceId);
+		monsterMove1 = character.getMonsterMove1(monsterChoiceId);
+		monsterMove2 = character.getMonsterMove2(monsterChoiceId);
+		monsterMove3 = character.getMonsterMove3(monsterChoiceId);
+		monsterMove4 = character.getMonsterMove4(monsterChoiceId);
+		monsterLoot = character.getMonsterLoot(monsterChoiceId);
+		
 		
 		//When battle is called, display intro
 		displayIntro();
 		
-		int battleLoop = 1;
 		while (battleLoop == 1){
 			io.clearScreen();
 			
@@ -65,9 +95,9 @@ public class Battle {
 			//RUN AWAY
 			if (mainChoice == 3){
 				run();
-				battleLoop = 0;
 			}
 		}
+		battleLoop = 1;
 	}
 	
 	/*** BASE METHODS BELOW ***/
@@ -94,7 +124,25 @@ public class Battle {
 	
 	//RUN METHOD
 	public void run(){
-		//Still need to add the rest
+		//Chance to run away, if it's greater than 50, run away is successful
+		//If energy is at max, chances increase
+		//If health is lower, chances decrease
+		int runChance = randomNumber(40,60);
+		int currentEnergy = character.getEnergy();
+		int maxEnergy = character.getMaxEnergy();
+		int currentHealth = character.getHealth();
+		int maxHealth = character.getMaxHealth();
+		
+		runChance += ((currentEnergy*10) / maxEnergy) / 2; //(1000/100) / 2 = 5
+		runChance -= ((((maxHealth - currentHealth)*10) / maxHealth) / 4); //(1000/100) / 4 = 2
+		
+		if (runChance >= 50){
+			displayOutro("run");
+			battleLoop = 0;
+		}
+		else{
+			//monster attacks
+		}
 	}
 	/****************************/
 	
@@ -121,12 +169,6 @@ public class Battle {
 		return check;
 	}
 	
-	//Chance to run away
-	//Determines if the player successfully runs away
-	public void runAway(){
-		
-	}
-	
 	//Potion Parser
 	//Figures out what the chosen item does and returns that info
 	public void potionType(){
@@ -144,6 +186,17 @@ public class Battle {
 	public void death(){
 		
 	}
+	
+	//Random Number Generator
+	//Will probably use a lot
+	public int randomNumber(int min, int max){
+		int finalNum = 0;
+		
+		Random rand = new Random();
+		finalNum = rand.nextInt((max - min) + 1) + min;
+		
+		return finalNum;
+	}
 	/****************************/
 	
 	/*** DISPLAY METHODS BELOW **/
@@ -157,18 +210,28 @@ public class Battle {
 	
 	//Displays outro to the fight
 	//Death, monster dead, run away
-	public void displayOutro(){
+	public void displayOutro(String exitType){
+		String message = "";
+		if (exitType == "run"){
+			message = "\n\nYou've successfully ran away!!\n\n";
+		}
 		
+		io.clearScreen();
+		io.sendOutputTyping(message,20);
+		io.pauseScreen();
 	}
 	
 	//Displays information
 	//Health bars,energy,levels,etc.
 	public void displayHUD(){
-		String display = 	"|\n"
-						+	"|\n"
-						+	"| LEVEL BARS AND STATS WILL BE HERE\n"	
-						+	"|\n"
-						+	"|\n\n";
+		String display = 	"██████████████████████████████\n"
+						+	"██ " + monsterName + "  Level: " + monsterLevel + "\n"
+						+	"██ " + monsterHealth + "/" + monsterMaxHealth + "[██████████]\n"
+						+	"██████████████████████████████\n"
+						+	"██ " + character.getPlayerName() + "  Level: " + character.getCharLevel() + "\n"
+						+	"██ " + character.getHealth() + "/" + character.getMaxHealth() + "[██████████]\n"
+						+	"██ " + character.getEnergy() + "/" + character.getMaxEnergy() + "[██████████]\n"
+						+	"██████████████████████████████\n\n";
 		io.sendOutput(display);
 	}
 	

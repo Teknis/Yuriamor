@@ -83,7 +83,7 @@ public class IO {
 		} catch (Exception e){
 			System.out.println(e.getMessage());
 		}
-			tempChar.reloadItemList();
+		tempChar.reloadItemList();
 		return tempChar;
 	}
 }
