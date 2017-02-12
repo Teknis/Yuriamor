@@ -45,25 +45,22 @@ public class MainMenu {
 			String location = "Test Town"; // Change this to character location later
 			header(location);
 
-			//Body
-			String bodyTitle = " 	     Ye ol' menu \n"
-							+  "	    ------------- \n"
-							+  " 	     1) Explore   \n"
-							+  " 	     2) Travel    \n"
-							+  " 	     3) Shops     \n" //contains blacksmith and market and trainer
-							+  " 	     4) Inn       \n"
-							+  " 	     5) Inventory \n"
-							+  " 	     6) Stats     \n"
-							+  " 	     7) Restart   \n"
-							+  " 	     8) Quit      \n"
-							+  "	    ------------- \n"
-							+  quickStats()
-							+  "    Choice: ";
-			io.sendOutput(bodyTitle);
+			printMenu("Ye ol' menu", "Quit",
+					  "Explore",
+					  "Travel",
+					  "Shops",
+					  "Inn",
+					  "Inventory",
+					  "Stats",
+					  "Restart");
+					  
 			int choice = 9;
 			try{
 			choice = Integer.parseInt(io.getInput());} catch (Exception e) {}
 	
+			if (choice == 0){
+				quit();
+			}
 			if (choice == 1){
 				explore();
 			}
@@ -85,9 +82,6 @@ public class MainMenu {
 			if (choice == 7){
 				restart();
 			}
-			if (choice == 8){
-				quit();
-			}
 		}
 	}
 	
@@ -101,16 +95,10 @@ public class MainMenu {
 		String exploreTitle = "Explore"; // Change this to character location later
 		header(exploreTitle);
 		
-		String bodyTitle = "              What to do... \n"
-						+  "       --------------------------  \n"
-						+  "        1) Go to training ground   \n"
-						+  "        2) TBD                     \n"
-						+  "        3) TBD                     \n"
-						+  "        4) Go Back                 \n"
-						+  "       --------------------------  \n"
-						+  quickStats()
-						+  "    Choice: ";
-		io.sendOutput(bodyTitle);
+		printMenu("What to do...", "Go back",
+				  "Go to training ground",
+				  "TBD",
+				  "TBD");
 		int choice = 9;
 		try{
 		choice = Integer.parseInt(io.getInput());} catch (Exception e) {}
@@ -124,7 +112,7 @@ public class MainMenu {
 		if (choice == 3){
 			
 		}
-		if (choice == 4){
+		if (choice == 0){
 			exploreRepeat = 0;
 			String newLine = "\n";
 			io.sendOutput(newLine);
@@ -153,20 +141,14 @@ public class MainMenu {
 			String shopTitle = "SHOPS"; // Change this to character location later
 			header(shopTitle);
 			
-			String bodyTitle = "              Where should I shop... \n"
-					+  "       --------------------------  \n"
-					+  "        1) Blacksmith              \n"
-					+  "        2) Market                  \n"
-					+  "        3) Trainer                 \n"
-					+  "        4) Go Back                 \n"
-					+  "       --------------------------  \n"
-					+  quickStats()
-					+  "    Choice: ";
-			io.sendOutput(bodyTitle);
+			printMenu("Where should I shop...", "Leave Shops",
+					  "Blacksmith",
+					  "Market",
+					  "Trainer");
+			
 			int choice = 9;
 			try{
 			choice = Integer.parseInt(io.getInput());} catch (Exception e) {}
-			String output;
 			
 			if (choice == 1){
 				blacksmith();
@@ -177,7 +159,7 @@ public class MainMenu {
 			if (choice == 3){
 				trainer();
 			}
-			if (choice == 4){
+			if (choice == 0){
 				shopsRepeat = 0;
 				String newLine = "\n";
 				io.sendOutput(newLine);
@@ -195,15 +177,10 @@ public class MainMenu {
 		String smithTitle = "BLACKSMITH"; // Change this to character location later
 		header(smithTitle);
 		
-		String bodyTitle = "              Whatcha' lookin to do? \n"
-				+  "       --------------------------  \n"
-				+  "        1) Buy                     \n"
-				+  "        2) Sell                    \n"
-				+  "        3) Go Back                 \n"
-				+  "       --------------------------  \n"
-				+  quickStats()
-				+  "    Choice: ";
-		io.sendOutput(bodyTitle);
+		printMenu("Whatcha' lookin to do?", "Leave Blacksmith",
+				  "Buy Equipment",
+				  "Sell Equipment");
+		
 		int smithChoice = 9;
 		try{
 		smithChoice = Integer.parseInt(io.getInput());} catch (Exception e) {}
@@ -315,7 +292,7 @@ public class MainMenu {
 			}
 			}
 		}
-		if (smithChoice == 3){
+		if (smithChoice == 0){
 			smithRepeat = 0;
 			String newLine = "\n";
 			io.sendOutput(newLine);
@@ -333,21 +310,15 @@ public class MainMenu {
 		
 			String marketTitle = "MARKET"; // Change this to character location later
 			header(marketTitle);
-		
-			String bodyTitle = "         Potions and food! Buyin' or sellin'! \n"
-				+  "       --------------------------  \n"
-				+  "        1) Buy Potions             \n"
-				+  "        2) Sell Potions            \n"
-				+  "        3) Sell Junk               \n"
-				+  "        4) Go Back                 \n"
-				+  "       --------------------------  \n"
-				+  quickStats()
-				+  "    Choice: ";
-			io.sendOutput(bodyTitle);
+			
+			printMenu("Potions & Food!", "Leave Market",
+					  "Buy Potions",
+					  "Sell Potions",
+					  "Sell Junk");
+			
 			int marketChoice = 9;
 			try{
 				marketChoice = Integer.parseInt(io.getInput());} catch (Exception e) {}
-			String output;
 			
 			if (marketChoice == 1){
 				int buyLoop = 1;
@@ -483,7 +454,7 @@ public class MainMenu {
 			}
 			}
 			
-			if (marketChoice == 3){
+			if (marketChoice == 0){
 				int sellLoop = 1;
 				while (sellLoop == 1){
 					io.saveInfo(character);
@@ -548,14 +519,10 @@ public class MainMenu {
 			String trainerTitle = "TRAINER";
 			header(trainerTitle);
 			
-			String bodyTitle = "              Whatcha' lookin to do? \n"
-					+  "       --------------------------  \n"
-					+  "        1) Upgrade Skills          \n"
-					+  "        2) Go Back                 \n"
-					+  "       --------------------------  \n"
-					+  quickStats()
-					+  "    Choice: ";
-			io.sendOutput(bodyTitle);
+			printMenu("Whatcha' lookin to do?", "Leave Trainer",
+					"Upgrade Skills",
+					"Learn new Abilities (not yet implemented)");
+			
 			int trainerChoice = 9;
 			try{
 			trainerChoice = Integer.parseInt(io.getInput());} catch (Exception e) {}
@@ -741,6 +708,12 @@ public class MainMenu {
 			}
 			
 			if (trainerChoice == 2) {
+			 String placeHolder = "\nNot yet implemented\n";
+			 io.sendOutput(placeHolder);
+			 io.pauseScreen();
+			}
+			
+			if (trainerChoice == 0) {
 				trainerRepeat = 0;
 				String newLine = "\n";
 				io.sendOutput(newLine);	
@@ -757,16 +730,11 @@ public class MainMenu {
 			
 			String innTitle = "INN"; // Change this to character location later
 			header(innTitle);
-			
-			String bodyTitle = "              Welcome to ye old inn! \n"
-					+  "       --------------------------  \n"
-					+  "        1) Rest your head (1 coin) \n"
-					+  "        2) Look for a quest        \n"
-					+  "        3) Go Back                 \n"
-					+  "       --------------------------  \n"
-					+  quickStats()
-					+  "    Choice: ";
-				io.sendOutput(bodyTitle);
+				
+				printMenu("Welcome to ye old inn!", "Leave the Inn",
+						  "Rest your head (1 coin)",
+						  "Look for a quest");
+				
 				int choice = 9;
 				try{
 				choice = Integer.parseInt(io.getInput());} catch (Exception e) {}
@@ -805,7 +773,7 @@ public class MainMenu {
 					
 					io.pauseScreen();
 				}
-				if (choice == 3){
+				if (choice == 0){
 					innRepeat = 0;
 					String newLine = "\n";
 					io.sendOutput(newLine);
@@ -873,17 +841,12 @@ public class MainMenu {
 		
 			String inventoryTitle = "INVENTORY";
 			header(inventoryTitle);
-		
-			String bodyTitle = "              Gear or Pots? \n"
-				+  "       --------------------------  \n"
-				+  "        1) Gear Storage            \n"
-				+  "        2) Potion Storage          \n"
-				+  "        3) Junk Storage            \n"
-				+  "        4) Go Back                 \n"
-				+  "       --------------------------  \n"
-				+  quickStats()
-				+  "    Choice: ";
-			io.sendOutput(bodyTitle);
+			
+			printMenu("Gear or Pots?", "Close Inventory",
+					  "Gear Storage",
+					  "Potion Storage",
+					  "Junk Storage");
+			
 			int choice = 9;
 			try{
 			choice = Integer.parseInt(io.getInput());} catch (Exception e) {}
@@ -897,7 +860,7 @@ public class MainMenu {
 			if (choice == 3){
 				junk();
 			}
-			if (choice == 4){
+			if (choice == 0){
 				inventoryRepeat = 0;
 				String newLine = "\n";
 				io.sendOutput(newLine);
@@ -989,6 +952,30 @@ public class MainMenu {
 				+	"	\\--------------------/\n\n";
 		io.sendOutput(header);
 	}	
+	
+	//	MENU FRAME
+	public void printMenu(String title, String leave, String... options) {
+		
+		
+		int menuItem = 1;
+		
+		String menuTitle = "         " + title + "         \n" +
+						   "       --------------------------\n";
+		io.sendOutput(menuTitle);
+		
+		for (String o:options) {
+			String filledOptions = "         " + menuItem + ") " + o + "\n";
+			io.sendOutput(filledOptions);
+			menuItem++;
+		}
+		
+		String ender = "         0) " + leave + "\n" + 
+				       "       --------------------------\n" +
+						quickStats() +
+		               "\n       Choice: ";
+		io.sendOutput(ender);
+		
+	}
 	
 	//QUICK STATS
 	//"    HP: 100/100 || SP: 100/100 || 30 COINS || INV 1/10\n"
