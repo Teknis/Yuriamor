@@ -126,21 +126,21 @@ public class Character implements Serializable {
 		// sets default items
 		reloadItemList();
 		if (charClass == 1){
- +        		this.primaryWeaponID = 1;
- +        		this.headArmorID = 300;
- +        		this.chestArmorID = 200;
- +        		this.legArmorID = 400;
- +       	} else if (charClass == 2){
- +        		this.primaryWeaponID = 3;
- +        		this.headArmorID = 302;
- +        		this.chestArmorID = 202;
- +        		this.legArmorID = 402;
- +        	} else if (charClass == 3){
- +        		this.primaryWeaponID = 5;
- +        		this.headArmorID = 304;
- +        		this.chestArmorID = 204;
- +        		this.legArmorID = 404;
- +        	}
+        		this.primaryWeaponID = 1;
+        		this.headArmorID = 300;
+        		this.chestArmorID = 200;
+        		this.legArmorID = 400;
+        	} else if (charClass == 2){
+         		this.primaryWeaponID = 3;
+         		this.headArmorID = 302;
+         		this.chestArmorID = 202;
+         		this.legArmorID = 402;
+         	} else if (charClass == 3){
+        		this.primaryWeaponID = 5;
+        		this.headArmorID = 304;
+        		this.chestArmorID = 204;
+         		this.legArmorID = 404;
+         	}
 		
 		for (int i = 0; i < 50; i++) {
 			inventory[i] = 0;
@@ -193,8 +193,8 @@ public class Character implements Serializable {
 				int ID = Integer.parseInt(storage[0]);
 				itemName[ID] = storage[1];
 				itemType[ID] = storage[2];
- +    				itemStat[ID] = Integer.parseInt(storage[3]);
- +    				itemPrice[ID] = Integer.parseInt(storage[4]);
+   				itemStat[ID] = Integer.parseInt(storage[3]);
+ 				itemPrice[ID] = Integer.parseInt(storage[4]);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

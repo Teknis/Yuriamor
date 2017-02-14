@@ -35,7 +35,7 @@ public class Menus {
 	}
 
 	public void mainMenu() {
-		while (true) {
+		while (repeat == 1) {
 
 			io.saveInfo(character);
 			io.clearScreen();
@@ -859,7 +859,7 @@ public class Menus {
 			io.sendOutputTyping(output, 150);
 			// Delete old data
 			try {
-				File file = new File("CharacterData.txt");
+				File file = new File("./CharacterData.txt");
 				file.delete();
 			} catch (Exception e) {
 				e.printStackTrace();
