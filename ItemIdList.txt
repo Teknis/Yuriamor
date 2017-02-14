@@ -1,14 +1,32 @@
-ID/Item/Stat/Price
-000/-empty-/0/0
-001/Dull Bronze Sword/5/1
-002/Sharp Bronze Sword/6/5
-005/Dull Redak Sword/7/10
-006/Sharp Redak Sword/8/15
-100/Dull Bronze Dagger/5/1
-101/Sharp Bronze Dagger/6/5
-200/Rusted Bronze Breast-plate/5/1
-201/Bronze Breast-plate/6/5
-300/Rusted Bronze Helmet/3/1
-301/Bronze Helmet/4/5
-400/Rusty Bronze Leg Plates/2/1
-401/Bronze Leg Plates/3/5
+ID/Item/Type/Stat/Price
+000/-empty-/Nothing/0/0
+001/Dull Bronze Sword/Melee/5/1
+002/Sharp Bronze Sword/Melee/6/5
+003/Weak Long Bow/Range/5/1
+004/Strong Long Bow/Range/6/5
+005/Depleted Wooden Staff/Magic/5/1
+006/Enchanted Wooden Staff/Magic/6/5
+100/Dull Bronze Dagger/Melee/5/1
+101/Sharp Bronze Dagger/Melee/6/5
+102/Weak Short Bow/Range/5/1
+103/Strong Short Bow/Range/6/5
+104/Depleted Magic Tome/Magic/5/1
+105/Enchanted Magic Tome/Magic/6/5
+200/Rusted Bronze Breast-plate/Heavy/5/1
+201/Bronze Breast-plate/Heavy/6/5
+202/Rugged Leather Body/Light/5/1
+203/Leather Body/Light/6/5
+204/Tattered Cloth Robe/Cloth/5/1
+205/Fine Cloth Robe/Cloth/6/5
+300/Rusted Bronze Helmet/Heavy/3/1
+301/Bronze Helmet/Heavy/4/5
+302/Rugged Leather Cowl/Light/5/1
+303/Leather Cowl/Light/6/5
+304/Tattered Cloth Hood/Cloth/5/1
+305/Fine Cloth Hood/Cloth/6/5
+400/Rusted Bronze Leggings/Heavy/2/1
+401/Bronze Leggings/Heavy/3/5
+402/Rugged Leather Leggings/Light/5/1
+403/Leather Leggings/Light/6/5
+404/Tattered Cloth Leggings/Cloth/5/1
+405/Fine Cloth Leggings/Cloth/6/5

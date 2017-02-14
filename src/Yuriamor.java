@@ -24,6 +24,7 @@ public class Yuriamor {
         if (character.checkIfSaved() == 0){
         	intro.name();
         	intro.presetStatNumber();
+        	intro.starterItems();
         	intro.end();
         }
 

@@ -1,2 +1,4 @@
 ID/Monster Name/Damage Type/Level/Health/Damage/MV1/MV2/MV3/MV4/Loot
-001/Blob/Melee/1/100/1/001/000/000/000/001
+001/Melee Dummy/Melee/1/100/1/001/000/000/000/001
+002/Range Dummy/Range/1/100/1/002/000/000/000/001
+003/Magic Dummy/Magic/1/100/1/003/000/000/000/001

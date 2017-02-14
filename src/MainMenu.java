@@ -454,7 +454,7 @@ public class MainMenu {
 			}
 			}
 			
-			if (marketChoice == 0){
+			if (marketChoice == 3){
 				int sellLoop = 1;
 				while (sellLoop == 1){
 					io.saveInfo(character);
@@ -502,7 +502,7 @@ public class MainMenu {
 				}	
 			}
 			
-			if (marketChoice == 4){
+			if (marketChoice == 0){
 				marketRepeat = 0;
 				String newLine = "\n";
 				io.sendOutput(newLine);
