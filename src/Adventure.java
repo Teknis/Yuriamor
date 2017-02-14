@@ -25,8 +25,8 @@ public class Adventure {
 		//Set Monsters for area
 		int [] monsterIds = new int [3];
 		monsterIds[0] = 001;
-		monsterIds[1] = 002;
-		monsterIds[2] = 003;
+		monsterIds[1] = 000;
+		monsterIds[2] = 000;
 		
 		int repeat = 1;
 		while (repeat == 1){

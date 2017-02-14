@@ -18,9 +18,6 @@ public class Intro {
     int addInt = 0;
     int addDex = 0;
     
-    //if 0, warrior | if 1, range | if 2, mage
-    int charClass = 0;
-    
     // create IO and Character object
     IO io = new IO();
     Character character = new Character();
@@ -44,7 +41,7 @@ public class Intro {
             	io.sendOutput(output);
             	
             	output = "\n\n         Welcome to Yuriamor! Prepare for battle and triumph!  \n                    ";
-            	io.sendOutputTyping(output,30);
+            	io.sendOutput(output);
             	
             	io.pauseScreen();
             	
@@ -154,52 +151,10 @@ public class Intro {
     				}
     			}
     	}
-    	
-    	public void starterItems(){
-    		int i = 0;
-    		while(i == 0){
-    			io.clearScreen();
-    			output = "What item set would you like to start with?\n"
-    					+"1) Melee			\n"
-    					+"2) Range			\n"
-    					+"3) Wizard			\n"
-    					+"----------		\n"
-    					+"Choice: ";
-    			io.sendOutput(output);
-    			
-    			int choice;
-				try{
-					choice = Integer.parseInt(io.getInput());
-				} catch (Exception e) {
-					choice = 0;
-				}
-				
-				switch(choice){
-				case 1:
-					charClass = 1;
-					i = 1;
-					break;
-				case 2:
-					charClass = 2;
-					i = 1;
-					break;
-				case 3:
-					charClass = 3;
-					i = 1;
-					break;
-				default:
-					output = "\n\n Wrong input...\n";
-					io.sendOutput(output);
-					io.pauseScreen();
-					break;
-				}
-    		}
-    	}
-    	
     	public void end(){
     		
     		//set Base stats of character
-    		character = new Character(playerName,addStr,addInt,addDex,charClass);
+    		character = new Character(playerName,addStr,addInt,addDex);
     		
             // outputs character sex, name, and race
             output = "\n***********************************\n\n\n";

@@ -13,7 +13,7 @@ public class Character implements Serializable{
 	
     //Character makeup
     String playerName;
-    int characterLocation;
+    String location;
     int isSaved = 0;
     
     //preset stats, beginning character presets
@@ -44,7 +44,6 @@ public class Character implements Serializable{
     
     //Item Arrays
     String[] itemName = new String[1000];
-    String[] itemType = new String[1000];
     int[] itemStat = new int[1000];
     int[] itemPrice = new int[1000];
     
@@ -106,14 +105,14 @@ public class Character implements Serializable{
     	
     }
     //Constructor (after user input)
-    public Character(String playerName, int addStr, int addInt, int addDex, int charClass){
+    public Character(String playerName, int addStr, int addInt, int addDex){
         
         //sets variables to character
     	this.playerName = playerName;
         this.charCurrency = 1000;
 
         this.charLevel = 1;
-        this.characterLocation = 1;
+        this.location = "Main Menu";
         
         //sets starting price to upgrade skills
         this.intPrice = 100;
@@ -122,23 +121,11 @@ public class Character implements Serializable{
         
         //sets default items
         reloadItemList();
-        if (charClass == 1){
-        	this.primaryWeaponID = 1;
-        	this.headArmorID = 300;
-        	this.chestArmorID = 200;
-        	this.legArmorID = 400;
-        } else if (charClass == 2){
-        	this.primaryWeaponID = 3;
-        	this.headArmorID = 302;
-        	this.chestArmorID = 202;
-        	this.legArmorID = 402;
-        } else if (charClass == 3){
-        	this.primaryWeaponID = 5;
-        	this.headArmorID = 304;
-        	this.chestArmorID = 204;
-        	this.legArmorID = 404;
-        }
-        
+        this.primaryWeaponID = 1;
+        this.secondaryWeaponID = 100;
+        this.headArmorID = 300;
+        this.chestArmorID = 200;
+        this.legArmorID = 400;
         for (int i = 0; i < 50; i++){
         	inventory[i] = 0;
         }
@@ -189,9 +176,8 @@ public class Character implements Serializable{
     			//System.out.println(Integer.parseInt(storage[0]));
     			int ID = Integer.parseInt(storage[0]);
     			itemName[ID] = storage[1];
-    			itemType[ID] = storage[2];
-    			itemStat[ID] = Integer.parseInt(storage[3]);
-    			itemPrice[ID] = Integer.parseInt(storage[4]);
+    			itemStat[ID] = Integer.parseInt(storage[2]);
+    			itemPrice[ID] = Integer.parseInt(storage[3]);
     		}
     	} catch (Exception e) {
     		System.out.println(e.getMessage());
@@ -330,11 +316,10 @@ public class Character implements Serializable{
     
     //Gets a specific items properties
     public String[] getItemData(int i){
-    	String[] item = new String[4];
+    	String[] item = new String[3];
     	item[0] = this.itemName[i];
 		item[1] = Integer.toString(this.itemStat[i]);
 		item[2] = Integer.toString(this.itemPrice[i]);
-		item[3] = this.itemType[i];
 		return item;
     }
     
@@ -404,12 +389,12 @@ public class Character implements Serializable{
 		this.playerName = playerName;
 	}
 
-	public int getCharacterLocation() {
-		return characterLocation;
+	public String getLocation() {
+		return location;
 	}
 	
-	public void setCharacterLocation(int characterLocation){
-		this.characterLocation = characterLocation;
+	public void setLocation(String characterLocation){
+		this.location = characterLocation;
 	}
 	
 	public int checkIfSaved() {

@@ -10,7 +10,7 @@ public class Yuriamor {
     
     // Methods
     public static void startScreen() {
-    while(1 == 1){
+    while(true){
     	//Character and IO Object
     	Character character = new Character();
     	IO io = new IO();
@@ -24,14 +24,13 @@ public class Yuriamor {
         if (character.checkIfSaved() == 0){
         	intro.name();
         	intro.presetStatNumber();
-        	intro.starterItems();
         	intro.end();
         }
 
         //MAINMENU
         character = io.loadInfo();
-        MainMenu mainmenu = new MainMenu(character);
-        mainmenu.resume();
+        Menus mainmenu = new Menus(character);
+        mainmenu.mainMenu();
     }
     }
     
