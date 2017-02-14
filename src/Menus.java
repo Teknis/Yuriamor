@@ -490,7 +490,7 @@ public class Menus {
 
 					io.saveInfo(character);
 					io.clearScreen();
-					
+
 					header();
 
 					// gets current skill level
@@ -756,7 +756,7 @@ public class Menus {
 	// STATS
 	public void stats() {
 		io.clearScreen();
-		
+
 		character.location = "STATS";
 		header();
 
@@ -815,7 +815,8 @@ public class Menus {
 
 			character.location = "INVENTORY";
 
-			printMenu("Select Inventory to view...", "Close Inventory", "Gear Storage", "Potion Storage", "Junk Storage");
+			printMenu("Select Inventory to view...", "Close Inventory", "Gear Storage", "Potion Storage",
+					"Junk Storage");
 
 			int choice = 9;
 			try {
@@ -972,7 +973,7 @@ public class Menus {
 		while (true) {
 			io.saveInfo(character);
 			io.clearScreen();
-			
+
 			header();
 
 			// PRIMARY
